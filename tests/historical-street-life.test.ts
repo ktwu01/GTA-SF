@@ -87,6 +87,32 @@ const dialogueFixture = () => {
   return { dialogue: createDialogue(crowd), holds };
 };
 
+test('ambient speech is opt-in and switching it off clears unsolicited lines', () => {
+  const { dialogue } = dialogueFixture();
+  dialogue.update(1, { x: 0, z: 350 }, [], true, true);
+  assert.deepEqual(dialogue.state().speech, []);
+  dialogue.update(30, { x: 0, z: 350 }, [], true, true);
+  assert.deepEqual(dialogue.state().speech, []);
+  dialogue.setAmbient(true);
+  dialogue.update(31, { x: 0, z: 350 }, [], true, true);
+  assert.equal(dialogue.state().speech.length, 1);
+  dialogue.setAmbient(false);
+  assert.deepEqual(dialogue.state().speech, []);
+});
+
+test('chosen reply clears itself so exploration resumes without a dismissal', () => {
+  const { dialogue } = dialogueFixture();
+  dialogue.update(1, { x: 0, z: 350 }, [], true, true);
+  dialogue.begin();
+  dialogue.choose(0);
+  dialogue.update(6, { x: 0, z: 350 }, [], true, true);
+  assert.equal(dialogue.state().stage, 'reply');
+  assert.equal(dialogue.state().activeId, 0);
+  dialogue.update(7, { x: 0, z: 350 }, [], true, true);
+  assert.equal(dialogue.state().activeId, null);
+  assert.deepEqual(dialogue.state().speech, []);
+});
+
 test('nearby conversation gives directions and can end outside the prompt radius', () => {
   const { dialogue } = dialogueFixture();
   dialogue.update(1, { x: 0, z: 350 }, [], true, true);
