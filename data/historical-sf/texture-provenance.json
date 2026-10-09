@@ -1,0 +1,393 @@
+{
+  "generatedAt": "2026-10-09",
+  "method": "Non-generative Pillow crops, tone adjustments, drawing, blending and normal-map conversion.",
+  "textures": [
+    {
+      "outputPath": "public/historical-sf/textures/sash-reflection.jpg",
+      "sourceImageIds": [
+        "market-shop-1899"
+      ],
+      "transformation": {
+        "cropPixels": [
+          535,
+          625,
+          654,
+          773
+        ],
+        "outputSize": [
+          256,
+          384
+        ],
+        "operations": [
+          "grayscale",
+          "1% autocontrast",
+          "Lanczos resize",
+          "interpretive duotone tint"
+        ],
+        "tintEndpoints": [
+          "#28312f",
+          "#b1b4a4"
+        ],
+        "use": "Period material detail; not proof of the modeled building or its placement."
+      },
+      "sha256": "7a86c48023b2c8ceeb2cd57fe01dc8f16ae59a2f22809c838c4471b0c2a74f02"
+    },
+    {
+      "outputPath": "public/historical-sf/textures/brick-course.jpg",
+      "sourceImageIds": [
+        "market-shop-1899"
+      ],
+      "transformation": {
+        "cropPixels": [
+          384,
+          400,
+          436,
+          670
+        ],
+        "outputSize": [
+          192,
+          768
+        ],
+        "operations": [
+          "grayscale",
+          "1% autocontrast",
+          "Lanczos resize",
+          "interpretive duotone tint"
+        ],
+        "tintEndpoints": [
+          "#716b60",
+          "#c9bda4"
+        ],
+        "use": "Period material detail; not proof of the modeled building or its placement."
+      },
+      "sha256": "860478d82406bfc63c3d4172499d826e8a6ff8bb701726a0b085d63238505700"
+    },
+    {
+      "outputPath": "public/historical-sf/textures/carved-frieze.jpg",
+      "sourceImageIds": [
+        "market-shop-1899"
+      ],
+      "transformation": {
+        "cropPixels": [
+          461,
+          542,
+          679,
+          603
+        ],
+        "outputSize": [
+          512,
+          128
+        ],
+        "operations": [
+          "grayscale",
+          "1% autocontrast",
+          "Lanczos resize",
+          "interpretive duotone tint"
+        ],
+        "tintEndpoints": [
+          "#6c665a",
+          "#cabd9f"
+        ],
+        "use": "Period material detail; not proof of the modeled building or its placement."
+      },
+      "sha256": "0ae2197820669c47f8eff7ff1dd3e3956bbf64dc4d1dc63aa9e073299ceb87ac"
+    },
+    {
+      "outputPath": "public/historical-sf/textures/shop-display.jpg",
+      "sourceImageIds": [
+        "cigar-shop-1899"
+      ],
+      "transformation": {
+        "cropPixels": [
+          271,
+          813,
+          444,
+          934
+        ],
+        "outputSize": [
+          512,
+          384
+        ],
+        "operations": [
+          "grayscale",
+          "1% autocontrast",
+          "Lanczos resize",
+          "interpretive duotone tint"
+        ],
+        "tintEndpoints": [
+          "#322e24",
+          "#bbaa88"
+        ],
+        "use": "Period material detail; not proof of the modeled building or its placement."
+      },
+      "sha256": "5397db38bef578d81dda570dbc5c2f5ea4fdc60b604cf7d78f8db6aa0f22737e"
+    },
+    {
+      "outputPath": "public/historical-sf/textures/shop-shelves.jpg",
+      "sourceImageIds": [
+        "cigar-shop-1899"
+      ],
+      "transformation": {
+        "cropPixels": [
+          967,
+          598,
+          1034,
+          703
+        ],
+        "outputSize": [
+          256,
+          384
+        ],
+        "operations": [
+          "grayscale",
+          "1% autocontrast",
+          "Lanczos resize",
+          "interpretive duotone tint"
+        ],
+        "tintEndpoints": [
+          "#24241e",
+          "#a89573"
+        ],
+        "use": "Period material detail; not proof of the modeled building or its placement."
+      },
+      "sha256": "94b612da55b13106e708110e125ff91f7a37123c34e3577ce0684dfc231b02aa"
+    },
+    {
+      "outputPath": "public/historical-sf/textures/terminal-bay.jpg",
+      "sourceImageIds": [
+        "ferry-terminal-1905"
+      ],
+      "transformation": {
+        "cropPixels": [
+          200,
+          545,
+          392,
+          948
+        ],
+        "outputSize": [
+          384,
+          768
+        ],
+        "operations": [
+          "grayscale",
+          "1% autocontrast",
+          "Lanczos resize",
+          "interpretive duotone tint"
+        ],
+        "tintEndpoints": [
+          "#343a34",
+          "#b8b6a4"
+        ],
+        "use": "Period material detail; not proof of the modeled building or its placement."
+      },
+      "sha256": "14c45eae6f0a750c2812d47fa526d2d77c4d837f1313497cc7008dc53714c11c"
+    },
+    {
+      "outputPath": "public/historical-sf/textures/coffee-house-upper.jpg",
+      "sourceImageIds": [
+        "ferry-terminal-1905"
+      ],
+      "transformation": {
+        "cropPixels": [
+          2050,
+          813,
+          2960,
+          959
+        ],
+        "outputSize": [
+          1536,
+          256
+        ],
+        "operations": [
+          "grayscale",
+          "1% autocontrast",
+          "Lanczos resize",
+          "interpretive duotone tint"
+        ],
+        "tintEndpoints": [
+          "#353c34",
+          "#aaa994"
+        ],
+        "use": "Period material detail; not proof of the modeled building or its placement."
+      },
+      "sha256": "6f26be3c3890eccdeaf2a10ece3f2376e74bbeec53f3d379ba9ed15596bf1e21"
+    },
+    {
+      "outputPath": "public/historical-sf/textures/coffee-house-shops.jpg",
+      "sourceImageIds": [
+        "ferry-terminal-1905"
+      ],
+      "transformation": {
+        "cropPixels": [
+          1925,
+          953,
+          2960,
+          1117
+        ],
+        "outputSize": [
+          1536,
+          256
+        ],
+        "operations": [
+          "grayscale",
+          "1% autocontrast",
+          "Lanczos resize",
+          "interpretive duotone tint"
+        ],
+        "tintEndpoints": [
+          "#282d26",
+          "#b8b199"
+        ],
+        "use": "Period material detail; not proof of the modeled building or its placement."
+      },
+      "sha256": "a3ef2c89b410f8e5b6396c0f7fe6eee20691d99bae04c3687774b12e622b1ca9"
+    },
+    {
+      "outputPath": "public/historical-sf/textures/terminal-wall-adverts.jpg",
+      "sourceImageIds": [
+        "ferry-terminal-1905"
+      ],
+      "transformation": {
+        "cropPixels": [
+          53,
+          148,
+          946,
+          429
+        ],
+        "outputSize": [
+          1536,
+          512
+        ],
+        "operations": [
+          "grayscale",
+          "1% autocontrast",
+          "Lanczos resize",
+          "interpretive duotone tint"
+        ],
+        "tintEndpoints": [
+          "#343b36",
+          "#e1dac4"
+        ],
+        "use": "Period material detail; not proof of the modeled building or its placement."
+      },
+      "sha256": "fc253a16f1dfa16701c128201a3c45a0193ca3db947a105e4d52d31a6d72fbbf"
+    },
+    {
+      "outputPath": "public/historical-sf/textures/warehouse-facade.jpg",
+      "sourceImageIds": [
+        "ferry-terminal-1905"
+      ],
+      "transformation": {
+        "cropPixels": [
+          1680,
+          105,
+          2370,
+          532
+        ],
+        "outputSize": [
+          1024,
+          768
+        ],
+        "operations": [
+          "grayscale",
+          "1% autocontrast",
+          "Lanczos resize",
+          "interpretive duotone tint"
+        ],
+        "tintEndpoints": [
+          "#56514a",
+          "#b7a992"
+        ],
+        "use": "Period material detail; not proof of the modeled building or its placement."
+      },
+      "sha256": "84dda2e45c88217a44b5d14dbb529c9c7dd9616754c9808e65352759625a1d2d"
+    },
+    {
+      "outputPath": "public/historical-sf/textures/painted-wood-wear.jpg",
+      "sourceImageIds": [
+        "cigar-shop-1899"
+      ],
+      "transformation": {
+        "cropPixels": [
+          927,
+          735,
+          944,
+          842
+        ],
+        "outputSize": [
+          128,
+          512
+        ],
+        "operations": [
+          "grayscale",
+          "1% autocontrast",
+          "Lanczos resize",
+          "interpretive duotone tint"
+        ],
+        "tintEndpoints": [
+          "#969286",
+          "#f0eedf"
+        ],
+        "use": "Period material detail; not proof of the modeled building or its placement."
+      },
+      "sha256": "072bc3d48577fb051e0582f76b58fbbaf1cf4ce4f94c65e3c0046dd3b5516aaa"
+    },
+    {
+      "outputPath": "public/historical-sf/textures/granite-setts.jpg",
+      "sourceImageIds": [
+        "film-470"
+      ],
+      "transformation": {
+        "cropPixels": [
+          56,
+          717,
+          335,
+          954
+        ],
+        "operations": [
+          "grayscale and autocontrast of original stone surface",
+          "resample to1024square",
+          "interpretive warm tint",
+          "28% blend over hand-drawn staggered stone courses"
+        ],
+        "use": "Interpretive seamless paving material, not a surveyed road orthophoto."
+      },
+      "sha256": "8e38fced2d69542027c63ff228e0a7673c3c41ba56f0b788f99b41ed3906976c"
+    },
+    {
+      "outputPath": "public/historical-sf/textures/worn-trackbed.jpg",
+      "sourceImageIds": [
+        "film-470"
+      ],
+      "transformation": {
+        "cropPixels": [
+          56,
+          717,
+          335,
+          954
+        ],
+        "operations": [
+          "blend granite-setts.jpg derivative with softened original film grain",
+          "1.5 pixel blur of paving",
+          "42% grain blend",
+          "reduce contrast to65%"
+        ],
+        "use": "Interpretive worn setts between the rails."
+      },
+      "sha256": "5b93fc51071104bf6b6c615c2175287e3317901c2ecb0aff4a6f5336c5c297b5"
+    },
+    {
+      "outputPath": "public/historical-sf/textures/granite-normal.png",
+      "sourceImageIds": [
+        "film-470"
+      ],
+      "transformation": {
+        "operations": [
+          "finite-difference normal map from granite-setts.jpg derivative"
+        ],
+        "use": "Approximate rendering relief."
+      },
+      "sha256": "4a7aa24948b5f2ca5fd1320e5b26b2ea767fd05ee32e0fe9f4d025aca8714ca3"
+    }
+  ]
+}

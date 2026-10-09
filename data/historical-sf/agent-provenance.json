@@ -1,0 +1,26 @@
+{
+  "visualizationAgent": {
+    "taskName": "/root/astra_historical_visualization",
+    "selectedModel": "gpt-6-astra",
+    "selectedReasoningEffort": "xhigh",
+    "selectionEvidence": "Explicit model argument supplied to collaboration.spawn_agent",
+    "scope": "Historical scene geometry, materials, animation, product UI, interaction and dedicated build",
+    "referenceGateAtLaunch": {
+      "realImages": 22,
+      "filmFrames": 16,
+      "independentImages": 6
+    },
+    "finalReferencePack": {
+      "distinctArchivalViews": 26,
+      "referenceImageFiles": 28,
+      "filmFrames": 16,
+      "independentImages": 10
+    },
+    "playableScope": "Final approximately 210 meters of Market Street and Ferry Building apron, with walking and boardable streetcar."
+  },
+  "researchAgent": {
+    "taskName": "/root/historical_references",
+    "scope": "Public historical image provenance and architectural observations"
+  },
+  "parentScope": "Public source gathering and download, source ledger, integration, browser QA and delivery"
+}
