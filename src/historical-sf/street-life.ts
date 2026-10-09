@@ -3,7 +3,8 @@ import { MeshBuilder } from '@babylonjs/core/Meshes/meshBuilder';
 import { Scene } from '@babylonjs/core/scene';
 import { TransformNode } from '@babylonjs/core/Meshes/transformNode';
 import { Masonry } from './geometry';
-import { type Palette, random } from './materials';
+import { type Palette } from './materials';
+import type { TrafficMarker } from './crowd';
 
 function wheel(b:Masonry,p:Palette,x:number,y:number,z:number,r:number) {
   for(let i=0;i<16;i++) {
@@ -12,16 +13,6 @@ function wheel(b:Masonry,p:Palette,x:number,y:number,z:number,r:number) {
     if(i%2===0)b.beam(p.wood,[x,y,z],[x,y+Math.cos(a)*r,z+Math.sin(a)*r],.027,4);
   }
   b.beam(p.rail,[x-.08,y,z],[x+.08,y,z],.11,8);
-}
-
-function person(b:Masonry,p:Palette,x:number,z:number,skirt:boolean,coat=p.coat,scale=1) {
-  const y=0, s=scale;
-  if(skirt){b.cylinder(coat,x,y+.57*s,z,.33*s,.92*s,.18*s,10);b.ellipsoid(coat,x,1.21*s,z,.22*s,.27*s,.16*s,false,14);}
-  else {b.ellipsoid(coat,x,1.07*s,z,.25*s,.36*s,.16*s,false,14);b.beam(coat,[x-.13*s,.75*s,z],[x-.18*s,.12*s,z+.09*s],.08*s);b.beam(coat,[x+.13*s,.75*s,z],[x+.17*s,.12*s,z-.1*s],.08*s);}
-  b.ellipsoid(p.skin,x,1.58*s,z,.13*s,.19*s,.13*s,false,10);
-  b.cylinder(p.black,x,1.76*s,z,.24*s,.05*s,.24*s,12);b.cylinder(p.black,x,1.85*s,z,.145*s,.17*s,.13*s,10);
-  for(const side of[-1,1]){b.beam(coat,[x+side*.25*s,1.29*s,z],[x+side*.3*s,.83*s,z+.04*s],.065*s);b.ellipsoid(p.skin,x+side*.3*s,.8*s,z+.04*s,.06*s,.08*s,.06*s,false,8);}
-  b.box(p.black,x-.15*s,.055*s,z+.04*s,.14*s,.11*s,.27*s);b.box(p.black,x+.15*s,.055*s,z-.03*s,.14*s,.11*s,.27*s);
 }
 
 function tram(scene:Scene,p:Palette,color=p.green) {
@@ -101,21 +92,11 @@ export function streetLife(scene:Scene,p:Palette) {
     model.root.position.set(lane,.02,z);if(speed<0)model.root.rotation.y=Math.PI;
     casters.push(...model.meshes);moving.push({root:model.root,speed,start:z,lane,kind:'wagon'});
   }
-  const rng=random(1976),crowd=new Masonry(scene,'sidewalk-crowd');
-  for(let i=0;i<34;i++){
-    const side=i%2?1:-1,x=side*(15.1+rng()*2.2),z=355+rng()*190;
-    person(crowd,p,x,z,i%4===0,i%4===0?p.skirt:i%3===0?p.navy:p.coat,.91+rng()*.16);
-  }
-  casters.push(...crowd.finish());
-  for(let i=0;i<10;i++){
-    const root=new TransformNode(`walking-person-${i}`,scene),b=new Masonry(scene,`walking-person-${i}`);
-    person(b,p,0,0,i%3===0,i%3===0?p.skirt:p.coat);casters.push(...b.finish(root));
-    const lane=(i%2?1:-1)*(14.8+(i%3)*.65),z=355+i*19;
-    root.position.set(lane,.22,z);const speed=(i%2?1:-1)*.7;if(speed<0)root.rotation.y=Math.PI;
-    moving.push({root,speed,start:z,lane,kind:'pedestrian'});
-  }
   const player=tram(scene,p,p.green);player.root.position.set(3.15,.03,358);casters.push(...player.meshes);
-  return {casters,player,update(time:number){for(const m of moving){let z=340+((m.start-340+m.speed*time+22000)%220);m.root.position.z=z;m.root.position.y=m.kind==='pedestrian'?.22+Math.abs(Math.sin(time*3.4+m.start))*.023:.03;}}};
+  return {casters,player,
+    traffic():TrafficMarker[]{return moving.map(m=>({x:m.root.position.x,z:m.root.position.z,kind:m.kind,speed:Math.abs(m.speed),direction:Math.sign(m.speed)}));},
+    update(time:number){for(const m of moving){m.root.position.z=340+((m.start-340+m.speed*time+22000)%220);m.root.position.y=.03;}}
+  };
 }
 
 export function streetGround(scene:Scene,p:Palette) {

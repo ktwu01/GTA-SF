@@ -1,4 +1,5 @@
 import './style.css';
+import './hud.css';
 import { createHistoricalScene, type Place } from './scene';
 import sourcePack from '../../data/historical-sf/sources.json';
 
@@ -46,6 +47,7 @@ app.innerHTML=`
 const $=<T extends HTMLElement>(s:string)=>document.querySelector<T>(s)!;
 const intro=$<HTMLElement>('.intro'),experience=$<HTMLElement>('.experience'),canvas=$<HTMLCanvasElement>('#street'),enter=$<HTMLButtonElement>('#enter'),video=$<HTMLVideoElement>('.archive-film');
 const archive=$<HTMLDialogElement>('#archive-dialog'),about=$<HTMLDialogElement>('#about-dialog'),comparison=$<HTMLElement>('.comparison');
+const dialogueNote=document.createElement('p');dialogueNote.textContent='The conversations are newly written in the language of the period. The original film is silent.';about.querySelector('.about-archive')!.before(dialogueNote);
 let entered=false,comparisonOpen=false,previousFocus:HTMLElement|null=null;
 const errors:string[]=[];
 window.addEventListener('error',event=>errors.push(event.message));
@@ -94,7 +96,7 @@ async function start(){
       $('#driving-instruction').innerHTML=state.guided?`Enjoy the ride<span>${smallScreen?'Throttle or brake takes control':'W or S to take control'}</span>`:smallScreen?'Hold throttle to accelerate<span>Brake to slow down</span>':'W accelerate · S brake<span>E step off · R reverse when stopped</span>';
       document.body.dataset.mode=state.mode;
     });
-    (window as Window&{__historicalSF?:unknown}).__historicalSF={snapshot:()=>({...world!.snapshot(),errors:[...errors],entered,comparisonOpen}),navigate:(place:Place)=>world!.navigate(place),board:()=>world!.board(),ride:()=>world!.ride(),guided:()=>world!.guided(),reverse:()=>world!.reverse(),model:'gpt-6-astra'};
+    (window as Window&{__historicalSF?:unknown}).__historicalSF={snapshot:()=>({...world!.snapshot(),errors:[...errors],entered,comparisonOpen}),navigate:(place:Place)=>world!.navigate(place),board:()=>world!.board(),ride:()=>world!.ride(),guided:()=>world!.guided(),reverse:()=>world!.reverse(),speak:()=>world!.speak(),respond:(index:number)=>world!.respond(index),model:'gpt-6-astra'};
     await Promise.race([world.scene.whenReadyAsync(),new Promise<never>((_,reject)=>setTimeout(()=>reject(new Error('The scene did not become ready within 25 seconds.')),25000))]);
     enter.disabled=false;enter.querySelector('span')!.textContent='Step inside';
     if(new URL(location.href).searchParams.has('view')){const p=new URL(location.href).searchParams.get('view') as Place;if(['ferry','arcade','market'].includes(p)){await enterStreet();world.navigate(p,false);}}

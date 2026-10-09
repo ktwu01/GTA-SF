@@ -17,7 +17,8 @@
     "benchmark:city": "node --experimental-transform-types scripts/city-benchmark.mjs",
     "dev:historical": "vite --config vite.historical.config.ts",
     "build:historical": "tsc --project tsconfig.historical.json --noEmit && vite build --config vite.historical.config.ts",
-    "preview:historical": "vite preview --config vite.historical.config.ts --host 127.0.0.1 --port 4177"
+    "preview:historical": "vite preview --config vite.historical.config.ts --host 127.0.0.1 --port 4177",
+    "test:historical": "node --experimental-transform-types --test tests/historical-*.test.ts"
   },
   "dependencies": {
     "@babylonjs/core": "^8.0.0",
