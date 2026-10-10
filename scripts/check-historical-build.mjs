@@ -22,6 +22,7 @@ assert.equal(await readFile(resolve(root,'index.html'),'utf8'),await readFile(re
 const sources=JSON.parse(await readFile('data/historical-sf/sources.json','utf8'));
 const voices=JSON.parse(await readFile('src/historical-sf/voice-manifest.json','utf8'));
 for(const path of [
+  '/historical-sf/favicon.svg',
   '/historical-sf/market-1906-excerpt.mp4',
   ...sources.images.filter(image=>image.displayInArchive!==false).map(image=>image.path),
   ...Object.values(voices).map(voice=>voice.path),
