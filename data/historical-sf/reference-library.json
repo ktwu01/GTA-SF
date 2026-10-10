@@ -1,0 +1,938 @@
+{
+  "retrievedAt": "2026-10-09",
+  "purpose": "Local historical modeling research. Not served by Vite or included in production.",
+  "files": [
+    {
+      "path": "public/historical-sf/references/call-1900.jpg",
+      "originalLocalPath": "public/historical-sf/references/call-1900.jpg",
+      "bytes": 384842,
+      "sha256": "399c7fb8d8148d6754d49d444620f06e580d5fb49c92a4cbf773b1817a53cf95",
+      "metadata": {
+        "id": "call-1900",
+        "title": "The Call Building, San Francisco",
+        "date": "1900",
+        "pageUrl": "https://www.loc.gov/item/2018645151/",
+        "downloadUrl": "https://tile.loc.gov/storage-services/service/pnp/ppmsca/55300/55309v.jpg",
+        "rights": "No known restrictions on publication; Detroit Publishing historical postcard",
+        "notes": "Call dome and cupola, cornices, arched base; use original pre-1938 silhouette",
+        "path": "/historical-sf/references/call-1900.jpg",
+        "localPath": "public/historical-sf/references/call-1900.jpg",
+        "sha256": "399c7fb8d8148d6754d49d444620f06e580d5fb49c92a4cbf773b1817a53cf95",
+        "captureId": "call-1900"
+      }
+    },
+    {
+      "path": "public/historical-sf/references/cigar-shop-1899.jpg",
+      "originalLocalPath": "public/historical-sf/references/cigar-shop-1899.jpg",
+      "bytes": 372476,
+      "sha256": "5b303cd496ebe13cb4cf11f3e4025ce2b8ffa7997e368eb140a194759dbd6e07",
+      "metadata": {
+        "id": "cigar-shop-1899",
+        "title": "Ben Adlers Cigar Store, Ellis/Powell",
+        "date": "1899-08-23",
+        "pageUrl": "https://commons.wikimedia.org/wiki/File:Ben_Adlers%27_Cigar_Store_1899.jpg",
+        "downloadUrl": "https://upload.wikimedia.org/wikipedia/commons/e/e9/Ben_Adlers%27_Cigar_Store_1899.jpg",
+        "rights": "Public domain US; published1899",
+        "path": "/historical-sf/references/cigar-shop-1899.jpg",
+        "localPath": "public/historical-sf/references/cigar-shop-1899.jpg",
+        "sha256": "5b303cd496ebe13cb4cf11f3e4025ce2b8ffa7997e368eb140a194759dbd6e07",
+        "notes": "Period clothing and storefront glazing/lettering; not Market Street, do not claim exact shop placement",
+        "derivative": "Resized, no generative editing",
+        "captureId": "cigar-shop-1899"
+      }
+    },
+    {
+      "path": "public/historical-sf/references/emporium-1904.jpg",
+      "originalLocalPath": "public/historical-sf/references/emporium-1904.jpg",
+      "bytes": 178851,
+      "sha256": "57304a756497587c49a3718d2658c92f2b958b2c53971f46baa56a3e0a810aa5",
+      "metadata": {
+        "id": "emporium-1904",
+        "title": "Emporium Department Store",
+        "date": "circa 1904",
+        "pageUrl": "https://www.immigrantentrepreneurship.org/images/emporium-department-store-ca-1904/",
+        "downloadUrl": "https://www.immigrantentrepreneurship.org/wp-content/uploads/2018/08/1802.jpg",
+        "rights": "Public Domain; page credits San Francisco History Center, San Francisco Public Library",
+        "notes": "Prequake Emporium facade; ground arcade, arched upper openings, original sign",
+        "path": "/historical-sf/references/emporium-1904.jpg",
+        "localPath": "public/historical-sf/references/emporium-1904.jpg",
+        "sha256": "57304a756497587c49a3718d2658c92f2b958b2c53971f46baa56a3e0a810aa5",
+        "captureId": "emporium-1904"
+      }
+    },
+    {
+      "path": "public/historical-sf/references/ferry-1901-hires.jpg",
+      "originalLocalPath": "public/historical-sf/references/ferry-1901-hires.jpg",
+      "bytes": 1183655,
+      "sha256": "abdfeb026823f07ad30aa02872dddc52f42ce0428c73e13235f6eaa09afd1722",
+      "metadata": {
+        "id": "ferry-1901-hires",
+        "sourceId": "ferry-1901",
+        "title": "Ferry Building, 1901 postcard \u2014 high-resolution scan",
+        "date": "1901",
+        "pageUrl": "https://digitalcollections.nypl.org/items/510d47d9-9b55-a3d9-e040-e00a18064a99",
+        "downloadUrl": "https://upload.wikimedia.org/wikipedia/commons/2/21/Ferry_Building%2C_San_Francisco%2C_Calif_%28NYPL_b12647398-62345%29.tiff",
+        "rights": "PD-US; PD-scan; published 1901 Detroit Photographic postcard",
+        "path": "/historical-sf/references/ferry-1901-hires.jpg",
+        "localPath": "public/historical-sf/references/ferry-1901-hires.jpg",
+        "sha256": "abdfeb026823f07ad30aa02872dddc52f42ce0428c73e13235f6eaa09afd1722",
+        "notes": "2441\u00d71570. Same photo as ferry-1901, at full resolution; original publication year printed on image, not precise exposure date/time.",
+        "derivative": {
+          "type": "format-conversion",
+          "sourceImageId": "ferry-1901",
+          "rawLocalPath": "data/historical-sf/references/ferry-1901-original.tiff",
+          "originalSha256": "b2ac565f23c2083be600194253972c3599b77adcbc11a50b1dd47e41750ccdef",
+          "method": "Pillow TIFF to RGB JPEG quality96, native2441\u00d71570; no crop, rectification, resize or generative edit"
+        },
+        "captureId": "ferry-1901",
+        "referenceRole": "alternate-resolution"
+      }
+    },
+    {
+      "path": "public/historical-sf/references/ferry-1901.jpg",
+      "originalLocalPath": "public/historical-sf/references/ferry-1901.jpg",
+      "bytes": 204786,
+      "sha256": "a465420b2fa7596b54cbb644136065fa240266f7bb3dfacf7be2a768674a1f8c",
+      "metadata": {
+        "id": "ferry-1901",
+        "title": "Ferry Building, San Francisco, California",
+        "date": "1901",
+        "dateBasis": "Printed copyright1901 visibly present on original postcard",
+        "rights": "PD-US; PD-scan; original1901 Detroit Photographic postcard",
+        "pageUrl": "https://digitalcollections.nypl.org/items/510d47d9-9b55-a3d9-e040-e00a18064a99",
+        "downloadUrl": "https://upload.wikimedia.org/wikipedia/commons/2/21/Ferry_Building%2C_San_Francisco%2C_Calif_%28NYPL_b12647398-62345%29.tiff",
+        "path": "/historical-sf/references/ferry-1901.jpg",
+        "localPath": "public/historical-sf/references/ferry-1901.jpg",
+        "sha256": "a465420b2fa7596b54cbb644136065fa240266f7bb3dfacf7be2a768674a1f8c",
+        "notes": "Prequake long arcade frontage and central tower; date verified on image. Waterfront rails should follow1906 film, not later balloon loop.",
+        "captureId": "ferry-1901",
+        "displayInArchive": false
+      }
+    },
+    {
+      "path": "public/historical-sf/references/ferry-market-terminal-1905.jpg",
+      "originalLocalPath": "public/historical-sf/references/ferry-market-terminal-1905.jpg",
+      "bytes": 4183008,
+      "sha256": "265907480973baf46fc98b6f7febe6c71c2a427812e6e96ce9f85a612fd5f171",
+      "metadata": {
+        "id": "ferry-terminal-1905",
+        "title": "Looking west on Market Street from Ferry Building tower, U00541",
+        "publisher": "SFMTA Photo Archive",
+        "creator": "John Henry Mentz",
+        "date": "1905-08-22",
+        "dateBasis": "Official archive embedded IPTC DateCreated19050822, captionAugust22,1905.",
+        "pageUrl": "https://gallery.apps.sfmta.com/",
+        "downloadUrl": "https://gallery.apps.sfmta.com/images/originals/U00541.jpg",
+        "rights": "Underlying U.S. photograph public domain: same image published in1913 Arnold report printed page 140. This conclusion uses publication evidence, not merely capturedate. SFMTA does not grant a blanket license.",
+        "rightsNotice": "SFMTA asks users to inquire about use/copies and places copyright responsibility on the user.",
+        "publicationProofSourceId": "arnold-report-1913",
+        "publicationProofPage": 140,
+        "publicationProofPdfPage": 180,
+        "accessedAt": "2026-10-09",
+        "sha256": "265907480973baf46fc98b6f7febe6c71c2a427812e6e96ce9f85a612fd5f171",
+        "rawLocalPath": "public/historical-sf/references/ferry-market-terminal-1905.jpg",
+        "sourceId": "sfmta-terminal-1905-source",
+        "path": "/historical-sf/references/ferry-market-terminal-1905.jpg",
+        "localPath": "public/historical-sf/references/ferry-market-terminal-1905.jpg",
+        "notes": "3000\u00d72333 archival scan. Exact region facades, signs, cobbles, rail fan, horse/cable cars. Publication matched visually to 1913 page 140; no new historical photo synthesized.",
+        "captureId": "ferry-terminal-1905"
+      }
+    },
+    {
+      "path": "public/historical-sf/references/ferry-market-terminal-publication-1913-p140.jpg",
+      "originalLocalPath": "public/historical-sf/references/ferry-market-terminal-publication-1913-p140.jpg",
+      "bytes": 551188,
+      "sha256": "5f8e01578c71dabb35345faaf42cc0f8f85f5ef4b7581d19193cc13d6ba1ef10",
+      "metadata": {
+        "id": "ferry-terminal-publication-1913",
+        "title": "1913 publication evidence for1905 Ferry terminal photo",
+        "publisher": "San Francisco, California",
+        "creator": "Bion J. Arnold",
+        "date": "1905 photo; published1913",
+        "pageUrl": "https://archive.org/details/cu31924099398467",
+        "downloadUrl": "https://upload.wikimedia.org/wikipedia/commons/f/f9/Report_on_the_improvement_and_development_of_the_transportation_facilities_of_San_Francisco_%28IA_cu31924099398467%29.pdf",
+        "rights": "Public domain in the United States: published 1913. Commons identifies PD-US pre-1931 publication.",
+        "rightsUrl": "https://commons.wikimedia.org/wiki/File:Report_on_the_improvement_and_development_of_the_transportation_facilities_of_San_Francisco_(IA_cu31924099398467).pdf",
+        "accessedAt": "2026-10-09",
+        "sha256": "5f8e01578c71dabb35345faaf42cc0f8f85f5ef4b7581d19193cc13d6ba1ef10",
+        "rawLocalPath": "data/historical-sf/references/arnold-transportation-report-1913.pdf",
+        "notes": "Fullprinted page 140, PDF page 180. Same historic photo as U00541; do not count as an independent capture. Text and caption preserved.",
+        "sourceId": "arnold-report-1913",
+        "path": "/historical-sf/references/ferry-market-terminal-publication-1913-p140.jpg",
+        "localPath": "public/historical-sf/references/ferry-market-terminal-publication-1913-p140.jpg",
+        "derivative": {
+          "type": "pdf-page-render",
+          "sourceId": "arnold-report-1913",
+          "pdfPage": 180,
+          "printedPage": 140,
+          "method": "pdftoppm -f180 -singlefile -scale-to2400 -jpeg; no crop or generative edit"
+        },
+        "captureId": "ferry-terminal-1905",
+        "referenceRole": "publication-evidence",
+        "displayInArchive": false
+      }
+    },
+    {
+      "path": "public/historical-sf/references/manifest.json",
+      "originalLocalPath": "public/historical-sf/references/manifest.json",
+      "bytes": 26915,
+      "sha256": "db57274bd925c3f5b89b1bcb8bb988bc2b07d68330ccb264f14bc7349572e357",
+      "metadata": {
+        "notes": "Existing local reference; see accompanying source ledgers for attribution.",
+        "rights": "Unresolved; research only"
+      }
+    },
+    {
+      "path": "public/historical-sf/references/market-1900.jpg",
+      "originalLocalPath": "public/historical-sf/references/market-1900.jpg",
+      "bytes": 336168,
+      "sha256": "dda43554374df70552d9432fa299141cadd126d3ce55bc9f78046b3f15458f24",
+      "metadata": {
+        "id": "market-1900",
+        "title": "Market Street, San Francisco",
+        "date": "1900",
+        "rights": "No known restrictions on publication; Detroit Publishing collection",
+        "pageUrl": "https://www.loc.gov/item/2015647623/",
+        "downloadUrl": "https://cdn.loc.gov/service/pnp/ppmsca/39500/39502v.jpg",
+        "path": "/historical-sf/references/market-1900.jpg",
+        "localPath": "public/historical-sf/references/market-1900.jpg",
+        "notes": "Street width, tracks, facade rhythm, overhead wires and period traffic",
+        "sha256": "dda43554374df70552d9432fa299141cadd126d3ce55bc9f78046b3f15458f24",
+        "derivative": "Resized only; no generative editing",
+        "captureId": "market-1900"
+      }
+    },
+    {
+      "path": "public/historical-sf/references/market-film-018.jpg",
+      "originalLocalPath": "public/historical-sf/references/market-film-018.jpg",
+      "bytes": 142462,
+      "sha256": "bbfb756adce0dc6e5dd0da6f2243b1e53b136e92b5d4d2ff0fd02c0b111476bb",
+      "metadata": {
+        "id": "film-018",
+        "title": "Market Street film \u2014 viewing-copy frame at 18s",
+        "publisher": "Library of Congress",
+        "creator": "Miles Brothers",
+        "date": "1906-04-14",
+        "pageUrl": "https://www.loc.gov/item/00694408/",
+        "downloadUrl": "https://tile.loc.gov/storage-services/service/mbrs/ntscrm/00015143/00015143.mp4",
+        "rights": "Public domain; LOC collection explicitly free to use and reuse",
+        "rightsUrl": "https://www.loc.gov/item/00694408/#rights-and-access",
+        "accessedAt": "2026-10-09",
+        "sha256": "bbfb756adce0dc6e5dd0da6f2243b1e53b136e92b5d4d2ff0fd02c0b111476bb",
+        "rawLocalPath": "data/historical-sf/references/market-street-1906.mp4",
+        "notes": "Original silent archival footage, not AI imagery. Frame times are offsets into this downloaded viewing copy. Use LOC's scene-by-scene description for building identity; estimated geometry is not a survey.",
+        "sourceId": "loc-market-film",
+        "timeSeconds": 18,
+        "path": "/historical-sf/references/market-film-018.jpg",
+        "localPath": "public/historical-sf/references/market-film-018.jpg",
+        "derivative": "Frame extracted and resized from original film; no generative editing",
+        "captureId": "film-018"
+      }
+    },
+    {
+      "path": "public/historical-sf/references/market-film-045.jpg",
+      "originalLocalPath": "public/historical-sf/references/market-film-045.jpg",
+      "bytes": 143289,
+      "sha256": "87722d611d7a7a044ed367a2139cb12fb93abddadcc8a021f6ff5e6c23175a83",
+      "metadata": {
+        "id": "film-045",
+        "title": "Market Street film \u2014 viewing-copy frame at 45s",
+        "publisher": "Library of Congress",
+        "creator": "Miles Brothers",
+        "date": "1906-04-14",
+        "pageUrl": "https://www.loc.gov/item/00694408/",
+        "downloadUrl": "https://tile.loc.gov/storage-services/service/mbrs/ntscrm/00015143/00015143.mp4",
+        "rights": "Public domain; LOC collection explicitly free to use and reuse",
+        "rightsUrl": "https://www.loc.gov/item/00694408/#rights-and-access",
+        "accessedAt": "2026-10-09",
+        "sha256": "87722d611d7a7a044ed367a2139cb12fb93abddadcc8a021f6ff5e6c23175a83",
+        "rawLocalPath": "data/historical-sf/references/market-street-1906.mp4",
+        "notes": "Original silent archival footage, not AI imagery. Frame times are offsets into this downloaded viewing copy. Use LOC's scene-by-scene description for building identity; estimated geometry is not a survey.",
+        "sourceId": "loc-market-film",
+        "timeSeconds": 45,
+        "path": "/historical-sf/references/market-film-045.jpg",
+        "localPath": "public/historical-sf/references/market-film-045.jpg",
+        "derivative": "Frame extracted and resized from original film; no generative editing",
+        "captureId": "film-045"
+      }
+    },
+    {
+      "path": "public/historical-sf/references/market-film-075.jpg",
+      "originalLocalPath": "public/historical-sf/references/market-film-075.jpg",
+      "bytes": 147833,
+      "sha256": "ca67c42f3922631591312ab2cafeb808ffb58b28e5f51ef62fb4cbebc563a9e9",
+      "metadata": {
+        "id": "film-075",
+        "title": "Market Street film \u2014 viewing-copy frame at 75s",
+        "publisher": "Library of Congress",
+        "creator": "Miles Brothers",
+        "date": "1906-04-14",
+        "pageUrl": "https://www.loc.gov/item/00694408/",
+        "downloadUrl": "https://tile.loc.gov/storage-services/service/mbrs/ntscrm/00015143/00015143.mp4",
+        "rights": "Public domain; LOC collection explicitly free to use and reuse",
+        "rightsUrl": "https://www.loc.gov/item/00694408/#rights-and-access",
+        "accessedAt": "2026-10-09",
+        "sha256": "ca67c42f3922631591312ab2cafeb808ffb58b28e5f51ef62fb4cbebc563a9e9",
+        "rawLocalPath": "data/historical-sf/references/market-street-1906.mp4",
+        "notes": "Original silent archival footage, not AI imagery. Frame times are offsets into this downloaded viewing copy. Use LOC's scene-by-scene description for building identity; estimated geometry is not a survey.",
+        "sourceId": "loc-market-film",
+        "timeSeconds": 75,
+        "path": "/historical-sf/references/market-film-075.jpg",
+        "localPath": "public/historical-sf/references/market-film-075.jpg",
+        "derivative": "Frame extracted and resized from original film; no generative editing",
+        "captureId": "film-075"
+      }
+    },
+    {
+      "path": "public/historical-sf/references/market-film-110.jpg",
+      "originalLocalPath": "public/historical-sf/references/market-film-110.jpg",
+      "bytes": 127334,
+      "sha256": "70d11bdc62edce2ba0e060119de9f1dcf3b46edb0b812ef4252b9eb4c8549202",
+      "metadata": {
+        "id": "film-110",
+        "title": "Market Street film \u2014 viewing-copy frame at 110s",
+        "publisher": "Library of Congress",
+        "creator": "Miles Brothers",
+        "date": "1906-04-14",
+        "pageUrl": "https://www.loc.gov/item/00694408/",
+        "downloadUrl": "https://tile.loc.gov/storage-services/service/mbrs/ntscrm/00015143/00015143.mp4",
+        "rights": "Public domain; LOC collection explicitly free to use and reuse",
+        "rightsUrl": "https://www.loc.gov/item/00694408/#rights-and-access",
+        "accessedAt": "2026-10-09",
+        "sha256": "70d11bdc62edce2ba0e060119de9f1dcf3b46edb0b812ef4252b9eb4c8549202",
+        "rawLocalPath": "data/historical-sf/references/market-street-1906.mp4",
+        "notes": "Original silent archival footage, not AI imagery. Frame times are offsets into this downloaded viewing copy. Use LOC's scene-by-scene description for building identity; estimated geometry is not a survey.",
+        "sourceId": "loc-market-film",
+        "timeSeconds": 110,
+        "path": "/historical-sf/references/market-film-110.jpg",
+        "localPath": "public/historical-sf/references/market-film-110.jpg",
+        "derivative": "Frame extracted and resized from original film; no generative editing",
+        "captureId": "film-110"
+      }
+    },
+    {
+      "path": "public/historical-sf/references/market-film-145.jpg",
+      "originalLocalPath": "public/historical-sf/references/market-film-145.jpg",
+      "bytes": 130599,
+      "sha256": "82302578614c18ccc58154c40e63619a9b1d529568e024516495b0917634f0ba",
+      "metadata": {
+        "id": "film-145",
+        "title": "Market Street film \u2014 viewing-copy frame at 145s",
+        "publisher": "Library of Congress",
+        "creator": "Miles Brothers",
+        "date": "1906-04-14",
+        "pageUrl": "https://www.loc.gov/item/00694408/",
+        "downloadUrl": "https://tile.loc.gov/storage-services/service/mbrs/ntscrm/00015143/00015143.mp4",
+        "rights": "Public domain; LOC collection explicitly free to use and reuse",
+        "rightsUrl": "https://www.loc.gov/item/00694408/#rights-and-access",
+        "accessedAt": "2026-10-09",
+        "sha256": "82302578614c18ccc58154c40e63619a9b1d529568e024516495b0917634f0ba",
+        "rawLocalPath": "data/historical-sf/references/market-street-1906.mp4",
+        "notes": "Original silent archival footage, not AI imagery. Frame times are offsets into this downloaded viewing copy. Use LOC's scene-by-scene description for building identity; estimated geometry is not a survey.",
+        "sourceId": "loc-market-film",
+        "timeSeconds": 145,
+        "path": "/historical-sf/references/market-film-145.jpg",
+        "localPath": "public/historical-sf/references/market-film-145.jpg",
+        "derivative": "Frame extracted and resized from original film; no generative editing",
+        "captureId": "film-145"
+      }
+    },
+    {
+      "path": "public/historical-sf/references/market-film-180.jpg",
+      "originalLocalPath": "public/historical-sf/references/market-film-180.jpg",
+      "bytes": 140163,
+      "sha256": "02ca0b651c14a88faec32cc7a2c868f7468f34cba6fee00d2db75e8bbc27f6ec",
+      "metadata": {
+        "id": "film-180",
+        "title": "Market Street film \u2014 viewing-copy frame at 180s",
+        "publisher": "Library of Congress",
+        "creator": "Miles Brothers",
+        "date": "1906-04-14",
+        "pageUrl": "https://www.loc.gov/item/00694408/",
+        "downloadUrl": "https://tile.loc.gov/storage-services/service/mbrs/ntscrm/00015143/00015143.mp4",
+        "rights": "Public domain; LOC collection explicitly free to use and reuse",
+        "rightsUrl": "https://www.loc.gov/item/00694408/#rights-and-access",
+        "accessedAt": "2026-10-09",
+        "sha256": "02ca0b651c14a88faec32cc7a2c868f7468f34cba6fee00d2db75e8bbc27f6ec",
+        "rawLocalPath": "data/historical-sf/references/market-street-1906.mp4",
+        "notes": "Original silent archival footage, not AI imagery. Frame times are offsets into this downloaded viewing copy. Use LOC's scene-by-scene description for building identity; estimated geometry is not a survey.",
+        "sourceId": "loc-market-film",
+        "timeSeconds": 180,
+        "path": "/historical-sf/references/market-film-180.jpg",
+        "localPath": "public/historical-sf/references/market-film-180.jpg",
+        "derivative": "Frame extracted and resized from original film; no generative editing",
+        "captureId": "film-180"
+      }
+    },
+    {
+      "path": "public/historical-sf/references/market-film-210.jpg",
+      "originalLocalPath": "public/historical-sf/references/market-film-210.jpg",
+      "bytes": 158901,
+      "sha256": "990eaa7a02fca09d68b4f63721fb8eba39421f8ca8b1d79e7bd9a813ffa9f6ff",
+      "metadata": {
+        "id": "film-210",
+        "title": "Market Street film \u2014 viewing-copy frame at 210s",
+        "publisher": "Library of Congress",
+        "creator": "Miles Brothers",
+        "date": "1906-04-14",
+        "pageUrl": "https://www.loc.gov/item/00694408/",
+        "downloadUrl": "https://tile.loc.gov/storage-services/service/mbrs/ntscrm/00015143/00015143.mp4",
+        "rights": "Public domain; LOC collection explicitly free to use and reuse",
+        "rightsUrl": "https://www.loc.gov/item/00694408/#rights-and-access",
+        "accessedAt": "2026-10-09",
+        "sha256": "990eaa7a02fca09d68b4f63721fb8eba39421f8ca8b1d79e7bd9a813ffa9f6ff",
+        "rawLocalPath": "data/historical-sf/references/market-street-1906.mp4",
+        "notes": "Original silent archival footage, not AI imagery. Frame times are offsets into this downloaded viewing copy. Use LOC's scene-by-scene description for building identity; estimated geometry is not a survey.",
+        "sourceId": "loc-market-film",
+        "timeSeconds": 210,
+        "path": "/historical-sf/references/market-film-210.jpg",
+        "localPath": "public/historical-sf/references/market-film-210.jpg",
+        "derivative": "Frame extracted and resized from original film; no generative editing",
+        "captureId": "film-210"
+      }
+    },
+    {
+      "path": "public/historical-sf/references/market-film-240.jpg",
+      "originalLocalPath": "public/historical-sf/references/market-film-240.jpg",
+      "bytes": 158630,
+      "sha256": "069cb6b10034a1424f9a3ffda54f03957765ddada9f4a2650e24d07a397a2dfd",
+      "metadata": {
+        "id": "film-240",
+        "title": "Market Street film \u2014 viewing-copy frame at 240s",
+        "publisher": "Library of Congress",
+        "creator": "Miles Brothers",
+        "date": "1906-04-14",
+        "pageUrl": "https://www.loc.gov/item/00694408/",
+        "downloadUrl": "https://tile.loc.gov/storage-services/service/mbrs/ntscrm/00015143/00015143.mp4",
+        "rights": "Public domain; LOC collection explicitly free to use and reuse",
+        "rightsUrl": "https://www.loc.gov/item/00694408/#rights-and-access",
+        "accessedAt": "2026-10-09",
+        "sha256": "069cb6b10034a1424f9a3ffda54f03957765ddada9f4a2650e24d07a397a2dfd",
+        "rawLocalPath": "data/historical-sf/references/market-street-1906.mp4",
+        "notes": "Original silent archival footage, not AI imagery. Frame times are offsets into this downloaded viewing copy. Use LOC's scene-by-scene description for building identity; estimated geometry is not a survey.",
+        "sourceId": "loc-market-film",
+        "timeSeconds": 240,
+        "path": "/historical-sf/references/market-film-240.jpg",
+        "localPath": "public/historical-sf/references/market-film-240.jpg",
+        "derivative": "Frame extracted and resized from original film; no generative editing",
+        "captureId": "film-240"
+      }
+    },
+    {
+      "path": "public/historical-sf/references/market-film-275.jpg",
+      "originalLocalPath": "public/historical-sf/references/market-film-275.jpg",
+      "bytes": 125039,
+      "sha256": "8bd364284f232e59d42db4a08a1c084582c1f8637c1b8d792a0275627d39d926",
+      "metadata": {
+        "id": "film-275",
+        "title": "Market Street film \u2014 viewing-copy frame at 275s",
+        "publisher": "Library of Congress",
+        "creator": "Miles Brothers",
+        "date": "1906-04-14",
+        "pageUrl": "https://www.loc.gov/item/00694408/",
+        "downloadUrl": "https://tile.loc.gov/storage-services/service/mbrs/ntscrm/00015143/00015143.mp4",
+        "rights": "Public domain; LOC collection explicitly free to use and reuse",
+        "rightsUrl": "https://www.loc.gov/item/00694408/#rights-and-access",
+        "accessedAt": "2026-10-09",
+        "sha256": "8bd364284f232e59d42db4a08a1c084582c1f8637c1b8d792a0275627d39d926",
+        "rawLocalPath": "data/historical-sf/references/market-street-1906.mp4",
+        "notes": "Original silent archival footage, not AI imagery. Frame times are offsets into this downloaded viewing copy. Use LOC's scene-by-scene description for building identity; estimated geometry is not a survey.",
+        "sourceId": "loc-market-film",
+        "timeSeconds": 275,
+        "path": "/historical-sf/references/market-film-275.jpg",
+        "localPath": "public/historical-sf/references/market-film-275.jpg",
+        "derivative": "Frame extracted and resized from original film; no generative editing",
+        "captureId": "film-275"
+      }
+    },
+    {
+      "path": "public/historical-sf/references/market-film-310.jpg",
+      "originalLocalPath": "public/historical-sf/references/market-film-310.jpg",
+      "bytes": 110804,
+      "sha256": "7cfe9a6772daad6571c1e113854c8d2b57e95d5bef92cc5f67c20e92cbe0fa55",
+      "metadata": {
+        "id": "film-310",
+        "title": "Market Street film \u2014 viewing-copy frame at 310s",
+        "publisher": "Library of Congress",
+        "creator": "Miles Brothers",
+        "date": "1906-04-14",
+        "pageUrl": "https://www.loc.gov/item/00694408/",
+        "downloadUrl": "https://tile.loc.gov/storage-services/service/mbrs/ntscrm/00015143/00015143.mp4",
+        "rights": "Public domain; LOC collection explicitly free to use and reuse",
+        "rightsUrl": "https://www.loc.gov/item/00694408/#rights-and-access",
+        "accessedAt": "2026-10-09",
+        "sha256": "7cfe9a6772daad6571c1e113854c8d2b57e95d5bef92cc5f67c20e92cbe0fa55",
+        "rawLocalPath": "data/historical-sf/references/market-street-1906.mp4",
+        "notes": "Original silent archival footage, not AI imagery. Frame times are offsets into this downloaded viewing copy. Use LOC's scene-by-scene description for building identity; estimated geometry is not a survey.",
+        "sourceId": "loc-market-film",
+        "timeSeconds": 310,
+        "path": "/historical-sf/references/market-film-310.jpg",
+        "localPath": "public/historical-sf/references/market-film-310.jpg",
+        "derivative": "Frame extracted and resized from original film; no generative editing",
+        "captureId": "film-310"
+      }
+    },
+    {
+      "path": "public/historical-sf/references/market-film-345.jpg",
+      "originalLocalPath": "public/historical-sf/references/market-film-345.jpg",
+      "bytes": 124828,
+      "sha256": "93b23880e0133faeb0fefed31614dc1b9e7f56e4a67fcaf6ece32ba16325f1d2",
+      "metadata": {
+        "id": "film-345",
+        "title": "Market Street film \u2014 viewing-copy frame at 345s",
+        "publisher": "Library of Congress",
+        "creator": "Miles Brothers",
+        "date": "1906-04-14",
+        "pageUrl": "https://www.loc.gov/item/00694408/",
+        "downloadUrl": "https://tile.loc.gov/storage-services/service/mbrs/ntscrm/00015143/00015143.mp4",
+        "rights": "Public domain; LOC collection explicitly free to use and reuse",
+        "rightsUrl": "https://www.loc.gov/item/00694408/#rights-and-access",
+        "accessedAt": "2026-10-09",
+        "sha256": "93b23880e0133faeb0fefed31614dc1b9e7f56e4a67fcaf6ece32ba16325f1d2",
+        "rawLocalPath": "data/historical-sf/references/market-street-1906.mp4",
+        "notes": "Original silent archival footage, not AI imagery. Frame times are offsets into this downloaded viewing copy. Use LOC's scene-by-scene description for building identity; estimated geometry is not a survey.",
+        "sourceId": "loc-market-film",
+        "timeSeconds": 345,
+        "path": "/historical-sf/references/market-film-345.jpg",
+        "localPath": "public/historical-sf/references/market-film-345.jpg",
+        "derivative": "Frame extracted and resized from original film; no generative editing",
+        "captureId": "film-345"
+      }
+    },
+    {
+      "path": "public/historical-sf/references/market-film-380.jpg",
+      "originalLocalPath": "public/historical-sf/references/market-film-380.jpg",
+      "bytes": 154245,
+      "sha256": "7791aa0080e3a4e56dbff3dbf13814e831258b8c5a60a4ed2dddfe61c5de36ac",
+      "metadata": {
+        "id": "film-380",
+        "title": "Market Street film \u2014 viewing-copy frame at 380s",
+        "publisher": "Library of Congress",
+        "creator": "Miles Brothers",
+        "date": "1906-04-14",
+        "pageUrl": "https://www.loc.gov/item/00694408/",
+        "downloadUrl": "https://tile.loc.gov/storage-services/service/mbrs/ntscrm/00015143/00015143.mp4",
+        "rights": "Public domain; LOC collection explicitly free to use and reuse",
+        "rightsUrl": "https://www.loc.gov/item/00694408/#rights-and-access",
+        "accessedAt": "2026-10-09",
+        "sha256": "7791aa0080e3a4e56dbff3dbf13814e831258b8c5a60a4ed2dddfe61c5de36ac",
+        "rawLocalPath": "data/historical-sf/references/market-street-1906.mp4",
+        "notes": "Original silent archival footage, not AI imagery. Frame times are offsets into this downloaded viewing copy. Use LOC's scene-by-scene description for building identity; estimated geometry is not a survey.",
+        "sourceId": "loc-market-film",
+        "timeSeconds": 380,
+        "path": "/historical-sf/references/market-film-380.jpg",
+        "localPath": "public/historical-sf/references/market-film-380.jpg",
+        "derivative": "Frame extracted and resized from original film; no generative editing",
+        "captureId": "film-380"
+      }
+    },
+    {
+      "path": "public/historical-sf/references/market-film-415.jpg",
+      "originalLocalPath": "public/historical-sf/references/market-film-415.jpg",
+      "bytes": 145118,
+      "sha256": "27afdd21ca40df594e9075fdf76bbe06dba3a0a12d9b5e77014ea8476805ab4c",
+      "metadata": {
+        "id": "film-415",
+        "title": "Market Street film \u2014 viewing-copy frame at 415s",
+        "publisher": "Library of Congress",
+        "creator": "Miles Brothers",
+        "date": "1906-04-14",
+        "pageUrl": "https://www.loc.gov/item/00694408/",
+        "downloadUrl": "https://tile.loc.gov/storage-services/service/mbrs/ntscrm/00015143/00015143.mp4",
+        "rights": "Public domain; LOC collection explicitly free to use and reuse",
+        "rightsUrl": "https://www.loc.gov/item/00694408/#rights-and-access",
+        "accessedAt": "2026-10-09",
+        "sha256": "27afdd21ca40df594e9075fdf76bbe06dba3a0a12d9b5e77014ea8476805ab4c",
+        "rawLocalPath": "data/historical-sf/references/market-street-1906.mp4",
+        "notes": "Original silent archival footage, not AI imagery. Frame times are offsets into this downloaded viewing copy. Use LOC's scene-by-scene description for building identity; estimated geometry is not a survey.",
+        "sourceId": "loc-market-film",
+        "timeSeconds": 415,
+        "path": "/historical-sf/references/market-film-415.jpg",
+        "localPath": "public/historical-sf/references/market-film-415.jpg",
+        "derivative": "Frame extracted and resized from original film; no generative editing",
+        "captureId": "film-415"
+      }
+    },
+    {
+      "path": "public/historical-sf/references/market-film-445.jpg",
+      "originalLocalPath": "public/historical-sf/references/market-film-445.jpg",
+      "bytes": 161919,
+      "sha256": "36b99e249194b7f83058b1cd1c33f8b4ae1a7a7a31d8eb9f30831b2adcb62e75",
+      "metadata": {
+        "id": "film-445",
+        "title": "Market Street film \u2014 viewing-copy frame at 445s",
+        "publisher": "Library of Congress",
+        "creator": "Miles Brothers",
+        "date": "1906-04-14",
+        "pageUrl": "https://www.loc.gov/item/00694408/",
+        "downloadUrl": "https://tile.loc.gov/storage-services/service/mbrs/ntscrm/00015143/00015143.mp4",
+        "rights": "Public domain; LOC collection explicitly free to use and reuse",
+        "rightsUrl": "https://www.loc.gov/item/00694408/#rights-and-access",
+        "accessedAt": "2026-10-09",
+        "sha256": "36b99e249194b7f83058b1cd1c33f8b4ae1a7a7a31d8eb9f30831b2adcb62e75",
+        "rawLocalPath": "data/historical-sf/references/market-street-1906.mp4",
+        "notes": "Original silent archival footage, not AI imagery. Frame times are offsets into this downloaded viewing copy. Use LOC's scene-by-scene description for building identity; estimated geometry is not a survey.",
+        "sourceId": "loc-market-film",
+        "timeSeconds": 445,
+        "path": "/historical-sf/references/market-film-445.jpg",
+        "localPath": "public/historical-sf/references/market-film-445.jpg",
+        "derivative": "Frame extracted and resized from original film; no generative editing",
+        "captureId": "film-445"
+      }
+    },
+    {
+      "path": "public/historical-sf/references/market-film-470.jpg",
+      "originalLocalPath": "public/historical-sf/references/market-film-470.jpg",
+      "bytes": 206911,
+      "sha256": "83ceb8025233f06e78bd8a354721a09ff532e1698ee8ab7338c86a1d5e99508f",
+      "metadata": {
+        "id": "film-470",
+        "title": "Market Street film \u2014 viewing-copy frame at 470s",
+        "publisher": "Library of Congress",
+        "creator": "Miles Brothers",
+        "date": "1906-04-14",
+        "pageUrl": "https://www.loc.gov/item/00694408/",
+        "downloadUrl": "https://tile.loc.gov/storage-services/service/mbrs/ntscrm/00015143/00015143.mp4",
+        "rights": "Public domain; LOC collection explicitly free to use and reuse",
+        "rightsUrl": "https://www.loc.gov/item/00694408/#rights-and-access",
+        "accessedAt": "2026-10-09",
+        "sha256": "83ceb8025233f06e78bd8a354721a09ff532e1698ee8ab7338c86a1d5e99508f",
+        "rawLocalPath": "data/historical-sf/references/market-street-1906.mp4",
+        "notes": "Original silent archival footage, not AI imagery. Frame times are offsets into this downloaded viewing copy. Use LOC's scene-by-scene description for building identity; estimated geometry is not a survey.",
+        "sourceId": "loc-market-film",
+        "timeSeconds": 470,
+        "path": "/historical-sf/references/market-film-470.jpg",
+        "localPath": "public/historical-sf/references/market-film-470.jpg",
+        "derivative": "Frame extracted and resized from original film; no generative editing",
+        "captureId": "film-470"
+      }
+    },
+    {
+      "path": "public/historical-sf/references/market-film-490.jpg",
+      "originalLocalPath": "public/historical-sf/references/market-film-490.jpg",
+      "bytes": 249565,
+      "sha256": "ea250692e3b46db6b58b6df128bb21063f02a5a1e0fbdc6cc11996c251ecf3eb",
+      "metadata": {
+        "id": "film-490",
+        "title": "Market Street film \u2014 viewing-copy frame at 490s",
+        "publisher": "Library of Congress",
+        "creator": "Miles Brothers",
+        "date": "1906-04-14",
+        "pageUrl": "https://www.loc.gov/item/00694408/",
+        "downloadUrl": "https://tile.loc.gov/storage-services/service/mbrs/ntscrm/00015143/00015143.mp4",
+        "rights": "Public domain; LOC collection explicitly free to use and reuse",
+        "rightsUrl": "https://www.loc.gov/item/00694408/#rights-and-access",
+        "accessedAt": "2026-10-09",
+        "sha256": "ea250692e3b46db6b58b6df128bb21063f02a5a1e0fbdc6cc11996c251ecf3eb",
+        "rawLocalPath": "data/historical-sf/references/market-street-1906.mp4",
+        "notes": "Original silent archival footage, not AI imagery. Frame times are offsets into this downloaded viewing copy. Use LOC's scene-by-scene description for building identity; estimated geometry is not a survey.",
+        "sourceId": "loc-market-film",
+        "timeSeconds": 490,
+        "path": "/historical-sf/references/market-film-490.jpg",
+        "localPath": "public/historical-sf/references/market-film-490.jpg",
+        "derivative": "Frame extracted and resized from original film; no generative editing",
+        "captureId": "film-490"
+      }
+    },
+    {
+      "path": "public/historical-sf/references/market-shop-1899.jpg",
+      "originalLocalPath": "public/historical-sf/references/market-shop-1899.jpg",
+      "bytes": 293427,
+      "sha256": "b1fca8e6b17bda1f72377fb7300b9a57003df66cf5d2b05f4ce5ffc0752b2d80",
+      "metadata": {
+        "id": "market-shop-1899",
+        "title": "1207 Market Street near8th",
+        "date": "1899",
+        "pageUrl": "https://commons.wikimedia.org/wiki/File:1207_Market_Street_near_8th_Street,_San_Francisco.png",
+        "downloadUrl": "https://upload.wikimedia.org/wikipedia/commons/7/72/1207_Market_Street_near_8th_Street%2C_San_Francisco.png",
+        "rights": "Public domain US; published1899",
+        "path": "/historical-sf/references/market-shop-1899.jpg",
+        "localPath": "public/historical-sf/references/market-shop-1899.jpg",
+        "sha256": "b1fca8e6b17bda1f72377fb7300b9a57003df66cf5d2b05f4ce5ffc0752b2d80",
+        "notes": "Narrow commercial bay-window facade and awning; outside MVP core corridor, reference for period-inspired background buildings",
+        "derivative": "Resized, no generative editing",
+        "captureId": "market-shop-1899"
+      }
+    },
+    {
+      "path": "public/historical-sf/references/palace-1904.jpg",
+      "originalLocalPath": "public/historical-sf/references/palace-1904.jpg",
+      "bytes": 998860,
+      "sha256": "8e17e845611a6a9fe3bab0545a2f02754bade6231401f0b09ac037b8713aef15",
+      "metadata": {
+        "id": "palace-1904",
+        "title": "Original Palace Hotel, 1904",
+        "date": "1904",
+        "rights": "CC0; original 1904 postcard",
+        "pageUrl": "https://commons.wikimedia.org/wiki/File:Palace_Hotel,_San_Francisco_1904.jpg",
+        "downloadUrl": "https://upload.wikimedia.org/wikipedia/commons/6/62/Palace_Hotel%2C_San_Francisco_1904.jpg",
+        "path": "/historical-sf/references/palace-1904.jpg",
+        "localPath": "public/historical-sf/references/palace-1904.jpg",
+        "notes": "Palace Hotel repeated bay-window facades, seven-storey massing, mansard roof; postcard color is illustrative, not a measured material color",
+        "sha256": "8e17e845611a6a9fe3bab0545a2f02754bade6231401f0b09ac037b8713aef15",
+        "derivative": "Resized only; no generative editing",
+        "captureId": "palace-1904"
+      }
+    },
+    {
+      "path": "public/historical-sf/references/palace-c1900.jpg",
+      "originalLocalPath": "public/historical-sf/references/palace-c1900.jpg",
+      "bytes": 1062673,
+      "sha256": "76625eb19f4a75974d7b816245fa18feef96c5c3c19acbee0156fd71e0566c09",
+      "metadata": {
+        "id": "palace-c1900",
+        "title": "Old Palace Hotel, San Francisco",
+        "date": "undated; original pre-1906 Palace Hotel",
+        "rights": "No known restrictions on publication; historical image",
+        "pageUrl": "https://www.loc.gov/item/2014716382/",
+        "downloadUrl": "https://upload.wikimedia.org/wikipedia/commons/d/dc/Old_Palace_Hotel%2C_San_Francisco_LCCN2014716382.jpg",
+        "path": "/historical-sf/references/palace-c1900.jpg",
+        "localPath": "public/historical-sf/references/palace-c1900.jpg",
+        "notes": "Original Palace facade bay rhythm and corner proportions",
+        "sha256": "76625eb19f4a75974d7b816245fa18feef96c5c3c19acbee0156fd71e0566c09",
+        "derivative": "Resized only; no generative editing",
+        "dateBasis": "LOC caption card records no date; original hotel identified by subject and facade. Capture/publication date is unknown.",
+        "captureId": "palace-c1900"
+      }
+    },
+    {
+      "path": "public/historical-sf/references/palace-court-c1895.jpg",
+      "originalLocalPath": "public/historical-sf/references/palace-court-c1895.jpg",
+      "bytes": 301154,
+      "sha256": "8df2968c5f19d8ed686dbaac5f38e725114db230e4aecaaf2eb30af38350aa0d",
+      "metadata": {
+        "id": "palace-court-c1895",
+        "title": "Original Palace Hotel Grand Court",
+        "date": "circa1895",
+        "pageUrl": "https://commons.wikimedia.org/wiki/File:Palace_Hotel_Grand_Court_c1895.jpg",
+        "downloadUrl": "https://upload.wikimedia.org/wikipedia/commons/0/08/Palace_Hotel_Grand_Court_c1895.jpg",
+        "rights": "Public domain US; original pre1906 booklet",
+        "path": "/historical-sf/references/palace-court-c1895.jpg",
+        "localPath": "public/historical-sf/references/palace-court-c1895.jpg",
+        "sha256": "8df2968c5f19d8ed686dbaac5f38e725114db230e4aecaaf2eb30af38350aa0d",
+        "notes": "Original hotel carriage-court and horse carriage proportions; reference for props, not exterior street geometry",
+        "derivative": "Resized, no generative editing",
+        "captureId": "palace-court-c1895"
+      }
+    },
+    {
+      "path": "artifacts/historical-sf/research/SanbornSF5_6.jpg",
+      "originalLocalPath": "artifacts/historical-sf/research/SanbornSF5_6.jpg",
+      "bytes": 87973,
+      "sha256": "34b572e989b59be6930e93f525b5adfe50def7cf246131fb1b5b338ebc7fde19",
+      "metadata": {
+        "downloadUrl": "https://rumsey3.s3.amazonaws.com/images/SFSanborn/SanbornSF5_6.jpg",
+        "notes": "Rumsey/SFPL Sanborn preview;1899/1900 revised through1905; full viewer access challenge",
+        "rights": "Research-only copy. Not a runtime redistribution permission.",
+        "dateConfidence": "caption/catalogue",
+        "pageUrl": "https://rumsey3.s3.amazonaws.com/images/SFSanborn/SanbornSF5_6.jpg"
+      }
+    },
+    {
+      "path": "artifacts/historical-sf/research/SanbornSF5_6detail.jpg",
+      "originalLocalPath": "artifacts/historical-sf/research/SanbornSF5_6detail.jpg",
+      "bytes": 161603,
+      "sha256": "cbd89cb882e3098aa28483add066040cf2a4bba769f76a1ad035bec95d5371b3",
+      "metadata": {
+        "downloadUrl": "https://rumsey3.s3.amazonaws.com/images/SFSanborn/SanbornSF5_6detail.jpg",
+        "notes": "Rumsey/SFPL Sanborn preview;1899/1900 revised through1905; full viewer access challenge",
+        "rights": "Research-only copy. Not a runtime redistribution permission.",
+        "dateConfidence": "caption/catalogue",
+        "pageUrl": "https://rumsey3.s3.amazonaws.com/images/SFSanborn/SanbornSF5_6detail.jpg"
+      }
+    },
+    {
+      "path": "artifacts/historical-sf/research/SanbornSFkey.jpg",
+      "originalLocalPath": "artifacts/historical-sf/research/SanbornSFkey.jpg",
+      "bytes": 193559,
+      "sha256": "316cbca00d2a12d9d55ea469d246ff497b013a47e9f6bc183235c04d43053f64",
+      "metadata": {
+        "downloadUrl": "https://rumsey3.s3.amazonaws.com/images/SFSanborn/SanbornSFkey.jpg",
+        "notes": "Rumsey/SFPL Sanborn preview;1899/1900 revised through1905; full viewer access challenge",
+        "rights": "Research-only copy. Not a runtime redistribution permission.",
+        "dateConfidence": "caption/catalogue",
+        "pageUrl": "https://rumsey3.s3.amazonaws.com/images/SFSanborn/SanbornSFkey.jpg"
+      }
+    },
+    {
+      "path": "artifacts/historical-sf/research/east-street-ca1900.png",
+      "originalLocalPath": "artifacts/historical-sf/research/east-street-ca1900.png",
+      "bytes": 119763,
+      "sha256": "789717d83a21496c0708d1ccc45875dd9df55106ebf6dc013009315a219ad1e1",
+      "metadata": {
+        "downloadUrl": "https://tile.loc.gov/storage-services/master/pnp/habshaer/ca/ca0800/ca0859/data/ca0859data.pdf",
+        "notes": "Rendered PDFp20/printedp19; derived local image",
+        "rights": "Research-only copy. Not a runtime redistribution permission.",
+        "dateConfidence": "caption/catalogue",
+        "pageUrl": "https://tile.loc.gov/storage-services/master/pnp/habshaer/ca/ca0800/ca0859/data/ca0859data.pdf"
+      }
+    },
+    {
+      "path": "artifacts/historical-sf/research/east-street-report.pdf",
+      "originalLocalPath": "artifacts/historical-sf/research/east-street-report.pdf",
+      "bytes": 2609041,
+      "sha256": "49884589941a1ad3c6bae516872e815120c816408d60c2ba438c66ce21b2e6a6",
+      "metadata": {
+        "downloadUrl": "https://tile.loc.gov/storage-services/master/pnp/habshaer/ca/ca0800/ca0859/data/ca0859data.pdf",
+        "notes": "HAER CA5; historic East Street image PDFp20/printedp19, circa1900",
+        "rights": "Research-only copy. Not a runtime redistribution permission.",
+        "dateConfidence": "caption/catalogue",
+        "pageUrl": "https://tile.loc.gov/storage-services/master/pnp/habshaer/ca/ca0800/ca0859/data/ca0859data.pdf"
+      }
+    },
+    {
+      "path": "artifacts/historical-sf/research/sadie-lumber.jpg",
+      "originalLocalPath": "artifacts/historical-sf/research/sadie-lumber.jpg",
+      "bytes": 22927,
+      "sha256": "dede89b8926b594544835234d34709ac4635dd4bc85817b7731b8d6694ec1109",
+      "metadata": {
+        "downloadUrl": "https://www.nps.gov/features/safr/feat0001/virtualships/thayermore/a0000049.jpg",
+        "notes": "Near-sister Sadie under sail; exposure date unknown",
+        "rights": "Research-only copy. Not a runtime redistribution permission.",
+        "dateConfidence": "unknown exact exposure date",
+        "pageUrl": "https://www.nps.gov/features/safr/feat0001/virtualships/thayermoreinfo.htm"
+      }
+    },
+    {
+      "path": "artifacts/historical-sf/research/thayer-1905.jpg",
+      "originalLocalPath": "artifacts/historical-sf/research/thayer-1905.jpg",
+      "bytes": 23284,
+      "sha256": "f089a6f597cd4c5db2060e3840b6b0348d03fa39dfbe5ddf025c913df2f683f9",
+      "metadata": {
+        "downloadUrl": "https://www.nps.gov/features/safr/feat0001/virtualships/thayermore/a0000053.jpg",
+        "notes": "Thayer historical photograph; exact exposure date unknown",
+        "rights": "Research-only copy. Not a runtime redistribution permission.",
+        "dateConfidence": "unknown exact exposure date",
+        "pageUrl": "https://www.nps.gov/features/safr/feat0001/virtualships/thayermoreinfo.htm"
+      }
+    },
+    {
+      "path": "artifacts/historical-sf/research/thayer-lumber.jpg",
+      "originalLocalPath": "artifacts/historical-sf/research/thayer-lumber.jpg",
+      "bytes": 20741,
+      "sha256": "8e4d5e482be67e43644d920acdd7dc66645d13c579e1bf3a34959c285ebc614f",
+      "metadata": {
+        "downloadUrl": "https://www.nps.gov/features/safr/feat0001/virtualships/thayermore/a0000054.jpg",
+        "notes": "Thayer lumber service; exposure date unknown",
+        "rights": "Research-only copy. Not a runtime redistribution permission.",
+        "dateConfidence": "unknown exact exposure date",
+        "pageUrl": "https://www.nps.gov/features/safr/feat0001/virtualships/thayermoreinfo.htm"
+      }
+    },
+    {
+      "path": "data/historical-sf/references/arnold-transportation-report-1913.pdf",
+      "originalLocalPath": "data/historical-sf/references/arnold-transportation-report-1913.pdf",
+      "bytes": 21516474,
+      "sha256": "e9551b3845b38a8d34e1d5876c00e5cd423f213b70260018a9d416709d6752a0",
+      "metadata": {
+        "id": "arnold-report-1913",
+        "title": "Report on the improvement and development of the transportation facilities of San Francisco",
+        "publisher": "San Francisco, California",
+        "creator": "Bion J. Arnold",
+        "date": "1913",
+        "pageUrl": "https://archive.org/details/cu31924099398467",
+        "downloadUrl": "https://upload.wikimedia.org/wikipedia/commons/f/f9/Report_on_the_improvement_and_development_of_the_transportation_facilities_of_San_Francisco_%28IA_cu31924099398467%29.pdf",
+        "rights": "Public domain in the United States: published 1913. Commons identifies PD-US pre-1931 publication.",
+        "rightsUrl": "https://commons.wikimedia.org/wiki/File:Report_on_the_improvement_and_development_of_the_transportation_facilities_of_San_Francisco_(IA_cu31924099398467).pdf",
+        "accessedAt": "2026-10-09",
+        "sha256": "e9551b3845b38a8d34e1d5876c00e5cd423f213b70260018a9d416709d6752a0",
+        "rawLocalPath": "data/historical-sf/references/arnold-transportation-report-1913.pdf",
+        "notes": "Printedp140, PDF page 180 reproduces exact SFMTA U00541 view with a 1905 caption. Report includes 1913 proposals; those plans are not April 1906 geometry.",
+        "sourceId": "arnold-report-1913"
+      }
+    },
+    {
+      "path": "data/historical-sf/references/ferry-1901-original.tiff",
+      "originalLocalPath": "data/historical-sf/references/ferry-1901-original.tiff",
+      "bytes": 11502062,
+      "sha256": "b2ac565f23c2083be600194253972c3599b77adcbc11a50b1dd47e41750ccdef",
+      "metadata": {
+        "notes": "Existing local reference; see accompanying source ledgers for attribution.",
+        "rights": "Unresolved; research only"
+      }
+    },
+    {
+      "path": "data/historical-sf/references/ferry-habs-1960-report.pdf",
+      "originalLocalPath": "data/historical-sf/references/ferry-habs-1960-report.pdf",
+      "bytes": 284151,
+      "sha256": "4a98caccc0daf2e2270bef58a8c19e10bd5f873c0804bf5e97bbdaf2ccac3058",
+      "metadata": {
+        "id": "loc-ferry-habs-1960-report",
+        "title": "Ferry Building HABS CA-1910 / ca0641 architectural report",
+        "publisher": "Library of Congress / Historic American Buildings Survey",
+        "date": "1960",
+        "pageUrl": "https://www.loc.gov/item/ca0641/",
+        "downloadUrl": "https://tile.loc.gov/storage-services/master/pnp/habshaer/ca/ca0600/ca0641/data/ca0641data.pdf",
+        "rights": "HABS collection: no known restrictions on publication.",
+        "rightsUrl": "https://www.loc.gov/pictures/collection/hh/rights.html",
+        "accessedAt": "2026-10-09",
+        "sha256": "4a98caccc0daf2e2270bef58a8c19e10bd5f873c0804bf5e97bbdaf2ccac3058",
+        "rawLocalPath": "data/historical-sf/references/ferry-habs-1960-report.pdf",
+        "notes": "Later architectural documentation, not a 1906 photograph. Printed pages 6\u20138 identify dimensions, original facade, and north wing sash alterations. Use prequake images for original glazing.",
+        "sourceId": "loc-ferry-habs-1960-report"
+      }
+    },
+    {
+      "path": "data/historical-sf/references/market-street-1906.mp4",
+      "originalLocalPath": "data/historical-sf/references/market-street-1906.mp4",
+      "bytes": 226536580,
+      "sha256": "13938707da4cf835a7f6215980b013a8370a13ec6447d292e0f4c498fe938c58",
+      "metadata": {
+        "id": "loc-market-film",
+        "title": "A trip down Market Street before the fire",
+        "publisher": "Library of Congress",
+        "creator": "Miles Brothers",
+        "date": "1906-04-14",
+        "pageUrl": "https://www.loc.gov/item/00694408/",
+        "downloadUrl": "https://tile.loc.gov/storage-services/service/mbrs/ntscrm/00015143/00015143.mp4",
+        "rights": "Public domain; LOC collection explicitly free to use and reuse",
+        "rightsUrl": "https://www.loc.gov/item/00694408/#rights-and-access",
+        "accessedAt": "2026-10-09",
+        "sha256": "13938707da4cf835a7f6215980b013a8370a13ec6447d292e0f4c498fe938c58",
+        "rawLocalPath": "data/historical-sf/references/market-street-1906.mp4",
+        "notes": "Original silent archival footage, not AI imagery. Frame times are offsets into this downloaded viewing copy. Use LOC's scene-by-scene description for building identity; estimated geometry is not a survey.",
+        "sourceId": "loc-market-film"
+      }
+    },
+    {
+      "path": "data/historical-sf/snapshots/loc-call-building.json",
+      "originalLocalPath": "data/historical-sf/snapshots/loc-call-building.json",
+      "bytes": 41464,
+      "sha256": "efef3b9c9e8b87e863dae9b2ecd277aa40ae82a369c10ab7a90dcc1ef193982c",
+      "metadata": {
+        "notes": "Existing local reference; see accompanying source ledgers for attribution.",
+        "rights": "Unresolved; research only"
+      }
+    },
+    {
+      "path": "data/historical-sf/snapshots/loc-market-film.json",
+      "originalLocalPath": "data/historical-sf/snapshots/loc-market-film.json",
+      "bytes": 81170,
+      "sha256": "c674922c32fbaca827d433e7ed6674f4fb3cd2b26688d7f625ab55de040cfa64",
+      "metadata": {
+        "notes": "Existing local reference; see accompanying source ledgers for attribution.",
+        "rights": "Unresolved; research only"
+      }
+    },
+    {
+      "path": "data/historical-sf/snapshots/loc-market-photo.json",
+      "originalLocalPath": "data/historical-sf/snapshots/loc-market-photo.json",
+      "bytes": 65977,
+      "sha256": "79079feeadee77cf94c675150d5d6dab0967a5ffb50f97733b0f0a9e6914cd43",
+      "metadata": {
+        "notes": "Existing local reference; see accompanying source ledgers for attribution.",
+        "rights": "Unresolved; research only"
+      }
+    },
+    {
+      "path": "data/historical-sf/snapshots/loc-original-palace.json",
+      "originalLocalPath": "data/historical-sf/snapshots/loc-original-palace.json",
+      "bytes": 38660,
+      "sha256": "30f68a06b9a7ba2d6bd5e38488ce349a15e3ed403281379761602320acfee978",
+      "metadata": {
+        "notes": "Existing local reference; see accompanying source ledgers for attribution.",
+        "rights": "Unresolved; research only"
+      }
+    }
+  ]
+}
