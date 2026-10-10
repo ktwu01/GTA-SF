@@ -1,3 +1,4 @@
+import { TransformNode } from '@babylonjs/core/Meshes/transformNode';
 import { Color3 } from '@babylonjs/core/Maths/math.color';
 import { DynamicTexture } from '@babylonjs/core/Materials/Textures/dynamicTexture';
 import { StandardMaterial } from '@babylonjs/core/Materials/standardMaterial';
@@ -6,7 +7,7 @@ import { MeshBuilder } from '@babylonjs/core/Meshes/meshBuilder';
 import { Scene } from '@babylonjs/core/scene';
 import { Masonry } from './geometry';
 import type { Palette } from './materials';
-import { harborBlocks, harborCargo } from './harbor-layout';
+import { harborBlocks, harborCargo,quayLoads,pierBarrels } from './harbor-layout';
 
 export function buildHarbor(scene:Scene,p:Palette){
   const b=new Masonry(scene,'east-street-extension');
@@ -25,7 +26,7 @@ export function buildHarbor(scene:Scene,p:Palette){
     const {x,z,width:w,depth:d}=block,h=[8.8,10.2,12.4,7.4,8.6,11.6,8][index],wall=[p.brick,p.boards,p.brick,p.boards,p.boards,p.brick,p.boards][index];
     b.box(wall,x,h/2,z,w,h,d);
     if(index===0||index===2||index===5){b.box(p.roof,x,h+.08,z,w,.16,d);for(const side of[-1,1])b.box(wall,x,h+.6,z+side*(d/2-.25),w,1.2,.5);}
-    else for(const side of[-1,1]){const face: [number,number,number][]=[[x-w/2-1,h,z+side*(d/2+1)],[x-w/2-1,h+2.4,z],[x+w/2+1,h+2.4,z],[x+w/2+1,h,z+side*(d/2+1)]];b.face(p.roof,side===1?face.reverse():face);}
+    else for(const side of[-1,1]){const face: [number,number,number][]=[[x-w/2-1,h,z+side*(d/2+1)],[x-w/2-1,h+2.4,z],[x+w/2+1,h+2.4,z],[x+w/2+1,h,z+side*(d/2+1)]];if(side===1)face.reverse();b.face(p.roof,face);b.face(p.roof,face.map(([xx,yy,zz])=>[xx,yy-.18,zz] as [number,number,number]).reverse());for(let i=0;i<face.length;i++){const a=face[i],c=face[(i+1)%face.length];b.face(p.roof,[a,[a[0],a[1]-.18,a[2]],[c[0],c[1]-.18,c[2]],c]);}}
     if(index!==0&&index!==2&&index!==5)for(const side of[-1,1]){const face: [number,number,number][]=[[x+side*w/2,h,z-d/2],[x+side*w/2,h+2.4,z],[x+side*w/2,h,z+d/2]];b.face(wall,side===-1?face.reverse():face);}
     for(const side of[-1,1]){
       for(let xx=x-w/2+3;xx<x+w/2;xx+=4.5){
@@ -46,10 +47,16 @@ export function buildHarbor(scene:Scene,p:Palette){
     const yy=.7+(i%3)*.26;b.box(p.wood,x,yy,z,1.4,1.3,1.4);
     for(const offset of[-.5,.5])b.box(p.black,x+offset,yy,z-.71,.06,1.3,.05);
   }
+  for(const {x,z} of quayLoads){b.box(p.wood,x,.7,z,1.5,.7,1.5);b.cylinder(p.black,x+1.2,.62,z,.35,.6,.35,8);}
+  for(const {x,z} of pierBarrels){b.cylinder(p.wood,x,.85,z,.48,1,.48,10);for(const y of[.55,1.15])b.cylinder(p.black,x,y,z,.5,.06,.5,10);}
   for(let j=0;j<8;j++)b.box(p.warm,194,.6+j*.16,677,6,.14,8);
   for(const x of[119,194,276,345])for(const z of[475,550]){b.cylinder(p.black,x,2.9,z,.065,5.8,.045,10);b.ellipsoid(p.ivory,x,5.9,z,.2,.3,.2,false,12);}
   const deckMaterial=new StandardMaterial('weathered-timber-deck',scene);deckMaterial.diffuseColor=Color3.FromHexString('#9b8765');deckMaterial.specularColor=Color3.Black();
-  const s=new Masonry(scene,'lumber-schooner',[220,0,656]);
+  const shipRoot=new TransformNode('schooner-root',scene);shipRoot.position.set(220,0,656);
+  const s=new Masonry(scene,'lumber-schooner'),mooring=new Masonry(scene,'mooring'),gangway=new Masonry(scene,'gangway'),canvas=new Masonry(scene,'schooner-canvas');
+  const sailMaterial=p.cloth.clone('weathered-sailcloth');sailMaterial.backFaceCulling=false;
+  for(const z of[-12,0,14])canvas.face(sailMaterial,[[.12,6,z],[.12,25,z],[.12,23,z+8],[.12,6,z+10]]);
+  canvas.face(sailMaterial,[[.12,7,15],[.12,25,14],[.12,6.5,33]]);
   const outline:[number,number][]=[[-2.8,-23.77],[-4.9,-17],[-5.49,-8],[-5.49,12],[-4.4,19],[-1,23.77],[1,23.77],[4.4,19],[5.49,12],[5.49,-8],[4.9,-17],[2.8,-23.77]];
   const keel=outline.map(([x,z])=>[x*.65,z*.95] as [number,number]);
   s.prism(p.red,keel,-1.9,1.5);
@@ -80,11 +87,11 @@ export function buildHarbor(scene:Scene,p:Palette){
   s.box(p.ivory,0,3.45,-20,5.4,2.1,6);s.box(p.roof,0,4.6,-20,5.8,.2,6.4);
   for(const x of[-1.6,1.6])s.box(p.glass,x,3.7,-16.95,1.2,.9,.08);
   s.box(p.wood,0,2.85,-5,4,.9,5);s.box(p.black,0,3.34,-5,4.2,.08,5.2);
-  for(const side of[-1,1])for(const z of[-20,20]){b.beam(p.black,[220+side*5,2.8,656+z],[194,.5,656+z],.05,5);}
+  for(const side of[-1,1])for(const z of[-20,20]){mooring.beam(p.black,[220+side*5,2.8,656+z],[194,.5,656+z],.05,5);}
   // The port rail opening and ramp occupy the same supported walking corridor.
-  b.face(p.warm,[[200,.35,644.6],[216,2.4,644.6],[216,2.4,647.4],[200,.35,647.4]]);
-  for(const z of[644.6,647.4]){b.beam(p.ivory,[200,1.35,z],[216,3.4,z],.055,6);for(const x of[200,204,208,212,216]){const y=.35+(x-200)/16*2.05;b.beam(p.ivory,[x,y,z],[x,y+1,z],.05,6);}}
-  for(let x=201;x<216;x++)b.box(p.wood,x,.36+(x-200)/16*2.05,646,.08,.045,2.8);
+  gangway.face(p.warm,[[200,.35,644.6],[216,2.4,644.6],[216,2.4,647.4],[200,.35,647.4]]);
+  for(const z of[644.6,647.4]){gangway.beam(p.ivory,[200,1.35,z],[216,3.4,z],.055,6);for(const x of[200,204,208,212,216]){const y=.35+(x-200)/16*2.05;gangway.beam(p.ivory,[x,y,z],[x,y+1,z],.05,6);}}
+  for(let x=201;x<216;x++)gangway.box(p.wood,x,.36+(x-200)/16*2.05,646,.08,.045,2.8);
   for(const x of[185.3,190.7])b.box(p.wood,x,1.4,614,.13,2.1,.13);
   const signs=[];
   for(const [label,x,y,z] of [['MARINE STORES',155,4.6,459],['FREIGHT OFFICE',155,4.6,525],['LUMBER WHARF',188,2,614]] as const){
@@ -93,6 +100,9 @@ export function buildHarbor(scene:Scene,p:Palette){
     const material=new StandardMaterial(`painted-${label}`,scene);material.diffuseTexture=texture;material.specularColor=Color3.Black();material.backFaceCulling=true;
     const sign=MeshBuilder.CreatePlane(`harbor-signboard-${label}`,{width:6,height:1.5},scene);sign.position.set(x,y,z);sign.rotation.y=0;sign.material=material;sign.isPickable=false;signs.push(sign);
   }
-  const meshes=[...signs,...b.finish(),...s.finish(),bay];for(const mesh of meshes)mesh.receiveShadows=true;
-  return meshes;
+  const shipMeshes=s.finish(shipRoot),sails=canvas.finish(shipRoot),berthMeshes=[...mooring.finish(),...gangway.finish()];
+  const distant=[];for(const [i,x,z,yaw] of [[0,430,655,.3],[1,530,655,-.4],[2,-40,760,.2]] as const){const root=new TransformNode(`anchored-schooner-${i}`,scene);root.position.set(x,0,z);root.rotation.y=yaw;root.scaling.setAll(.65+i*.08);for(const mesh of shipMeshes){const clone=mesh.clone(`anchored-${i}-${mesh.name}`,root);if(clone){clone.isPickable=false;distant.push(clone);}}}
+  for(const mesh of sails)mesh.setEnabled(false);
+  const meshes=[...signs,...b.finish(),...shipMeshes,...sails,...berthMeshes,...distant,bay];for(const mesh of meshes)mesh.receiveShadows=true;
+  return{meshes,update(x:number,z:number,yaw:number,docked:boolean){shipRoot.position.set(x,0,z);shipRoot.rotation.y=yaw;for(const mesh of berthMeshes)mesh.setEnabled(docked);for(const mesh of sails)mesh.setEnabled(!docked);}};
 }

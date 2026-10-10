@@ -15,6 +15,7 @@ export function addStreetWear(scene:Scene,p:Palette){
     for(let j=0;j<9;j++){const a=-j/9*Math.PI*2,r=.65+rng()*.35;points.push([x+Math.cos(a)*rx*r,.014,z+Math.sin(a)*rz*r]);}
     b.face(i%4===0?wet:dirt,points);
   }
+  for(let i=0;i<170;i++){const pier=i>130,x=pier?187+rng()*14:106+rng()*242,z=pier?615+rng()*76:562+rng()*47;const rx=.25+rng()*1.4,rz=.4+rng()*1.8,points:[number,number,number][]=[];for(let j=0;j<8;j++){const a=-j/8*Math.PI*2;points.push([x+Math.cos(a)*rx,.378,z+Math.sin(a)*rz]);}b.face(i%3?dirt:wet,points);}
   for(const side of[-1,1])for(let z=340;z<532;z+=3.7){
     b.box(dirt,side*(13.85+rng()*.16),.016,z,.18,.008,2.8+rng());
     for(const x of[side*9.6,side*10.35])if(rng()>.3)b.box(dirt,x,.019,z,.075,.006,2.1+rng()*1.7);
