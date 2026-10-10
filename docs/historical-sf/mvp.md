@@ -39,6 +39,14 @@ Approach either open streetcar platform before boarding. The speed display uses 
 
 “Original view” opens an opacity comparison at the opening camera position. Closing it restores the prior camera and riding state. Opening the archive pauses movement. Closing a dialog returns keyboard focus to the street. The archive shows 26 distinct views, with dates, rights statements, and links to the original records. Duplicate resolution and publication-proof files remain in the source ledger.
 
+## Harbor work and sailing
+
+Walk east to the freight office and take a cargo job with E or the nearby prompt. Carry each parcel to the timber wharf. Deliver three parcels to finish the job. The map shows the next pickup or delivery destination.
+
+Walk onto the moored schooner and approach its helm. Press E or use the nearby prompt to set sail. The ship departs automatically before manual steering becomes available. W accelerates, S slows the ship, and A/D steer. Touch controls also move and steer the ship.
+
+Press E or R after departure to return to the wharf. The ship returns, aligns, and docks automatically. The gangway reopens when docking finishes. Replay clears cargo progress and restores the ship to its berth. Cargo work and sailing are fictional activities in the reconstructed setting.
+
 ## People and conversations
 
 The district contains 104 pedestrians: 32 sidewalk walkers, 28 diagonal crossers, 24 people around the apron, and ten conversational pairs. Their number and routes are design choices, not a population count inferred from the film. Film frames 240, 310, and 490 and the 1905 terminal photograph informed the clothing, parcels, crossing directions, and group distribution.
