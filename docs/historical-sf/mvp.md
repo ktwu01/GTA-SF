@@ -29,9 +29,9 @@ The opening plays an original Miles Brothers film excerpt. Frame 445 supplies it
 | Ride automatically | Guided button; W/S resumes manual control | Guided button; throttle/brake resumes manual control |
 | Reverse direction | R while stopped | Reverse button while stopped |
 | Ring the bell | B or bell button | Bell button |
-| Speak to someone nearby | F or the conversation prompt | Conversation prompt |
+| Hear nearby people | Street conversations start naturally | Street conversations start naturally |
 | Choose a reply | 1 or 2; reply buttons | Reply buttons |
-| End a conversation | F, Escape, or the close button; walk away | Close button; walk away |
+| End a conversation | Escape or the close button; walk away | Close button; walk away |
 | Choose a map destination | Map plus button or destination name | Map plus button or destination name |
 | Replay the opening | Circular arrow button | Circular arrow button while on foot |
 
@@ -45,7 +45,7 @@ The district contains 104 pedestrians: 32 sidewalk walkers, 28 diagonal crossers
 
 Six clothing styles include bowler hats, work caps, straw hats, long skirts, coat lapels, collars, ties, bags, parcels, and newspapers. Thin-instance batches share body and limb geometry. Arms, elbows, knees, feet, and body sway animate independently. Figures beyond 125 model meters are hidden. Pedestrians wait at route ends and yield before entering an approaching vehicle’s path. Walking collision keeps the player outside vehicles and separates the player from pedestrians. Traffic still uses local avoidance rather than a general physics simulation.
 
-Approach within six meters to speak. News sellers, travelers, porters, clerks, flower sellers, and the coffee-house keeper offer short exchanges. Directions can select a destination on the map. An interlocutor turns toward the player and pauses their route. Starting keyboard or touch movement ends the conversation immediately. Boarding or closing the conversation also releases them. Replay restores the crowd’s starting poses and routes, and clears conversations, speech timers, and discoveries.
+Nearby people speak without a talk button. Pause within 3.5 meters and face someone to receive a greeting and optional replies. News sellers, travelers, porters, clerks, flower sellers, and the coffee-house keeper offer short exchanges. Directions can select a destination on the map. An interlocutor turns toward the player and pauses their route. Starting keyboard or touch movement ends the conversation immediately. Ignored greetings expire after 8.5 seconds; a cooldown prevents repeated interruptions. Boarding or closing the conversation also releases them. Replay restores the crowd’s starting poses and routes, and clears conversations, speech timers, and discoveries.
 
 The 39 bundled dialogue clips were synthesized locally from fictional text. Spoken dialogue can be disabled in Settings. All speech is newly authored fiction inspired by period activities and vocabulary. The film is silent. No dialogue is presented as a recorded quotation. The research brief, [street-dialogue-research.md](street-dialogue-research.md), identifies the contemporary publications behind the topics. It also records exclusions such as invented departure times, prices, headlines, dialect caricatures, and earthquake foreknowledge.
 

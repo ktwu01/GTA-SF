@@ -20,14 +20,13 @@ export function createStreetHUD(scene:Scene,camera:FreeCamera,crowd:Crowd,dialog
   const $=<T extends HTMLElement>(selector:string)=>root.querySelector<T>(selector)!;
   const radar=$<HTMLCanvasElement>('.radar'),ctx=radar.getContext('2d')!,prompt=$<HTMLButtonElement>('.context-prompt'),choices=$<HTMLElement>('.conversation-choices');
   const bubble=document.createElement('div');bubble.className='speech-bubble';bubble.dataset.hudPart='speech';bubble.hidden=true;bubble.innerHTML='<p></p>';$('.speech-layer').append(bubble);
-  let destination:DestinationId|null=null,lastChoices='',drawTime=-1,hudVisible=true,context:'board'|'talk'|null=null;
+  let destination:DestinationId|null=null,lastChoices='',drawTime=-1,hudVisible=true,context:'board'|null=null;
   let latest:HUDFrame={time:0,active:false,paused:false,mode:'walk',vehicles:[],speed:0,boardDistance:Infinity,canBoard:false},bubbleDiagnostics:BubbleDiagnostic[]=[];
   const focus=()=>canvas.focus();
   const selectDestination=(id:DestinationId|null)=>{destination=id;drawTime=-1;};
-  const speak=()=>{if(latest.paused||latest.mode!=='walk')return false;const success=dialogue.begin();if(success&&dialogue.activeId!==null){const n=crowd.people[dialogue.activeId];camera.setTarget(new Vector3(n.x,n.height*n.scale-.22+(n.z<534&&Math.abs(n.x)>14.3?.22:0),n.z));}focus();return success;};
   const reply=(index:number)=>{const next=dialogue.choose(index);if(next)selectDestination(next);focus();};
   const end=()=>{dialogue.end();focus();};
-  prompt.addEventListener('click',()=>{if(context==='board')onBoard();else if(context==='talk')speak();focus();});
+  prompt.addEventListener('click',()=>{if(context==='board')onBoard();focus();});
   $('.conversation-close').addEventListener('click',end);
   function drawMap(frame:HUDFrame){
     const size=230,cx=115,cy=113,radius=92,scale=1.34;
@@ -56,16 +55,14 @@ export function createStreetHUD(scene:Scene,camera:FreeCamera,crowd:Crowd,dialog
   function update(frame:HUDFrame){
     latest=frame;const show=frame.active&&!frame.paused&&hudVisible;root.hidden=!show;
     const state=dialogue.state();context=null;
-    const nearby=state.nearby?crowd.people[state.nearby.id]:null;
     const facing=(point:StreetPoint)=>Math.cos(Math.atan2(point.x-camera.position.x,point.z-camera.position.z)-camera.rotation.y)>.72;
     const car=frame.vehicles.find(v=>v.player);
     if(show&&state.activeId===null){
       if(frame.mode==='tram')context='board';
-      else if(nearby&&distanceBetween(nearby,camera.position)<5.5&&facing(nearby))context='talk';
       else if(frame.canBoard&&frame.boardDistance<5.5&&car&&facing(car))context='board';
     }
     prompt.hidden=!context;
-    if(context){prompt.querySelector('kbd')!.textContent=context==='talk'?'F':'E';prompt.querySelector('span')!.textContent=context==='talk'?'Talk':frame.mode==='tram'?'Leave streetcar':'Enter streetcar';}
+    if(context){prompt.querySelector('kbd')!.textContent='E';prompt.querySelector('span')!.textContent=frame.mode==='tram'?'Leave streetcar':'Enter streetcar';}
     $('.speed-readout').hidden=!show||frame.mode!=='tram';$('.speed-readout strong').textContent=String(Math.round(frame.speed*2.23694));
     choices.hidden=!show||state.activeId===null||state.stage==='reply';
     const choiceKey=`${state.activeId}-${state.stage}`;
@@ -96,7 +93,7 @@ export function createStreetHUD(scene:Scene,camera:FreeCamera,crowd:Crowd,dialog
     choices.classList.toggle('reply-only',state.stage==='reply');
     if(show&&frame.time-drawTime>.08){drawMap(frame);drawTime=frame.time;}
   }
-  return{update,speak,reply,end,selectDestination,
+  return{update,reply,end,selectDestination,
     setVisible(value:boolean){hudVisible=value;root.hidden=!value;},
     escape(){if(dialogue.activeId!==null){end();return true;}return false;},
     reset(){destination=null;drawTime=-1;lastChoices='';},

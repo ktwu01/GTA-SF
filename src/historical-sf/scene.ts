@@ -96,7 +96,6 @@ export function createHistoricalScene(canvas:HTMLCanvasElement,onChange:(state:S
   const onKey=(e:KeyboardEvent)=>{
     if(!active||paused||!hasGameFocus(e.target))return;
     audio.unlock();
-    if(e.code==='KeyF'&&!e.repeat){e.preventDefault();keys.clear();hud.speak();return;}
     if(dialogue.activeId!==null&&['Digit1','Digit2'].includes(e.code)&&!e.repeat){e.preventDefault();hud.reply(e.code==='Digit1'?0:1);return;}
     if(e.code==='KeyE'&&!e.repeat){e.preventDefault();board();return;}
     if(e.code==='KeyB'&&!e.repeat&&mode==='tram'){e.preventDefault();bell();return;}
@@ -153,7 +152,7 @@ export function createHistoricalScene(canvas:HTMLCanvasElement,onChange:(state:S
     }
     const vehicles:TrafficMarker[]=[...life.traffic(),{x:car.position.x,z:car.position.z,kind:'tram',speed,direction,player:true}];
     if(active&&!paused&&mode==='walk'&&!transition&&!wasTransitioning){const position=moveStreetWalker(previousPosition,camera.position,vehicles,crowd.people);camera.position.x=position.x;camera.position.z=position.z;constrainWalk(previousPosition.x,previousPosition.z);}
-    dialogue.update(time,camera.position,vehicles,mode==='walk',active&&!paused,audio.speaking());
+    dialogue.update(time,camera.position,vehicles,mode==='walk',active&&!paused,audio.speaking(),camera.rotation.y);
     crowd.update(time,camera.position,vehicles,dialogue.activeId,dialogue.state().speech.map(s=>s.id));
     const walkingSpeed=mode==='walk'&&!wasTransitioning&&dt>0?Math.hypot(camera.position.x-previousPosition.x,camera.position.z-previousPosition.z)/dt:0;
     audio.update(time,listener(),vehicles,crowd.people,dialogue.state().speech,walkingSpeed,jumpState.grounded);
@@ -163,7 +162,7 @@ export function createHistoricalScene(canvas:HTMLCanvasElement,onChange:(state:S
   return {
     engine,scene,camera,views,
     enter(){active=true;paused=false;audio.setPaused(false);audio.unlock();canvas.focus();notify();},navigate,board,ride:board,guided:toggleGuide,reverse,bell,
-    speak:hud.speak,respond:hud.reply,endConversation:hud.end,selectDestination:hud.selectDestination,jump,requestLook,clearInput,
+    respond:hud.reply,endConversation:hud.end,selectDestination:hud.selectDestination,jump,requestLook,clearInput,
     setMuted:audio.setMuted,setVolume:audio.setVolume,setVoices:audio.setVoices,
     setAmbient:dialogue.setAmbient,setHudVisible(value:boolean){hudVisible=value;hud.setVisible(value);},setSensitivity(value:number){sensitivity=Math.max(.4,Math.min(2,Number.isFinite(value)?value:1));},
     setPaused(value:boolean){paused=value;audio.setPaused(value||!active);if(!value&&active)audio.unlock();clearInput();},

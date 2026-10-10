@@ -87,17 +87,41 @@ const dialogueFixture = () => {
   return { dialogue: createDialogue(crowd), holds };
 };
 
-test('ambient speech is opt-in and switching it off clears unsolicited lines', () => {
+test('ambient speech starts naturally and can be disabled', () => {
   const { dialogue } = dialogueFixture();
   dialogue.update(1, { x: 0, z: 350 }, [], true, true);
-  assert.deepEqual(dialogue.state().speech, []);
-  dialogue.update(30, { x: 0, z: 350 }, [], true, true);
-  assert.deepEqual(dialogue.state().speech, []);
-  dialogue.setAmbient(true);
-  dialogue.update(31, { x: 0, z: 350 }, [], true, true);
+  assert.equal(dialogue.state().ambientEnabled, true);
   assert.equal(dialogue.state().speech.length, 1);
   dialogue.setAmbient(false);
   assert.deepEqual(dialogue.state().speech, []);
+  dialogue.update(30, { x: 0, z: 350 }, [], true, true);
+  assert.deepEqual(dialogue.state().speech, []);
+});
+
+test('nearby people address an attentive walker without a talk action or camera movement', () => {
+  const { dialogue } = dialogueFixture();
+  const viewer = { x: 0, z: 350 };
+  dialogue.update(1, viewer, [], true, true, false, 0);
+  assert.equal(dialogue.state().activeId, null);
+  dialogue.update(2.2, viewer, [], true, true, false, 0);
+  assert.equal(dialogue.state().activeId, 0);
+  assert.equal(dialogue.state().choices.length, 2);
+  assert.equal(dialogue.choose(0), 'ferry');
+  dialogue.update(8, viewer, [], true, true, false, 0);
+  assert.equal(dialogue.state().activeId, null);
+  dialogue.update(9.3, viewer, [], true, true, false, 0);
+  assert.equal(dialogue.state().activeId, null);
+  assert.deepEqual(viewer, { x: 0, z: 350 });
+});
+
+test('walking past, looking away, menus and disabled conversations prevent automatic greetings', () => {
+  for (const condition of ['moving', 'away', 'paused', 'disabled']) {
+    const { dialogue } = dialogueFixture();
+    if (condition === 'disabled') dialogue.setAmbient(false);
+    dialogue.update(1, { x: 0, z: 350 }, [], true, condition !== 'paused', false, condition === 'away' ? Math.PI : 0);
+    dialogue.update(2.3, { x: condition === 'moving' ? .2 : 0, z: 350 }, [], true, condition !== 'paused', false, condition === 'away' ? Math.PI : 0);
+    assert.equal(dialogue.state().activeId, null, condition);
+  }
 });
 
 test('chosen reply clears itself so exploration resumes without a dismissal', () => {
