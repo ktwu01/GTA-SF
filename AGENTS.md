@@ -2,6 +2,12 @@
 
 本文件只补充项目事实；沟通与执行沿用当前全局 `AGENTS.md`。
 
+## MacBook Air browser testing
+
+On a MacBook Air, run no more than two game instances at once, including browser tabs and automation pages. Reuse an instance for screenshots and checks. Close an agent-owned game instance before opening another that would exceed this limit to reduce memory pressure and avoid crashes. Do not close the user's tabs without permission.
+
+## 项目事实
+
 当前可玩场景是 Babylon.js 浏览器城市，入口 `src/main.ts` / `src/city-world.ts`。
 Blender 负责模型，`scripts/city_mesh.py` 提供共享网格 API。该模块导入会初始化 Blender 场景，不用于普通 Python 数据检查。
 

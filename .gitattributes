@@ -20,3 +20,5 @@ docs/media/**/*.mp4 filter=lfs diff=lfs merge=lfs -text
 # The compact archival experience can run without the original city's LFS assets.
 /public/historical-sf/**/*.jpg -filter -diff -merge -text
 /public/historical-sf/**/*.png -filter -diff -merge -text
+# Compact GTA-SF README screenshots stay with the source checkout.
+/docs/media/gta-sf/*.jpg -filter -diff -merge -text
