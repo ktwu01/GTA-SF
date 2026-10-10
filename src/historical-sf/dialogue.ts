@@ -20,6 +20,7 @@ const exchanges:Record<PersonRole,{greeting:string;choices:Choice[]}>= {
   flowers:{greeting:'A few flowers for someone at home?',choices:[{label:'They look very fine.',reply:'Thank you kindly. A little color for the table.'},{label:'Is the ticket office near?',reply:'Just beside the corner here, beneath the projecting windows.',destination:'tickets'}]},
   coffee:{greeting:'Coffee before your boat? Or a bite of lunch?',choices:[{label:'I have time to look about.',reply:'Then take your time. The window looks out on a busy street.'},{label:'Which way to the boat?',reply:'Across the open apron, to the great clock. Mind the passing cars.',destination:'ferry'}]},
 };
+export const dialogueVoiceLines=Object.entries(exchanges).flatMap(([role,exchange])=>[exchange.greeting,...exchange.choices.map(c=>c.reply),...ambient[role as PersonRole]].map(text=>({role,text})));
 export type Speech={id:number;text:string;until:number;active:boolean};
 export function hasStreetSight(from:StreetPoint,to:StreetPoint,vehicles:TrafficMarker[]){
   if(streetBlocks.some(b=>segmentHitsBlock(from,to,b)))return false;
@@ -41,8 +42,8 @@ export function createDialogue(crowd:Crowd){
     const choice=exchanges[crowd.people[activeId].role].choices[index];if(!choice)return null;
     stage='reply';replyUntil=time+5.5;speech=speech.filter(s=>!s.active);speech.unshift({id:activeId,text:choice.reply,until:Infinity,active:true});return choice.destination??null;
   }
-  function update(now:number,viewer:StreetPoint,vehicles:TrafficMarker[],canTalk:boolean,show:boolean){
-    time=now;enabled=canTalk&&show;if(activeId!==null&&time>=replyUntil)end();
+  function update(now:number,viewer:StreetPoint,vehicles:TrafficMarker[],canTalk:boolean,show:boolean,voicePlaying=false){
+    time=now;enabled=canTalk&&show;if(activeId!==null&&time>=replyUntil&&!voicePlaying)end();
     nearby=enabled?crowd.people.filter(n=>distanceBetween(n,viewer)<6&&hasStreetSight(viewer,n,vehicles)).sort((a,b)=>distanceBetween(a,viewer)-distanceBetween(b,viewer))[0]??null:null;
     if(activeId!==null&&(!canTalk||distanceBetween(viewer,crowd.people[activeId])>8))end();
     speech=speech.filter(s=>s.until>now);

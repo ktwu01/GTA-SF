@@ -1,3 +1,4 @@
+import { separateTraffic } from './collision';
 import { BoundingInfo } from '@babylonjs/core/Culling/boundingInfo';
 import { Matrix, Quaternion, Vector3 } from '@babylonjs/core/Maths/math.vector';
 import { Mesh } from '@babylonjs/core/Meshes/mesh';
@@ -135,12 +136,14 @@ export function createCrowd(scene:Scene,p:Palette){
           else{
             const vx=(target.x-n.x)/distance,vz=(target.z-n.z)/distance,next={x:n.x+vx*n.speed*dt,z:n.z+vz*n.speed*dt};
             const hazard=vehicles.some(v=>Math.abs(next.x-v.x)<2.05&&Math.abs(next.z-v.z)<(v.kind==='wagon'?6:6.1)+Math.abs(v.speed)*1.35&&Math.abs(n.x-v.x)>1.55);
-            const close=people.some(other=>other.id!==n.id&&distanceBetween(next,other)<.45&&distanceBetween(n,other)>.43&&other.id<n.id);
+            const close=distanceBetween(next,viewer)<.75&&distanceBetween(n,viewer)>=.7||people.some(other=>other.id!==n.id&&distanceBetween(next,other)<.45&&distanceBetween(n,other)>.43&&other.id<n.id);
             n.yielding=hazard;
             if(!hazard&&!close){n.x=next.x;n.z=next.z;n.yaw=Math.atan2(vx,vz);n.moving=true;n.phase+=dt*n.speed*5.8;}
           }
         }
       }
+      const separated=separateTraffic(n,n,vehicles,.25);
+      if(separated.x!==n.x||separated.z!==n.z){n.x=separated.x;n.z=separated.z;n.yielding=true;n.moving=false;}
       if(n.talking){const angle=Math.atan2(viewer.x-n.x,viewer.z-n.z),delta=Math.atan2(Math.sin(angle-n.yaw),Math.cos(angle-n.yaw));n.yaw+=delta*Math.min(1,dt*5);}
     }
     for(const batch of batches){

@@ -27,6 +27,8 @@ import { streetGround, streetLife } from './street-life';
 import { createCrowd, type TrafficMarker } from './crowd';
 import { createDialogue } from './dialogue';
 import { createStreetHUD } from './hud';
+import { createStreetAudio } from './audio';
+import { moveStreetWalker } from './collision';
 import { advanceJump, hasGameFocus, lookPitch, relativeMovement, standingJump, startJump } from './controls';
 
 export type Place = 'market'|'ferry'|'arcade';
@@ -69,12 +71,13 @@ export function createHistoricalScene(canvas:HTMLCanvasElement,onChange:(state:S
   const dialogue=createDialogue(crowd),hud=createStreetHUD(scene,camera,crowd,dialogue,canvas,()=>board());
   const boardingDistance=()=>Math.min(Math.hypot(camera.position.x-car.position.x,camera.position.z-car.position.z-3.7),Math.hypot(camera.position.x-car.position.x,camera.position.z-car.position.z+3.7));
   const notify=()=>onChange({mode,place,speed,guided,canBoard:boardingDistance()<8,distance:boardingDistance()});
-  let audioContext:AudioContext|null=null;
-  const bell=()=>{audioContext??=new AudioContext();audioContext.resume().catch(()=>{});const now=audioContext.currentTime;for(const [frequency,volume,decay] of[[880,.13,.65],[1762,.06,.42],[2380,.025,.24]]){const oscillator=audioContext.createOscillator(),gain=audioContext.createGain();oscillator.type='sine';oscillator.frequency.value=frequency;gain.gain.setValueAtTime(.0001,now);gain.gain.exponentialRampToValueAtTime(volume,now+.007);gain.gain.exponentialRampToValueAtTime(.0001,now+decay);oscillator.connect(gain);gain.connect(audioContext.destination);oscillator.start(now);oscillator.stop(now+decay+.02);}};
+  const audio=createStreetAudio();
+  const listener=()=>({x:camera.position.x,z:camera.position.z,yaw:camera.rotation.y});
+  const bell=()=>{audio.unlock();audio.bell(car.position,listener());};
   const lerpTo=(position:Vector3,rotation:Vector3,duration=1.3)=>{const rot=rotation.clone(),old=camera.rotation.clone();while(rot.y-old.y>Math.PI)rot.y-=Math.PI*2;while(rot.y-old.y<-Math.PI)rot.y+=Math.PI*2;transition={from:camera.position.clone(),to:position,fromRotation:old,toRotation:rot,t:0,duration};};
   const navigate=(next:Place,animate=true)=>{dialogue.end();jumpState=standingJump();mode='walk';speed=0;guided=false;place=next;const v=views[next],old=camera.rotation.clone(),pos=camera.position.clone();camera.position.copyFrom(v.position);camera.setTarget(v.target);const rotation=camera.rotation.clone();camera.position.copyFrom(pos);camera.rotation.copyFrom(old);if(animate)lerpTo(v.position.clone(),rotation);else{camera.position.copyFrom(v.position);camera.rotation.copyFrom(rotation);transition=null;}notify();};
   const board=()=>{
-    if(!active||paused)return false;
+    if(!active||paused||transition)return false;
     if(mode==='walk'&&boardingDistance()>8)return false;
     clearInput();dialogue.end();jumpState=standingJump();
     if(mode==='tram'){speed=0;guided=false;mode='walk';lerpTo(new Vector3(car.position.x+2.3,1.88,car.position.z+direction*2.8),new Vector3(0,direction===1?0:Math.PI,0),.85);notify();return true;}
@@ -92,6 +95,7 @@ export function createHistoricalScene(canvas:HTMLCanvasElement,onChange:(state:S
   const look=(dx:number,dy:number)=>{if(!active||paused)return;camera.rotation.y+=dx*.0022*sensitivity;camera.rotation.x=lookPitch(camera.rotation.x+dy*.0022*sensitivity);lastUserMove=time;};
   const onKey=(e:KeyboardEvent)=>{
     if(!active||paused||!hasGameFocus(e.target))return;
+    audio.unlock();
     if(e.code==='KeyF'&&!e.repeat){e.preventDefault();keys.clear();hud.speak();return;}
     if(dialogue.activeId!==null&&['Digit1','Digit2'].includes(e.code)&&!e.repeat){e.preventDefault();hud.reply(e.code==='Digit1'?0:1);return;}
     if(e.code==='KeyE'&&!e.repeat){e.preventDefault();board();return;}
@@ -105,7 +109,7 @@ export function createHistoricalScene(canvas:HTMLCanvasElement,onChange:(state:S
   document.addEventListener('pointerlockchange',()=>{clearInput();document.body.classList.toggle('mouse-captured',document.pointerLockElement===canvas);if(document.pointerLockElement===canvas)pointerLockError=null;});
   document.addEventListener('pointerlockerror',()=>{pointerLockError='Mouse capture was declined. Drag to look.';});
   document.addEventListener('mousemove',e=>{if(document.pointerLockElement===canvas)look(e.movementX,e.movementY);});
-  canvas.addEventListener('pointerdown',e=>{if(!active||paused||e.button!==0||pointerId!==null)return;canvas.focus();lastPointerType=e.pointerType;dragDistance=0;if(document.pointerLockElement===canvas)return;dragging=true;pointerId=e.pointerId;lastX=e.clientX;lastY=e.clientY;canvas.setPointerCapture(e.pointerId);if(mode==='walk')transition=null;});
+  canvas.addEventListener('pointerdown',e=>{if(!active||paused||e.button!==0||pointerId!==null)return;audio.unlock();canvas.focus();lastPointerType=e.pointerType;dragDistance=0;if(document.pointerLockElement===canvas)return;dragging=true;pointerId=e.pointerId;lastX=e.clientX;lastY=e.clientY;canvas.setPointerCapture(e.pointerId);if(mode==='walk')transition=null;});
   canvas.addEventListener('pointermove',e=>{if(document.pointerLockElement===canvas||!dragging||e.pointerId!==pointerId||paused)return;const dx=e.clientX-lastX,dy=e.clientY-lastY;dragDistance+=Math.abs(dx)+Math.abs(dy);look(dx,dy);lastX=e.clientX;lastY=e.clientY;});
   const release=()=>{dragging=false;pointerId=null;};canvas.addEventListener('pointerup',release);canvas.addEventListener('pointercancel',release);canvas.addEventListener('lostpointercapture',release);canvas.addEventListener('contextmenu',e=>e.preventDefault());
   canvas.addEventListener('click',()=>{if(lastPointerType==='mouse'&&dragDistance<6)requestLook();});
@@ -124,6 +128,7 @@ export function createHistoricalScene(canvas:HTMLCanvasElement,onChange:(state:S
 
   };
   engine.runRenderLoop(()=>{
+    const previousPosition={x:camera.position.x,z:camera.position.z},wasTransitioning=!!transition;
     const dt=Math.min(engine.getDeltaTime()/1000,.05);if(active&&!paused)time+=dt;life.update(time);
     if(active&&!paused){
       if(transition){transition.t+=dt;const t=Math.min(1,transition.t/transition.duration),e=t*t*(3-2*t);Vector3.LerpToRef(transition.from,transition.to,e,camera.position);Vector3.LerpToRef(transition.fromRotation,transition.toRotation,e,camera.rotation);if(t===1)transition=null;}
@@ -147,21 +152,25 @@ export function createHistoricalScene(canvas:HTMLCanvasElement,onChange:(state:S
       if(time-notifyTime>.18){notifyTime=time;notify();}
     }
     const vehicles:TrafficMarker[]=[...life.traffic(),{x:car.position.x,z:car.position.z,kind:'tram',speed,direction,player:true}];
-    dialogue.update(time,camera.position,vehicles,mode==='walk',active&&!paused);
+    if(active&&!paused&&mode==='walk'&&!transition&&!wasTransitioning){const position=moveStreetWalker(previousPosition,camera.position,vehicles,crowd.people);camera.position.x=position.x;camera.position.z=position.z;constrainWalk(previousPosition.x,previousPosition.z);}
+    dialogue.update(time,camera.position,vehicles,mode==='walk',active&&!paused,audio.speaking());
     crowd.update(time,camera.position,vehicles,dialogue.activeId,dialogue.state().speech.map(s=>s.id));
+    const walkingSpeed=mode==='walk'&&!wasTransitioning&&dt>0?Math.hypot(camera.position.x-previousPosition.x,camera.position.z-previousPosition.z)/dt:0;
+    audio.update(time,listener(),vehicles,crowd.people,dialogue.state().speech,walkingSpeed,jumpState.grounded);
     sun.position.set(camera.position.x-80,125,camera.position.z-60);scene.render();
     hud.update({time,active,paused,mode,vehicles,speed,boardDistance:boardingDistance(),canBoard:boardingDistance()<8});
   });
   return {
     engine,scene,camera,views,
-    enter(){active=true;paused=false;canvas.focus();notify();},navigate,board,ride:board,guided:toggleGuide,reverse,bell,
+    enter(){active=true;paused=false;audio.setPaused(false);audio.unlock();canvas.focus();notify();},navigate,board,ride:board,guided:toggleGuide,reverse,bell,
     speak:hud.speak,respond:hud.reply,endConversation:hud.end,selectDestination:hud.selectDestination,jump,requestLook,clearInput,
+    setMuted:audio.setMuted,setVolume:audio.setVolume,setVoices:audio.setVoices,
     setAmbient:dialogue.setAmbient,setHudVisible(value:boolean){hudVisible=value;hud.setVisible(value);},setSensitivity(value:number){sensitivity=Math.max(.4,Math.min(2,Number.isFinite(value)?value:1));},
-    setPaused(value:boolean){paused=value;clearInput();},
-    beginComparison(){comparisonView={position:camera.position.clone(),rotation:camera.rotation.clone(),transition};paused=true;clearInput();camera.position.copyFrom(views.market.position);camera.setTarget(views.market.target);},
-    endComparison(){if(comparisonView){camera.position.copyFrom(comparisonView.position);camera.rotation.copyFrom(comparisonView.rotation);transition=comparisonView.transition;comparisonView=null;}paused=false;},
-    reset(){clearInput();jumpState=standingJump();active=false;paused=false;time=0;notifyTime=0;direction=1;speed=0;guided=false;crowd.reset();dialogue.reset();hud.reset();car.position.set(3.15,.03,358);car.rotation.y=0;navigate('market',false);},
+    setPaused(value:boolean){paused=value;audio.setPaused(value||!active);if(!value&&active)audio.unlock();clearInput();},
+    beginComparison(){comparisonView={position:camera.position.clone(),rotation:camera.rotation.clone(),transition};paused=true;audio.setPaused(true);clearInput();camera.position.copyFrom(views.market.position);camera.setTarget(views.market.target);},
+    endComparison(){if(comparisonView){camera.position.copyFrom(comparisonView.position);camera.rotation.copyFrom(comparisonView.rotation);transition=comparisonView.transition;comparisonView=null;}paused=false;audio.setPaused(!active);},
+    reset(){audio.reset();clearInput();jumpState=standingJump();active=false;paused=false;time=0;notifyTime=0;direction=1;speed=0;guided=false;crowd.reset();dialogue.reset();hud.reset();car.position.set(3.15,.03,358);car.rotation.y=0;navigate('market',false);},
     touch(forward:number,side:number,sprint=false){if(!active||paused){clearInput();return;}touchSprint=sprint;if(mode==='tram'){throttleTouch=forward>0?1:0;brakeTouch=forward<0?1:0;if(forward)guided=false;}else{if(forward||side){dialogue.end();transition=null;}touchForward=forward;touchSide=side;}},
-    snapshot(){return{ready:scene.isReady(),active,mode,place,paused,camera:{x:camera.position.x,y:camera.position.y,z:camera.position.z,yaw:camera.rotation.y,pitch:camera.rotation.x},streetcar:{x:car.position.x,z:car.position.z,speedMps:speed,direction,guided,canBoard:boardingDistance()<8,distance:boardingDistance()},crowd:crowd.snapshot(),hud:hud.snapshot(),input:{pointerLocked:document.pointerLockElement===canvas,pointerLockAvailable:!!canvas.requestPointerLock,pointerLockError,keys:[...keys],touch:{forward:touchForward,side:touchSide,throttle:throttleTouch,brake:brakeTouch,sprint:touchSprint},sensitivity,hudVisible,jump:{...jumpState}},fps:Math.round(engine.getFps()*10)/10,meshes:scene.meshes.length,activeMeshes:scene.getActiveMeshes().length,drawCalls:instrumentation.drawCallsCounter.current,uniqueGeometryTriangles:scene.meshes.reduce((total,mesh)=>total+mesh.getTotalIndices()/3,0),instanceAdjustedTriangles:scene.meshes.reduce((total,mesh)=>total+mesh.getTotalIndices()/3*Math.max(1,mesh instanceof Mesh?mesh.thinInstanceCount:0),0),elapsed:time,lastUserMove,transition:!!transition};},
+    snapshot(){return{ready:scene.isReady(),active,mode,place,paused,camera:{x:camera.position.x,y:camera.position.y,z:camera.position.z,yaw:camera.rotation.y,pitch:camera.rotation.x},streetcar:{x:car.position.x,z:car.position.z,speedMps:speed,direction,guided,canBoard:boardingDistance()<8,distance:boardingDistance()},crowd:crowd.snapshot(),audio:audio.snapshot(),hud:hud.snapshot(),input:{pointerLocked:document.pointerLockElement===canvas,pointerLockAvailable:!!canvas.requestPointerLock,pointerLockError,keys:[...keys],touch:{forward:touchForward,side:touchSide,throttle:throttleTouch,brake:brakeTouch,sprint:touchSprint},sensitivity,hudVisible,jump:{...jumpState}},fps:Math.round(engine.getFps()*10)/10,meshes:scene.meshes.length,activeMeshes:scene.getActiveMeshes().length,drawCalls:instrumentation.drawCallsCounter.current,uniqueGeometryTriangles:scene.meshes.reduce((total,mesh)=>total+mesh.getTotalIndices()/3,0),instanceAdjustedTriangles:scene.meshes.reduce((total,mesh)=>total+mesh.getTotalIndices()/3*Math.max(1,mesh instanceof Mesh?mesh.thinInstanceCount:0),0),elapsed:time,lastUserMove,transition:!!transition};},
   };
 }

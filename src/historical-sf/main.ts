@@ -38,7 +38,7 @@ app.innerHTML=`
         <div class="tram-contract"><h4>At the controls</h4><p class="desktop-contract">W accelerates. S or Space brakes.<br>R reverses when stopped. B rings the bell.</p><p class="touch-contract">Hold ↑ to accelerate, ↓ to brake.<br>Reverse when stopped.</p><p>The streetcar follows its rails.</p><button id="guided" disabled>Ride automatically</button></div>
       </section>
       <section data-menu-panel="places" hidden><h3>Choose a waypoint.</h3><div class="destination-list"></div><button id="clear-route" class="subtle-button">Clear waypoint</button><p class="menu-note">The radar follows your view. North is approximate.</p></section>
-      <section data-menu-panel="settings" hidden><h3>Make yourself at home.</h3><label class="setting-row"><span>Ambient conversations</span><input id="ambient-setting" type="checkbox" /></label><label class="setting-row"><span>Show interface</span><input id="hud-setting" type="checkbox" checked /></label><p class="menu-note">H restores the interface. On touch, tap the street to reopen this menu.</p><label class="sensitivity-setting" for="look-setting">Look sensitivity <input id="look-setting" type="range" min="0.4" max="2" step="0.1" value="1" /></label><button id="menu-fullscreen" class="subtle-button">Enter fullscreen</button><p id="display-status" class="menu-note" role="status"></p></section>
+      <section data-menu-panel="settings" hidden><h3>Make yourself at home.</h3><label class="setting-row"><span>Mute sound</span><input id="mute-setting" type="checkbox" /></label><label class="setting-row"><span>Spoken dialogue</span><input id="voice-setting" type="checkbox" checked /></label><label class="sensitivity-setting" for="volume-setting">Sound volume <input id="volume-setting" type="range" min="0" max="1" step="0.1" value="0.7" /></label><p id="audio-status" class="menu-note" role="status"></p><label class="setting-row"><span>Ambient conversations</span><input id="ambient-setting" type="checkbox" /></label><label class="setting-row"><span>Show interface</span><input id="hud-setting" type="checkbox" checked /></label><p class="menu-note">H restores the interface. On touch, tap the street to reopen this menu.</p><label class="sensitivity-setting" for="look-setting">Look sensitivity <input id="look-setting" type="range" min="0.4" max="2" step="0.1" value="1" /></label><button id="menu-fullscreen" class="subtle-button">Enter fullscreen</button><p id="display-status" class="menu-note" role="status"></p></section>
     </div></div>
   </dialog>
   <section class="comparison" role="dialog" aria-modal="true" aria-label="Compare original film and reconstruction" hidden>
@@ -101,7 +101,7 @@ function closeOverlay(){showOverlay(overlayStack.pop()??'none');}
 function pauseGame(){if(!entered||overlay!=='none')return;overlayStack=[];showOverlay('pause');}
 function resumeGame(capture=false){overlayStack=[];showOverlay('none');if(capture&&!matchMedia('(pointer:coarse)').matches)world?.requestLook();}
 function setHudVisible(value:boolean){hudVisible=value;document.body.classList.toggle('hud-hidden',!value);$('#hud-setting').setAttribute('aria-checked',String(value));$<HTMLInputElement>('#hud-setting').checked=value;world?.setHudVisible(value);}
-function menuPanel(name:string){document.querySelectorAll<HTMLElement>('[data-menu-panel]').forEach(el=>el.hidden=el.dataset.menuPanel!==name);document.querySelectorAll<HTMLElement>('[data-panel]').forEach(el=>el.setAttribute('aria-pressed',String(el.dataset.panel===name)));}
+function menuPanel(name:string){if(name==='settings'&&world){const a=world.snapshot().audio;$('#audio-status').textContent=a.error??'Dialogue and street sounds play on your device.';}document.querySelectorAll<HTMLElement>('[data-menu-panel]').forEach(el=>el.hidden=el.dataset.menuPanel!==name);document.querySelectorAll<HTMLElement>('[data-panel]').forEach(el=>el.setAttribute('aria-pressed',String(el.dataset.panel===name)));}
 for(const button of Array.from(document.querySelectorAll<HTMLElement>('[data-panel]')))button.addEventListener('click',()=>menuPanel(button.dataset.panel!));
 $('#pause-open').addEventListener('click',pauseGame);$('#resume').addEventListener('click',()=>resumeGame(true));$('#pause-close').addEventListener('click',()=>resumeGame(true));
 document.querySelectorAll('.archive-open').forEach(button=>button.addEventListener('click',()=>openOverlay('archive')));
@@ -113,6 +113,9 @@ comparison.addEventListener('keydown',event=>{if(event.key==='Tab'){const focusa
 
 for(const point of destinations){const button=document.createElement('button');button.dataset.destination=point.id;button.innerHTML=`<span>${point.name}<small>${point.detail}</small></span><span>↗</span>`;button.addEventListener('click',()=>{world?.selectDestination(point.id);resumeGame();});$('.destination-list').append(button);}
 $('#clear-route').addEventListener('click',()=>{world?.selectDestination(null);resumeGame();});
+$('#mute-setting').addEventListener('change',event=>world?.setMuted((event.target as HTMLInputElement).checked));
+$('#voice-setting').addEventListener('change',event=>world?.setVoices((event.target as HTMLInputElement).checked));
+$('#volume-setting').addEventListener('input',event=>world?.setVolume(Number((event.target as HTMLInputElement).value)));
 $('#ambient-setting').addEventListener('change',event=>{ambientEnabled=(event.target as HTMLInputElement).checked;world?.setAmbient(ambientEnabled);});
 $('#hud-setting').addEventListener('change',event=>setHudVisible((event.target as HTMLInputElement).checked));
 $('#look-setting').addEventListener('input',event=>world?.setSensitivity(Number((event.target as HTMLInputElement).value)));
@@ -198,4 +201,5 @@ async function enterStreet(){
 enter.addEventListener('click',enterStreet);
 $('#reset').addEventListener('click',()=>{entered=false;releaseMouse();overlayStack=[];showOverlay('none');world?.reset();document.body.classList.remove('entered','game-paused');intro.hidden=false;intro.classList.remove('leaving');experience.inert=true;experience.setAttribute('aria-hidden','true');video.play().catch(()=>{});enter.focus();});
 if(matchMedia('(prefers-reduced-motion: reduce)').matches){video.autoplay=false;video.pause();}
+if(import.meta.env.DEV)setInterval(()=>{if(!world)return;const s=world.snapshot();canvas.dataset.diagnostics=JSON.stringify({mode:s.mode,paused:s.paused,camera:s.camera,input:s.input,audio:s.audio,streetcar:s.streetcar,conversation:s.hud.conversation,transition:s.transition,elapsed:s.elapsed,fps:s.fps,errors});},500);
 start();

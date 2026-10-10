@@ -25,7 +25,7 @@ export default defineConfig({
         try {
           const stat = statSync(file);
           if (!stat.isFile()) return next();
-          res.setHeader('Content-Type', file.endsWith('.jpg') ? 'image/jpeg' : file.endsWith('.png') ? 'image/png' : file.endsWith('.mp4') ? 'video/mp4' : file.endsWith('.ttf') ? 'font/ttf' : file.endsWith('.txt') ? 'text/plain' : 'application/json');
+          res.setHeader('Content-Type', file.endsWith('.jpg') ? 'image/jpeg' : file.endsWith('.png') ? 'image/png' : file.endsWith('.mp4') ? 'video/mp4' : file.endsWith('.mp3') ? 'audio/mpeg' : file.endsWith('.ttf') ? 'font/ttf' : file.endsWith('.txt') ? 'text/plain' : 'application/json');
           res.setHeader('Content-Length', stat.size);
           createReadStream(file).pipe(res);
         } catch { next(); }

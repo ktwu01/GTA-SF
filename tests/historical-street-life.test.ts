@@ -164,3 +164,16 @@ test('hidden experience cannot start speech, and a streetcar blocks nearby talk'
   assert.equal(hasStreetSight({ x: 0, z: 350 }, { x: 0, z: 362 }, [{ x: 0, z: 356, kind: 'tram', speed: 0, direction: 1 }]), false);
   assert.equal(hasStreetSight({ x: 0, z: 350 }, { x: 0, z: 362 }, [{ x: 10, z: 356, kind: 'tram', speed: 0, direction: 1 }]), true);
 });
+
+test('a voiced reply remains until speech finishes, but walking away still cancels it', () => {
+  const { dialogue } = dialogueFixture();
+  dialogue.update(1, { x: 0, z: 350 }, [], true, true);
+  dialogue.begin(); dialogue.choose(0);
+  dialogue.update(7, { x: 0, z: 350 }, [], true, true, true);
+  assert.equal(dialogue.activeId, 0);
+  dialogue.update(8, { x: 0, z: 350 }, [], true, true, false);
+  assert.equal(dialogue.activeId, null);
+  dialogue.begin(); dialogue.choose(0);
+  dialogue.update(9, { x: 0, z: 330 }, [], true, true, true);
+  assert.equal(dialogue.activeId, null);
+});
