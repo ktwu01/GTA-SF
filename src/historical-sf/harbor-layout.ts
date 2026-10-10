@@ -7,6 +7,9 @@ export const harborZones:Block[]=[
   {x:208,z:646,width:16,depth:2.8,label:'GANGWAY'},
 ];
 export const harborCargo:Block[]=Array.from({length:26},(_,i)=>({x:140+(i%7)*28,z:i<14?538:574,width:1.4,depth:1.4,label:'CARGO'})).filter(b=>!(b.x>238&&b.x<307&&b.z>570));
+export const quayLoads:Block[]=Array.from({length:38},(_,i)=>({x:112+(i%19)*12,z:604+(i%2)*2,width:1.5,depth:1.5,label:'QUAY LOAD'}));
+export const quayBarrels:Block[]=quayLoads.map(b=>({x:b.x+1.2,z:b.z,width:.7,depth:.7,label:'BARREL'}));
+export const pierBarrels:Block[]=[187,200].flatMap(x=>[623,633,661].map(z=>({x,z,width:1,depth:1,label:'BARREL'})));
 export const harborBlocks:Block[]=[
   {x:155,z:427,width:46,depth:62,label:'CHANDLER'},
   {x:235,z:427,width:48,depth:62,label:'STORES'},
@@ -19,17 +22,20 @@ export const harborBlocks:Block[]=[
   {x:194,z:677,width:6,depth:8,label:'LUMBER'},
   {x:220,z:651,width:4,depth:5,label:'HATCH'},
   {x:220,z:636,width:5.4,depth:6,label:'DECKHOUSE'},
-  ...harborCargo,
+  ...harborCargo,...quayLoads,...quayBarrels,...pierBarrels,
   ...[644,656,670].map(z=>({x:220,z,width:1.2,depth:1.2,label:'MAST'})),
 ];
 const inBox=(p:StreetPoint,b:Block,margin=0)=>Math.abs(p.x-b.x)<=b.width/2-margin&&Math.abs(p.z-b.z)<=b.depth/2-margin;
+let docked=true;
+export function setHarborDocked(value:boolean){if(docked!==value){docked=value;edgeCache.clear();}}
 export function onShip(p:StreetPoint){
+  if(!docked)return false;
   const z=p.z-656;
   const halfWidth=Math.abs(z)<16?5.0:5.0*(1-(Math.abs(z)-16)/8.5);
   return Math.abs(z)<=23&&Math.abs(p.x-220)<=halfWidth;
 }
 export function harborWalkable(p:StreetPoint){
-  return (harborZones.some((b,i)=>inBox(p,b,i<2?0:.32))||onShip(p))&&!harborBlocks.some(b=>inBox(p,{...b,width:b.width+.64,depth:b.depth+.64}));
+  return (harborZones.some((b,i)=>(docked||i!==3)&&inBox(p,b,i<2?0:.32))||onShip(p))&&!harborBlocks.some(b=>inBox(p,{...b,width:b.width+.64,depth:b.depth+.64}));
 }
 export function harborHeight(p:StreetPoint){
   if(onShip(p))return 2.4;

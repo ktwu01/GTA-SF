@@ -35,10 +35,13 @@ import { moveStreetWalker } from './collision';
 import { advanceJump, hasGameFocus, lookPitch, relativeMovement, standingJump, startJump } from './controls';
 
 import { buildHarbor } from './harbor';
-import { constrainHarbor, harborHeight, onShip } from './harbor-layout';
+import { constrainHarbor, harborHeight, onShip, setHarborDocked } from './harbor-layout';
+
+import { createCargoJob,mooredSchooner,advanceSchooner,shipHelm } from './harbor-work';
+import { distanceBetween,type DestinationId } from './navigation';
 
 export type Place = 'market'|'ferry'|'arcade'|'harbor'|'ship';
-export type Mode = 'walk'|'tram';
+export type Mode = 'walk'|'tram'|'sail';
 export type StreetState={mode:Mode;place:Place;speed:number;guided:boolean;canBoard:boolean;distance:number};
 const views:Record<Place,{position:Vector3;target:Vector3;title:string;description:string}>={
   harbor:{position:new Vector3(194,2.19,590),target:new Vector3(220,12,656),title:'East Street wharves',description:'The working waterfront'},
@@ -61,7 +64,7 @@ export function createHistoricalScene(canvas:HTMLCanvasElement,onChange:(state:S
   const p=palette(scene);
   const buildings=buildStreetArchitecture(scene,p),ground=streetGround(scene,p),life=streetLife(scene,p),crowd=createCrowd(scene,p),harbor=buildHarbor(scene,p);
   const wear=addStreetWear(scene,p),extraTraffic=addTerminalTraffic(scene,life.player.meshes),riders=createExteriorRiders(scene,p);
-  for(const m of[...extraTraffic.meshes,...riders.meshes,...buildings,...ground,...life.casters,...crowd.meshes,...harbor]) if(m.material&&!['window-shadow','window-reflection','rail-steel'].includes(m.material.name)&&!m.name.startsWith('sign'))shadows.addShadowCaster(m);
+  for(const m of[...extraTraffic.meshes,...riders.meshes,...buildings,...ground,...life.casters,...crowd.meshes,...harbor.meshes]) if(m.material&&!['window-shadow','window-reflection','rail-steel'].includes(m.material.name)&&!m.name.startsWith('sign'))shadows.addShadowCaster(m);
   Effect.ShadersStore['historySkyVertexShader']='precision highp float; attribute vec3 position; uniform mat4 worldViewProjection; varying vec3 vDirection; void main(){vDirection=position;gl_Position=worldViewProjection*vec4(position,1.0);}';
   Effect.ShadersStore['historySkyFragmentShader']='precision highp float; varying vec3 vDirection; void main(){vec3 d=normalize(vDirection);float t=pow(max(0.,d.y),.58);vec3 col=mix(vec3(.91,.88,.77),vec3(.52,.71,.77),t);float s=pow(max(0.,dot(d,normalize(vec3(-.58,.95,-.48)))),55.);col+=vec3(.15,.11,.04)*s;gl_FragColor=vec4(col,1.);}';
   const sky=MeshBuilder.CreateSphere('painted-sky',{diameter:2300,segments:24,sideOrientation:Mesh.BACKSIDE},scene);
@@ -77,20 +80,29 @@ export function createHistoricalScene(canvas:HTMLCanvasElement,onChange:(state:S
   let jumpState=standingJump(),touchSprint=false,sensitivity=1,pointerLockError:string|null=null,hudVisible=true;
   const keys=new Set<string>();let touchForward=0,touchSide=0,lastUserMove=0;
   const car=life.player.root;
-  const dialogue=createDialogue(crowd),hud=createStreetHUD(scene,camera,crowd,dialogue,canvas,()=>board());
+  const cargo=createCargoJob();let sailing=mooredSchooner();
+  const parcel=MeshBuilder.CreateBox('carried-freight-parcel',{width:.5,height:.35,depth:.4},scene);parcel.material=p.wood;parcel.parent=camera;parcel.position.set(.35,-.48,.85);parcel.isPickable=false;parcel.setEnabled(false);
+  const dialogue=createDialogue(crowd),hud=createStreetHUD(scene,camera,crowd,dialogue,canvas,()=>interact());
   const boardingDistance=()=>Math.min(Math.hypot(camera.position.x-car.position.x,camera.position.z-car.position.z-3.7),Math.hypot(camera.position.x-car.position.x,camera.position.z-car.position.z+3.7));
   const notify=()=>onChange({mode,place,speed,guided,canBoard:boardingDistance()<8,distance:boardingDistance()});
   const audio=createStreetAudio();
   const listener=()=>({x:camera.position.x,z:camera.position.z,yaw:camera.rotation.y});
   const bell=()=>{audio.unlock();audio.bell(car.position,listener());};
   const lerpTo=(position:Vector3,rotation:Vector3,duration=1.3)=>{const rot=rotation.clone(),old=camera.rotation.clone();while(rot.y-old.y>Math.PI)rot.y-=Math.PI*2;while(rot.y-old.y<-Math.PI)rot.y+=Math.PI*2;transition={from:camera.position.clone(),to:position,fromRotation:old,toRotation:rot,t:0,duration};};
-  const navigate=(next:Place,animate=true)=>{dialogue.end();jumpState=standingJump();mode='walk';speed=0;guided=false;place=next;const v=views[next],old=camera.rotation.clone(),pos=camera.position.clone();camera.position.copyFrom(v.position);camera.setTarget(v.target);const rotation=camera.rotation.clone();camera.position.copyFrom(pos);camera.rotation.copyFrom(old);if(animate)lerpTo(v.position.clone(),rotation);else{camera.position.copyFrom(v.position);camera.rotation.copyFrom(rotation);transition=null;}notify();};
+  const navigate=(next:Place,animate=true)=>{if(mode==='sail')return;dialogue.end();jumpState=standingJump();mode='walk';speed=0;guided=false;place=next;const v=views[next],old=camera.rotation.clone(),pos=camera.position.clone();camera.position.copyFrom(v.position);camera.setTarget(v.target);const rotation=camera.rotation.clone();camera.position.copyFrom(pos);camera.rotation.copyFrom(old);if(animate)lerpTo(v.position.clone(),rotation);else{camera.position.copyFrom(v.position);camera.rotation.copyFrom(rotation);transition=null;}notify();};
   const board=()=>{
-    if(!active||paused||transition)return false;
+    if(!active||paused||transition||mode==='sail')return false;
     if(mode==='walk'&&boardingDistance()>8)return false;
     clearInput();dialogue.end();jumpState=standingJump();
     if(mode==='tram'){speed=0;guided=false;mode='walk';lerpTo(new Vector3(car.position.x+2.3,1.88,car.position.z+direction*2.8),new Vector3(0,direction===1?0:Math.PI,0),.85);notify();return true;}
     mode='tram';guided=false;speed=0;lerpTo(new Vector3(car.position.x,2.45,car.position.z+direction*3.28),new Vector3(-.035,direction===1?0:Math.PI,0),1.05);bell();notify();return true;
+  };
+  const interact=()=>{
+    if(!active||paused||transition)return false;
+    if(mode==='sail'){if(sailing.phase!=='sailing')return false;sailing={...sailing,phase:'returning'};clearInput();return true;}
+    if(mode==='walk'){const action=cargo.action(camera.position);if(action){dialogue.end();const job=cargo.snapshot();hud.selectDestination(action==='complete'?null:job.goal as DestinationId);return true;}
+      if(jumpState.grounded&&sailing.phase==='moored'&&distanceBetween(camera.position,shipHelm)<3&&!cargo.snapshot().carrying){clearInput();dialogue.end();sailing={...sailing,phase:'departing'};setHarborDocked(false);hud.selectDestination(null);mode='sail';camera.rotation.set(.06,0,0);notify();return true;}
+    }return board();
   };
   const reverse=()=>{if(!active||paused||mode!=='tram'||speed>.2||transition)return false;clearInput();direction*=-1;car.rotation.y=direction===1?0:Math.PI;lerpTo(new Vector3(car.position.x,2.45,car.position.z+direction*3.28),new Vector3(-.035,direction===1?0:Math.PI,0),1.0);notify();return true;};
   const toggleGuide=()=>{if(!active||paused||(mode!=='tram'&&!board()))return false;clearInput();guided=!guided;notify();return true;};
@@ -106,8 +118,9 @@ export function createHistoricalScene(canvas:HTMLCanvasElement,onChange:(state:S
     if(!active||paused||!hasGameFocus(e.target))return;
     audio.unlock();
     if(dialogue.activeId!==null&&['Digit1','Digit2'].includes(e.code)&&!e.repeat){e.preventDefault();hud.reply(e.code==='Digit1'?0:1);return;}
-    if(e.code==='KeyE'&&!e.repeat){e.preventDefault();board();return;}
+    if(e.code==='KeyE'&&!e.repeat){e.preventDefault();interact();return;}
     if(e.code==='KeyB'&&!e.repeat&&mode==='tram'){e.preventDefault();bell();return;}
+    if(e.code==='KeyR'&&!e.repeat&&mode==='sail'){e.preventDefault();interact();return;}
     if(e.code==='KeyR'&&!e.repeat&&mode==='tram'){e.preventDefault();reverse();return;}
     if(e.code==='Space'&&mode==='walk'){e.preventDefault();if(!e.repeat)jump();return;}
     if(['KeyW','KeyA','KeyS','KeyD','ArrowUp','ArrowDown','ArrowLeft','ArrowRight','ShiftLeft','ShiftRight','Space'].includes(e.code)){e.preventDefault();keys.add(e.code);if(mode==='walk'){transition=null;dialogue.end();}else if(['KeyW','KeyS','ArrowUp','ArrowDown','Space'].includes(e.code))guided=false;lastUserMove=time;}
@@ -141,7 +154,12 @@ export function createHistoricalScene(canvas:HTMLCanvasElement,onChange:(state:S
     const dt=Math.min(engine.getDeltaTime()/1000,.05);if(active&&!paused)time+=dt;life.update(time);
     if(active&&!paused){
       if(transition){transition.t+=dt;const t=Math.min(1,transition.t/transition.duration),e=t*t*(3-2*t);Vector3.LerpToRef(transition.from,transition.to,e,camera.position);Vector3.LerpToRef(transition.fromRotation,transition.toRotation,e,camera.rotation);if(t===1)transition=null;}
-      else if(mode==='tram'){
+      else if(mode==='sail'){
+        const throttle=(keys.has('KeyW')||keys.has('ArrowUp')?1:0)-(keys.has('KeyS')||keys.has('ArrowDown')?1:0)+touchForward,steering=(keys.has('KeyD')||keys.has('ArrowRight')?1:0)-(keys.has('KeyA')||keys.has('ArrowLeft')?1:0)+touchSide;
+        const oldYaw=sailing.yaw;sailing=advanceSchooner(sailing,dt,throttle,steering);camera.rotation.y+=sailing.yaw-oldYaw;
+        camera.position.set(sailing.x-3*Math.cos(sailing.yaw)+9*Math.sin(sailing.yaw),4.24,sailing.z+3*Math.sin(sailing.yaw)+9*Math.cos(sailing.yaw));speed=Math.abs(sailing.speed);
+        if(sailing.phase==='moored'){mode='walk';speed=0;setHarborDocked(true);clearInput();notify();}
+      }else if(mode==='tram'){
         const throttle=keys.has('KeyW')||keys.has('ArrowUp')||throttleTouch>0,brake=keys.has('KeyS')||keys.has('ArrowDown')||keys.has('Space')||brakeTouch>0;
         const remaining=direction===1?550-car.position.z:car.position.z-341;
         if(guided)speed+=Math.max(-1.4,Math.min(1.2,4.15-speed))*dt;
@@ -157,31 +175,34 @@ export function createHistoricalScene(canvas:HTMLCanvasElement,onChange:(state:S
         if(f||s){const previousX=camera.position.x,previousZ=camera.position.z,step=(keys.has('ShiftLeft')||keys.has('ShiftRight')||touchSprint?5.7:3.35)*dt,movement=relativeMovement(f,s,camera.rotation.y);camera.position.x+=movement.x*step;camera.position.z+=movement.z*step;constrainWalk(previousX,previousZ);lastUserMove=time;}
         jumpState=advanceJump(jumpState,dt);camera.position.y=1.84+(camera.position.x>=95?harborHeight(camera.position):0)+(camera.position.x<95&&camera.position.z<534&&Math.abs(camera.position.x)>14.3?.22:0)+jumpState.height+(jumpState.grounded&&(f||s)?Math.sin(time*9)*.018:0);
       }
-      place=onShip(camera.position)?'ship':camera.position.x>=95?'harbor':camera.position.z>537?'arcade':camera.position.z>455?'ferry':'market';
+      place=mode==='sail'||onShip(camera.position)?'ship':camera.position.x>=95?'harbor':camera.position.z>537?'arcade':camera.position.z>455?'ferry':'market';
       if(time-notifyTime>.18){notifyTime=time;notify();}
     }
     extraTraffic.update(life.traffic()[0]);
     const vehicles:TrafficMarker[]=[...life.traffic(),...extraTraffic.traffic(),{x:car.position.x,z:car.position.z,kind:'tram',speed,direction,player:true}];
     if(active&&!paused&&mode==='walk'&&!transition&&!wasTransitioning){const position=moveStreetWalker(previousPosition,camera.position,vehicles,crowd.people);camera.position.x=position.x;camera.position.z=position.z;constrainWalk(previousPosition.x,previousPosition.z);}
+    harbor.update(sailing.x,sailing.z,sailing.yaw,sailing.phase==='moored');parcel.setEnabled(cargo.snapshot().carrying&&mode==='walk');
     riders.update(vehicles);
     dialogue.update(time,camera.position,vehicles,mode==='walk',active&&!paused,audio.speaking(),camera.rotation.y);
     crowd.update(time,camera.position,vehicles,dialogue.activeId,dialogue.state().speech.map(s=>s.id));
     const walkingSpeed=mode==='walk'&&!wasTransitioning&&dt>0?Math.hypot(camera.position.x-previousPosition.x,camera.position.z-previousPosition.z)/dt:0;
     audio.update(time,listener(),vehicles,crowd.people,dialogue.state().speech,walkingSpeed,jumpState.grounded);
     sun.position.set(camera.position.x-80,125,camera.position.z-60);scene.render();
-    hud.update({time,active,paused,mode,vehicles,speed,boardDistance:boardingDistance(),canBoard:boardingDistance()<8});
+    const returning=['returning','aligning','docking'].includes(sailing.phase);
+    const interaction=mode==='sail'?(sailing.phase==='departing'?'Leaving wharf · return available in open water':returning?'Returning to wharf · docking automatically':'Return to wharf'):mode==='walk'?(cargo.prompt(camera.position)??(sailing.phase==='moored'&&distanceBetween(camera.position,shipHelm)<3&&!cargo.snapshot().carrying?'Set sail · W/S speed · A/D steer':null)):null;
+    hud.update({time,active,paused,mode,vehicles,speed,boardDistance:boardingDistance(),canBoard:boardingDistance()<8,interaction,cargo:cargo.snapshot()});
   });
   return {
     engine,scene,camera,views,
-    enter(){active=true;paused=false;audio.setPaused(false);audio.unlock();canvas.focus();notify();},navigate,board,ride:board,guided:toggleGuide,reverse,bell,
+    enter(){active=true;paused=false;audio.setPaused(false);audio.unlock();canvas.focus();notify();},navigate,board:interact,ride:board,guided:toggleGuide,reverse,bell,
     respond:hud.reply,endConversation:hud.end,selectDestination:hud.selectDestination,jump,requestLook,clearInput,
     setMuted:audio.setMuted,setVolume:audio.setVolume,setVoices:audio.setVoices,
     setAmbient:dialogue.setAmbient,setHudVisible(value:boolean){hudVisible=value;hud.setVisible(value);},setSensitivity(value:number){sensitivity=Math.max(.4,Math.min(2,Number.isFinite(value)?value:1));},
     setPaused(value:boolean){paused=value;audio.setPaused(value||!active);if(!value&&active)audio.unlock();clearInput();},
     beginComparison(){comparisonView={position:camera.position.clone(),rotation:camera.rotation.clone(),transition};paused=true;audio.setPaused(true);clearInput();camera.position.copyFrom(views.market.position);camera.setTarget(views.market.target);},
     endComparison(){if(comparisonView){camera.position.copyFrom(comparisonView.position);camera.rotation.copyFrom(comparisonView.rotation);transition=comparisonView.transition;comparisonView=null;}paused=false;audio.setPaused(!active);},
-    reset(){audio.reset();clearInput();jumpState=standingJump();active=false;paused=false;time=0;notifyTime=0;direction=1;speed=0;guided=false;crowd.reset();dialogue.reset();hud.reset();car.position.set(3.15,.03,358);car.rotation.y=0;navigate('market',false);},
+    reset(){mode='walk';sailing=mooredSchooner();setHarborDocked(true);harbor.update(220,656,0,true);cargo.reset();parcel.setEnabled(false);audio.reset();clearInput();jumpState=standingJump();active=false;paused=false;time=0;notifyTime=0;direction=1;speed=0;guided=false;crowd.reset();dialogue.reset();hud.reset();car.position.set(3.15,.03,358);car.rotation.y=0;navigate('market',false);},
     touch(forward:number,side:number,sprint=false){if(!active||paused){clearInput();return;}touchSprint=sprint;if(mode==='tram'){throttleTouch=forward>0?1:0;brakeTouch=forward<0?1:0;if(forward)guided=false;}else{if(forward||side){dialogue.end();transition=null;}touchForward=forward;touchSide=side;}},
-    snapshot(){return{ready:scene.isReady(),active,mode,place,paused,camera:{x:camera.position.x,y:camera.position.y,z:camera.position.z,yaw:camera.rotation.y,pitch:camera.rotation.x},streetcar:{x:car.position.x,z:car.position.z,speedMps:speed,direction,guided,canBoard:boardingDistance()<8,distance:boardingDistance()},crowd:crowd.snapshot(),exteriorRiders:riders.snapshot(),audio:audio.snapshot(),hud:hud.snapshot(),input:{pointerLocked:document.pointerLockElement===canvas,pointerLockAvailable:!!canvas.requestPointerLock,pointerLockError,keys:[...keys],touch:{forward:touchForward,side:touchSide,throttle:throttleTouch,brake:brakeTouch,sprint:touchSprint},sensitivity,hudVisible,jump:{...jumpState}},fps:Math.round(engine.getFps()*10)/10,meshes:scene.meshes.length,activeMeshes:scene.getActiveMeshes().length,drawCalls:instrumentation.drawCallsCounter.current,uniqueGeometryTriangles:scene.meshes.reduce((total,mesh)=>total+mesh.getTotalIndices()/3,0),instanceAdjustedTriangles:scene.meshes.reduce((total,mesh)=>total+mesh.getTotalIndices()/3*Math.max(1,mesh instanceof Mesh?mesh.thinInstanceCount:0),0),elapsed:time,lastUserMove,transition:!!transition};},
+    snapshot(){return{ready:scene.isReady(),active,mode,place,paused,cargo:cargo.snapshot(),sailing:{...sailing},camera:{x:camera.position.x,y:camera.position.y,z:camera.position.z,yaw:camera.rotation.y,pitch:camera.rotation.x},streetcar:{x:car.position.x,z:car.position.z,speedMps:speed,direction,guided,canBoard:boardingDistance()<8,distance:boardingDistance()},crowd:crowd.snapshot(),exteriorRiders:riders.snapshot(),audio:audio.snapshot(),hud:hud.snapshot(),input:{pointerLocked:document.pointerLockElement===canvas,pointerLockAvailable:!!canvas.requestPointerLock,pointerLockError,keys:[...keys],touch:{forward:touchForward,side:touchSide,throttle:throttleTouch,brake:brakeTouch,sprint:touchSprint},sensitivity,hudVisible,jump:{...jumpState}},fps:Math.round(engine.getFps()*10)/10,meshes:scene.meshes.length,activeMeshes:scene.getActiveMeshes().length,drawCalls:instrumentation.drawCallsCounter.current,uniqueGeometryTriangles:scene.meshes.reduce((total,mesh)=>total+mesh.getTotalIndices()/3,0),instanceAdjustedTriangles:scene.meshes.reduce((total,mesh)=>total+mesh.getTotalIndices()/3*Math.max(1,mesh instanceof Mesh?mesh.thinInstanceCount:0),0),elapsed:time,lastUserMove,transition:!!transition};},
   };
 }

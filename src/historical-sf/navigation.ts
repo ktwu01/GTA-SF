@@ -15,6 +15,7 @@ export const streetBlocks:Block[]=[
 export const destinations=[
   {id:'harbor',name:'East Street wharves',x:194,z:590,detail:'Cargo sheds beside the bay',icon:'⚓'},
   {id:'ship',name:'Lumber schooner',x:217,z:655,detail:'Cross the gangway and explore the deck',icon:'⚓'},
+  {id:'cargo-wharf',name:'Parcel delivery',x:194,z:622,detail:'Timber wharf freight landing',icon:'◇'},
   {id:'freight',name:'Freight office',x:155,z:528,detail:'Work along the waterfront',icon:'◇'},
   {id:'chandler',name:'Ship chandler',x:155,z:462,detail:'Rope, canvas and marine stores',icon:'◇'},
   {id:'ferry',name:'Ferry Building',x:0,z:552,detail:'The waterfront clock tower',icon:'◷'},

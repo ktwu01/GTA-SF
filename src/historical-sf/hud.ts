@@ -7,7 +7,7 @@ import type { Crowd, TrafficMarker } from './crowd';
 import { createDialogue, hasStreetSight } from './dialogue';
 import { bearingFromYaw, cardinalFromYaw, destinations, distanceBetween, FERRY_BEARING, routeDistance, routeTo, streetBlocks, worldToRadar, type DestinationId, type StreetPoint } from './navigation';
 
-type HUDFrame={time:number;active:boolean;paused:boolean;mode:'walk'|'tram';vehicles:TrafficMarker[];speed:number;boardDistance:number;canBoard:boolean};
+type HUDFrame={time:number;active:boolean;paused:boolean;mode:'walk'|'tram'|'sail';vehicles:TrafficMarker[];speed:number;boardDistance:number;canBoard:boolean;interaction?:string|null;cargo?:{carrying:boolean;delivered:number;completed:number;label:string}};
 type BubbleDiagnostic={id:number;text:string;world:StreetPoint;screen:{x:number;y:number};visible:boolean;reason:string};
 export function createStreetHUD(scene:Scene,camera:FreeCamera,crowd:Crowd,dialogue:ReturnType<typeof createDialogue>,canvas:HTMLCanvasElement,onBoard:()=>boolean){
   const root=document.createElement('div');root.className='street-hud';
@@ -17,6 +17,7 @@ export function createStreetHUD(scene:Scene,camera:FreeCamera,crowd:Crowd,dialog
     <div class="speech-layer" aria-label="Street conversation"></div>
     <button class="context-prompt" data-hud-part="context" hidden><kbd>E</kbd><span>Enter streetcar</span></button>
     <section class="conversation-choices" data-hud-part="replies" aria-label="Conversation" hidden><button class="conversation-close" aria-label="End conversation">×</button><p class="conversation-line" hidden></p><div class="reply-list"></div></section>
+    <div class="cargo-readout" data-hud-part="cargo" hidden></div>
     <div class="speed-readout" data-hud-part="speed" hidden><strong>0</strong><span>mph</span></div>
   `;
   document.querySelector('.experience')!.append(root);
@@ -70,19 +71,21 @@ export function createStreetHUD(scene:Scene,camera:FreeCamera,crowd:Crowd,dialog
       routeTime=frame.time;
       if(distanceBetween(camera.position,lastRoutePosition)>.8||arrived){currentRoute=arrived?[]:routeTo(camera.position,goal);guide.setRoute(currentRoute);lastRoutePosition={x:camera.position.x,z:camera.position.z};}
     }
-    guide.setVisible(show&&!arrived);
+    guide.setVisible(show&&frame.mode==='walk'&&!arrived);
     $('.waypoint-card').hidden=!show||!goal;
     if(goal){$('.waypoint-name').textContent=goal.name;$('.waypoint-distance').textContent=arrived?'Arrived':currentRoute.length?`${Math.round(routeDistance(currentRoute))} m`:'No walking route';}
     const state=dialogue.state();context=null;
     const facing=(point:StreetPoint)=>Math.cos(Math.atan2(point.x-camera.position.x,point.z-camera.position.z)-camera.rotation.y)>.72;
     const car=frame.vehicles.find(v=>v.player);
-    if(show&&state.activeId===null){
+    if(show&&frame.interaction)context='board';
+    else if(show&&state.activeId===null){
       if(frame.mode==='tram')context='board';
       else if(frame.canBoard&&frame.boardDistance<5.5&&car&&facing(car))context='board';
     }
     prompt.hidden=!context;
-    if(context){prompt.querySelector('kbd')!.textContent='E';prompt.querySelector('span')!.textContent=frame.mode==='tram'?'Leave streetcar':'Enter streetcar';}
-    $('.speed-readout').hidden=!show||frame.mode!=='tram';$('.speed-readout strong').textContent=String(Math.round(frame.speed*2.23694));
+    if(context){prompt.querySelector('kbd')!.textContent='E';prompt.querySelector('span')!.textContent=frame.interaction??(frame.mode==='tram'?'Leave streetcar':'Enter streetcar');}
+    const job=frame.cargo;$('.cargo-readout').hidden=!show||!job||(!job.carrying&&!job.delivered&&!job.completed);if(job)$('.cargo-readout').textContent=`${job.label} · ${job.delivered}/3 delivered${job.completed?` · ${job.completed} jobs finished`:''}`;
+    $('.speed-readout').hidden=!show||frame.mode==='walk';$('.speed-readout strong').textContent=String(Math.round(frame.speed*2.23694));
     choices.hidden=!show||state.activeId===null||state.stage==='reply';
     const choiceKey=`${state.activeId}-${state.stage}`;
     if(choiceKey!==lastChoices){

@@ -1,5 +1,5 @@
 import { pedestrianPace, advanceRailHop, groundedRailHop, type RailHop } from './street-activity';
-import { harborHeight } from './harbor-layout';
+import { harborHeight,harborWalkable } from './harbor-layout';
 import { separateTraffic } from './collision';
 import { BoundingInfo } from '@babylonjs/core/Culling/boundingInfo';
 import { Matrix, Quaternion, Vector3 } from '@babylonjs/core/Maths/math.vector';
@@ -108,7 +108,7 @@ export function createCrowd(scene:Scene,p:Palette){
     add([{x:pos.x+(i?.55:-.55),z:pos.z+(i?.48:-.48)}],(group+i+3)%6,group,false,group===7?'coffee':group===6?'flowers':group===0?'news':roles[(group+i+3)%6]);
     people.at(-1)!.yaw=i?Math.PI+.55:.55;
   }
-  for(const [x,z,role] of [[119,550,'porter'],[194,590,'clerk'],[194,626,'porter'],[276,550,'clerk'],[119,427,'clerk'],[217,661,'traveler']] as const)add([{x,z}],role==='porter'?1:4,20+people.length,false,role);
+  for(const [x,z,role] of [[119,550,'porter'],[194,590,'clerk'],[194,626,'porter'],[276,550,'clerk'],[119,427,'clerk'],[197,661,'traveler']] as const)add([{x,z}],role==='porter'?1:4,20+people.length,false,role);
   for(const x of[119,194,276,345])add([{x,z:475},{x,z:550}],1,-1,false,'porter');
   for(let i=0;i<64;i++){
     const side=i%2?1:-1,x=side*(14.9+rng()*2),z=342+rng()*187;
@@ -126,8 +126,10 @@ export function createCrowd(scene:Scene,p:Palette){
     const x=[119,194,276,345][i%4]+(rng()-.5)*5,z=380+rng()*166;
     add([{x,z},{x,z:380+rng()*166}],i%6,-1,false,i%3?'traveler':'porter');
   }
+  for(let i=0;i<48;i++){const x=112+(i%12)*20,z=608.7+(i%3)*.2;add([{x,z},{x:x+5,z}],i%6,-1,false,i%2?'porter':'clerk');}
+  for(let i=0;i<16;i++){const x=i%2?197:191,z=620+(i%8)*6;add([{x,z},{x,z:z+3}],i%6,-1,false,'porter');}
   for(let i=0;i<20;i++){
-    const x=111+rng()*232,z=604+rng()*4;
+    const x=111+rng()*232,z=608.7+rng()*.5;
     add([{x,z},{x:111+rng()*232,z}],i%6);
   }
   for(let i=0;i<8;i++){
@@ -168,7 +170,7 @@ export function createCrowd(scene:Scene,p:Palette){
             const hazard=vehicles.some(v=>Math.abs(next.x-v.x)<2.05&&Math.abs(next.z-v.z)<(v.kind==='wagon'?6:6.1)+Math.abs(v.speed)*1.35&&Math.abs(n.x-v.x)>1.55);
             const close=distanceBetween(next,viewer)<.75&&distanceBetween(n,viewer)>=.7||people.some(other=>other.id!==n.id&&distanceBetween(next,other)<.45&&distanceBetween(n,other)>.43&&other.id<n.id);
             n.yielding=hazard;
-            if(!hazard&&!close){n.x=next.x;n.z=next.z;n.yaw=Math.atan2(vx,vz);n.moving=true;n.phase+=dt*n.speed*5.8;}
+            if(!hazard&&!close&&(n.x<95||harborWalkable(next))){n.x=next.x;n.z=next.z;n.yaw=Math.atan2(vx,vz);n.moving=true;n.phase+=dt*n.speed*5.8;}
           }
         }
       }
