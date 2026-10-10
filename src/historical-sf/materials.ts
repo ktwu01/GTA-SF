@@ -3,6 +3,7 @@ import { DynamicTexture } from '@babylonjs/core/Materials/Textures/dynamicTextur
 import { Scene } from '@babylonjs/core/scene';
 import { StandardMaterial } from '@babylonjs/core/Materials/standardMaterial';
 import { Texture } from '@babylonjs/core/Materials/Textures/texture';
+import { assetUrl } from './assets';
 
 export function random(seed:number) { let n=seed; return () => { n = Math.imul(n ^ n >>> 15, 1 | n); n ^= n + Math.imul(n ^ n >>> 7, 61 | n); return ((n ^ n >>> 14) >>> 0) / 4294967296; }; }
 
@@ -38,12 +39,12 @@ export function palette(scene:Scene) {
   for(let i=0;i<3800;i++){gc.fillStyle=`rgba(85,71,54,${rng()*.08})`;gc.fillRect(rng()*128,rng()*128,1,1);}
   grit.update();grit.wrapU=Texture.WRAP_ADDRESSMODE;grit.wrapV=Texture.WRAP_ADDRESSMODE;
   [p.cream,p.pale,p.warm,p.grey,p.brick,p.rose,p.trim].forEach(m=>m.diffuseTexture=grit);
-  const photo=(material:StandardMaterial,file:string)=>{const texture=new Texture('/historical-sf/textures/'+file,scene,false,true);texture.anisotropicFilteringLevel=8;material.diffuseTexture=texture;return texture;};
+  const photo=(material:StandardMaterial,file:string)=>{const texture=new Texture(assetUrl('/historical-sf/textures/'+file),scene,false,true);texture.anisotropicFilteringLevel=8;material.diffuseTexture=texture;return texture;};
   photo(p.bayPhoto,'terminal-bay.jpg');photo(p.coffeeUpper,'coffee-house-upper.jpg');photo(p.coffeeShops,'coffee-house-shops.jpg');photo(p.warehousePhoto,'warehouse-facade.jpg');photo(p.adverts,'terminal-wall-adverts.jpg');
   photo(p.display,'shop-display.jpg');photo(p.shelves,'shop-shelves.jpg');photo(p.frieze,'carved-frieze.jpg');photo(p.glassLight,'sash-reflection.jpg');
   p.glassLight.diffuseColor=new Color3(.86,.90,.85);
   const stone=photo(p.road,'granite-setts.jpg');stone.uScale=65;stone.vScale=80;
-  const normal=new Texture('/historical-sf/textures/granite-normal.png',scene,false,true);normal.uScale=65;normal.vScale=80;normal.level=.55;p.road.bumpTexture=normal;
+  const normal=new Texture(assetUrl('/historical-sf/textures/granite-normal.png'),scene,false,true);normal.uScale=65;normal.vScale=80;normal.level=.55;p.road.bumpTexture=normal;
   p.road.diffuseColor=new Color3(.88,.87,.82);p.road.specularColor=new Color3(.09,.09,.075);p.road.specularPower=24;
   const bed=photo(p.trackbed,'worn-trackbed.jpg');bed.uScale=.72;bed.vScale=58.75;p.trackbed.diffuseColor=new Color3(.83,.82,.77);p.trackbed.specularColor=new Color3(.07,.07,.06);
   const wornPaint=photo(p.ivory,'painted-wood-wear.jpg');p.green.diffuseTexture=wornPaint;p.red.diffuseTexture=wornPaint;p.wood.diffuseTexture=wornPaint;

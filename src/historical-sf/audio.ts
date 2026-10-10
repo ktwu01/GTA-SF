@@ -2,6 +2,7 @@ import voiceManifest from './voice-manifest.json' with { type: 'json' };
 import type { Speech } from './dialogue.ts';
 import type { Pedestrian, TrafficMarker } from './crowd.ts';
 import type { StreetPoint } from './navigation.ts';
+import { assetUrl } from './assets.ts';
 
 type Listener=StreetPoint&{yaw:number};
 export function soundPosition(source:StreetPoint,listener:Listener,reach=38){
@@ -69,7 +70,7 @@ export function createStreetAudio(){
     lastLine=line.text;lastVoice=entry.voice;
     let loading=clips.get(entry.path);
     if(!loading){
-      loading=fetch(entry.path).then(response=>{if(!response.ok)throw new Error('Voice clip unavailable');return response.arrayBuffer();}).then(bytes=>context!.decodeAudioData(bytes));
+      loading=fetch(assetUrl(entry.path)).then(response=>{if(!response.ok)throw new Error('Voice clip unavailable');return response.arrayBuffer();}).then(bytes=>context!.decodeAudioData(bytes));
       clips.set(entry.path,loading);
     }
     void loading.then(buffer=>{

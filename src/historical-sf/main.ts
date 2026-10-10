@@ -3,6 +3,7 @@ import './hud.css';
 import { createHistoricalScene, type Place } from './scene';
 import { destinations, type DestinationId } from './navigation';
 import { hasGameFocus } from './controls';
+import { assetUrl } from './assets';
 import sourcePack from '../../data/historical-sf/sources.json';
 
 const arrow='<svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 12h15M13 5l7 7-7 7" stroke="currentColor" stroke-width="1.5"/></svg>';
@@ -11,8 +12,8 @@ const app=document.querySelector<HTMLDivElement>('#historical-app')!;
 app.innerHTML=`
   <canvas id="street" tabindex="0" aria-label="Explore San Francisco in 1906. W A S D to walk. Click to look freely. Escape opens the menu."></canvas>
   <section class="intro" aria-labelledby="intro-title">
-    <img class="archive-backdrop" src="/historical-sf/references/market-film-445.jpg" alt="Original 1906 film frame looking along Market Street toward the Ferry Building" />
-    <video class="archive-film" muted autoplay playsinline loop preload="metadata" poster="/historical-sf/references/market-film-445.jpg" aria-hidden="true"><source src="/historical-sf/market-1906-excerpt.mp4" type="video/mp4" /></video>
+    <img class="archive-backdrop" src="${assetUrl('/historical-sf/references/market-film-445.jpg')}" alt="Original 1906 film frame looking along Market Street toward the Ferry Building" />
+    <video class="archive-film" muted autoplay playsinline loop preload="metadata" poster="${assetUrl('/historical-sf/references/market-film-445.jpg')}" aria-hidden="true"><source src="${assetUrl('/historical-sf/market-1906-excerpt.mp4')}" type="video/mp4" /></video>
     <div class="intro-shade"></div>
     <div class="intro-copy"><p class="eyebrow">A WALK DOWN MARKET STREET</p><h1 id="intro-title">San Francisco,<br><em>1906.</em></h1><p class="intro-description">One ordinary Saturday.<br>A city on the edge of history.</p><button id="enter" class="enter-button" disabled><span>Opening the street…</span>${arrow}</button></div>
     <div class="intro-bottom"><span>STEP OFF THE CAMERA.<br>INTO THE STREET.</span><span>ORIGINAL FILM · MILES BROTHERS<br>LIBRARY OF CONGRESS, APRIL 14, 1906</span><button class="quiet-button archive-open">Explore the photographs ${arrow}</button></div>
@@ -42,7 +43,7 @@ app.innerHTML=`
     </div></div>
   </dialog>
   <section class="comparison" role="dialog" aria-modal="true" aria-label="Compare original film and reconstruction" hidden>
-    <img src="/historical-sf/references/market-film-445.jpg" alt="Market Street in the original Miles Brothers film, April 14, 1906" />
+    <img src="${assetUrl('/historical-sf/references/market-film-445.jpg')}" alt="Market Street in the original Miles Brothers film, April 14, 1906" />
     <div class="comparison-top"><span class="eyebrow">THE SAME DIRECTION. A DIFFERENT CENTURY.</span><button id="compare-close" class="round-close" aria-label="Close comparison">×</button></div>
     <div class="comparison-bottom"><p>Market Street, April 14, 1906<span>Original film · Miles Brothers · Library of Congress</span></p><label for="compare-slider">Archive <input id="compare-slider" type="range" min="0" max="100" value="65" /> Reconstruction</label></div>
   </section>
@@ -75,7 +76,7 @@ function archiveCredit(photo:ArchiveImage){
 const grid=$<HTMLElement>('#archive-grid');
 for(const photo of images){
   const item=document.createElement('a');item.className='archive-card';item.href=photo.pageUrl;item.target='_blank';item.rel='noopener noreferrer';
-  const image=document.createElement('img');image.src=photo.path;image.alt=photo.title;image.loading='lazy';
+  const image=document.createElement('img');image.src=assetUrl(photo.path);image.alt=photo.title;image.loading='lazy';
   const caption=document.createElement('div');const meta=document.createElement('span');meta.className='archive-meta';meta.textContent=photo.sourceId==='loc-market-film'?`MILES BROTHERS · 1906 · ${photo.timeSeconds}s`:photo.date;
   const title=document.createElement('h3');title.textContent=titles[photo.id]??(photo.sourceId==='loc-market-film'?'A moment on Market Street':photo.title);
   const source=document.createElement('p');source.textContent=`${archiveCredit(photo)} ↗`;

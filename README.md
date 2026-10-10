@@ -2,7 +2,7 @@
 
 **Explore San Francisco in 1906, on foot, by streetcar, and aboard a lumber schooner.**
 
-[Download v0.3.0](https://github.com/ktwu01/GTA-SF/releases/tag/v0.3.0) · [Report a bug or suggest an idea](https://github.com/ktwu01/GTA-SF/issues) · [Gameplay guide](docs/historical-sf/mvp.md)
+[Play in your browser](https://ktwu01.github.io/GTA-SF/) · [Download v0.3.0](https://github.com/ktwu01/GTA-SF/releases/tag/v0.3.0) · [Report a bug or suggest an idea](https://github.com/ktwu01/GTA-SF/issues) · [Gameplay guide](docs/historical-sf/mvp.md)
 
 ![Market Street in GTA-SF: pedestrians and open-platform streetcars, with the Ferry Building ahead](docs/media/gta-sf/market-street.jpg)
 
@@ -24,6 +24,10 @@ The current release is a compact historical district. Buildings and street detai
 - Compare the opening view with the archival film and browse the photograph archive.
 
 ## Play the release
+
+Open [GTA-SF](https://ktwu01.github.io/GTA-SF/) to play without installation.
+Share the same link with friends.
+A desktop browser with WebGL2 support is recommended.
 
 Download `GTA-SF-v0.3.0-historical.zip` from the [release page](https://github.com/ktwu01/GTA-SF/releases/tag/v0.3.0).
 Extract the ZIP into a folder.
