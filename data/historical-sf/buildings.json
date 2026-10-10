@@ -1,0 +1,1915 @@
+{
+  "schemaVersion": 1,
+  "scope": "All22 structural buildings/deckhouse in current historical scene. Signs, facade overlays and rooftop tanks belong to parent structures.",
+  "confidencePolicy": "High=direct legible evidence; medium=documentary approximation/visible appearance; low=typology inference; unknown=null. Rendered dimensions never become historical survey facts.",
+  "sources": {
+    "terminal-1905": {
+      "url": "https://gallery.apps.sfmta.com/images/originals/U00541.jpg",
+      "date": "1905-08-22",
+      "locator": "U00541; looking west from Ferry tower",
+      "rights": "Existing publication evidence in sources.json; no new image redistribution"
+    },
+    "film-1906": {
+      "url": "https://www.loc.gov/item/00694408/",
+      "date": "1906-04-14",
+      "locator": "Viewing-copy frames 075, 240, 310, 490",
+      "rights": "Public domain; existing bundled originals"
+    },
+    "ferry-habs": {
+      "url": "https://www.loc.gov/item/ca0641/",
+      "date": "1960",
+      "locator": "Report printed pp6\u20138; later documentation of original structure"
+    },
+    "sanborn-5-6": {
+      "url": "https://www.davidrumsey.com/luna/servlet/s/12qk6x",
+      "date": "1899/1900, revised through fall1905",
+      "locator": "Volume1 sheets5\u20136; Davis/Drumm, California/Sacramento block",
+      "preview": "https://rumsey3.s3.amazonaws.com/images/SFSanborn/SanbornSF5_6detail.jpg",
+      "rights": "Research only; previews not bundled as game assets",
+      "limitations": "700px preview inspected. Full viewer access challenge. Exact dimensions and individual addresses not transcribed from illegible labels."
+    },
+    "sanborn-key": {
+      "url": "https://www.davidrumsey.com/luna/servlet/s/612g48",
+      "locator": "Atlas key; pink brick, yellow frame, green special construction",
+      "preview": "https://rumsey3.s3.amazonaws.com/images/SFSanborn/SanbornSFkey.jpg"
+    },
+    "opensf-terminal": {
+      "url": "https://opensfhistory.org/Display/wnp100.10001.jpg",
+      "date": "1905-08-22",
+      "locator": "Caption U0540, inbound cable-car backup near Steuart",
+      "rights": "Research only; no image redistribution"
+    },
+    "opensf-ferry": {
+      "url": "https://opensfhistory.org/Display/wnp4.1351.jpg",
+      "date": "circa1905",
+      "locator": "Caption: looking north along Embarcadero, streetcars in front of Ferry",
+      "rights": "Research only; no image redistribution"
+    },
+    "east-street": {
+      "url": "https://tile.loc.gov/storage-services/master/pnp/habshaer/ca/ca0800/ca0859/data/ca0859data.pdf",
+      "date": "historic photograph ca1900 in later HAER report",
+      "locator": "Printedp19/PDFp20; East Street looking north from Pier12"
+    },
+    "usgs-1899": {
+      "url": "https://store.usgs.gov/product/845820",
+      "date": "1899 survey, 1914 print",
+      "locator": "San Francisco quadrangle 1:62500",
+      "limitations": "Regional terrain reference only. No building heights or local quay elevation inferred."
+    }
+  },
+  "buildings": [
+    {
+      "id": "market-commercial--1-320",
+      "modelClass": "period composite",
+      "researchSources": [
+        "film-1906"
+      ],
+      "facts": {
+        "footprint": {
+          "rendered": {
+            "value": {
+              "center": [
+                -31.288,
+                320
+              ],
+              "width": 26,
+              "depth": 35,
+              "units": "game meters",
+              "shape": "rectangle"
+            },
+            "source": "src/historical-sf/architecture.ts",
+            "locator": "market-commercial--1-320",
+            "confidence": "high",
+            "status": "authored model value"
+          },
+          "historical": {
+            "value": null,
+            "source": null,
+            "locator": null,
+            "confidence": "unknown"
+          }
+        },
+        "height": {
+          "rendered": {
+            "value": {
+              "value": 19,
+              "units": "game meters",
+              "extent": "main wall/eave; decorative roof details may exceed this"
+            },
+            "source": "src/historical-sf/architecture.ts",
+            "locator": "market-commercial--1-320",
+            "confidence": "high",
+            "status": "authored model value"
+          },
+          "historical": {
+            "value": null,
+            "source": null,
+            "locator": null,
+            "confidence": "unknown"
+          }
+        },
+        "facadeMaterial": {
+          "rendered": {
+            "value": "muted masonry color",
+            "source": "src/historical-sf/architecture.ts",
+            "locator": "market-commercial--1-320",
+            "confidence": "high",
+            "status": "authored model value"
+          },
+          "historical": {
+            "value": "Masonry shopfront/window/awning typology, not verified construction material",
+            "source": "film-1906",
+            "locator": "frame075 and310",
+            "confidence": "low"
+          }
+        },
+        "occupant": {
+          "rendered": {
+            "value": null,
+            "source": "src/historical-sf/architecture.ts",
+            "locator": "market-commercial--1-320",
+            "confidence": "high",
+            "status": "authored model value"
+          },
+          "historical": {
+            "value": null,
+            "source": null,
+            "locator": null,
+            "confidence": "unknown"
+          }
+        }
+      },
+      "geographicRegistration": "Unverified/compressed scene coordinates; not cadastral coordinates"
+    },
+    {
+      "id": "market-commercial--1-359",
+      "modelClass": "period composite",
+      "researchSources": [
+        "film-1906"
+      ],
+      "facts": {
+        "footprint": {
+          "rendered": {
+            "value": {
+              "center": [
+                -30.788,
+                359
+              ],
+              "width": 25,
+              "depth": 32,
+              "units": "game meters",
+              "shape": "rectangle"
+            },
+            "source": "src/historical-sf/architecture.ts",
+            "locator": "market-commercial--1-359",
+            "confidence": "high",
+            "status": "authored model value"
+          },
+          "historical": {
+            "value": null,
+            "source": null,
+            "locator": null,
+            "confidence": "unknown"
+          }
+        },
+        "height": {
+          "rendered": {
+            "value": {
+              "value": 20,
+              "units": "game meters",
+              "extent": "main wall/eave; decorative roof details may exceed this"
+            },
+            "source": "src/historical-sf/architecture.ts",
+            "locator": "market-commercial--1-359",
+            "confidence": "high",
+            "status": "authored model value"
+          },
+          "historical": {
+            "value": null,
+            "source": null,
+            "locator": null,
+            "confidence": "unknown"
+          }
+        },
+        "facadeMaterial": {
+          "rendered": {
+            "value": "gray masonry color",
+            "source": "src/historical-sf/architecture.ts",
+            "locator": "market-commercial--1-359",
+            "confidence": "high",
+            "status": "authored model value"
+          },
+          "historical": {
+            "value": "Masonry shopfront/window/awning typology, not verified construction material",
+            "source": "film-1906",
+            "locator": "frame075 and310",
+            "confidence": "low"
+          }
+        },
+        "occupant": {
+          "rendered": {
+            "value": null,
+            "source": "src/historical-sf/architecture.ts",
+            "locator": "market-commercial--1-359",
+            "confidence": "high",
+            "status": "authored model value"
+          },
+          "historical": {
+            "value": null,
+            "source": null,
+            "locator": null,
+            "confidence": "unknown"
+          }
+        }
+      },
+      "geographicRegistration": "Unverified/compressed scene coordinates; not cadastral coordinates"
+    },
+    {
+      "id": "market-commercial--1-397",
+      "modelClass": "period composite",
+      "researchSources": [
+        "film-1906"
+      ],
+      "facts": {
+        "footprint": {
+          "rendered": {
+            "value": {
+              "center": [
+                -31.788,
+                397
+              ],
+              "width": 27,
+              "depth": 31,
+              "units": "game meters",
+              "shape": "rectangle"
+            },
+            "source": "src/historical-sf/architecture.ts",
+            "locator": "market-commercial--1-397",
+            "confidence": "high",
+            "status": "authored model value"
+          },
+          "historical": {
+            "value": null,
+            "source": null,
+            "locator": null,
+            "confidence": "unknown"
+          }
+        },
+        "height": {
+          "rendered": {
+            "value": {
+              "value": 17,
+              "units": "game meters",
+              "extent": "main wall/eave; decorative roof details may exceed this"
+            },
+            "source": "src/historical-sf/architecture.ts",
+            "locator": "market-commercial--1-397",
+            "confidence": "high",
+            "status": "authored model value"
+          },
+          "historical": {
+            "value": null,
+            "source": null,
+            "locator": null,
+            "confidence": "unknown"
+          }
+        },
+        "facadeMaterial": {
+          "rendered": {
+            "value": "sandstone color",
+            "source": "src/historical-sf/architecture.ts",
+            "locator": "market-commercial--1-397",
+            "confidence": "high",
+            "status": "authored model value"
+          },
+          "historical": {
+            "value": "Masonry shopfront/window/awning typology, not verified construction material",
+            "source": "film-1906",
+            "locator": "frame075 and310",
+            "confidence": "low"
+          }
+        },
+        "occupant": {
+          "rendered": {
+            "value": null,
+            "source": "src/historical-sf/architecture.ts",
+            "locator": "market-commercial--1-397",
+            "confidence": "high",
+            "status": "authored model value"
+          },
+          "historical": {
+            "value": null,
+            "source": null,
+            "locator": null,
+            "confidence": "unknown"
+          }
+        }
+      },
+      "geographicRegistration": "Unverified/compressed scene coordinates; not cadastral coordinates"
+    },
+    {
+      "id": "market-commercial-1-321",
+      "modelClass": "period composite",
+      "researchSources": [
+        "film-1906"
+      ],
+      "facts": {
+        "footprint": {
+          "rendered": {
+            "value": {
+              "center": [
+                31.788,
+                321
+              ],
+              "width": 27,
+              "depth": 34,
+              "units": "game meters",
+              "shape": "rectangle"
+            },
+            "source": "src/historical-sf/architecture.ts",
+            "locator": "market-commercial-1-321",
+            "confidence": "high",
+            "status": "authored model value"
+          },
+          "historical": {
+            "value": null,
+            "source": null,
+            "locator": null,
+            "confidence": "unknown"
+          }
+        },
+        "height": {
+          "rendered": {
+            "value": {
+              "value": 17,
+              "units": "game meters",
+              "extent": "main wall/eave; decorative roof details may exceed this"
+            },
+            "source": "src/historical-sf/architecture.ts",
+            "locator": "market-commercial-1-321",
+            "confidence": "high",
+            "status": "authored model value"
+          },
+          "historical": {
+            "value": null,
+            "source": null,
+            "locator": null,
+            "confidence": "unknown"
+          }
+        },
+        "facadeMaterial": {
+          "rendered": {
+            "value": "cream masonry color",
+            "source": "src/historical-sf/architecture.ts",
+            "locator": "market-commercial-1-321",
+            "confidence": "high",
+            "status": "authored model value"
+          },
+          "historical": {
+            "value": "Masonry shopfront/window/awning typology, not verified construction material",
+            "source": "film-1906",
+            "locator": "frame075 and310",
+            "confidence": "low"
+          }
+        },
+        "occupant": {
+          "rendered": {
+            "value": null,
+            "source": "src/historical-sf/architecture.ts",
+            "locator": "market-commercial-1-321",
+            "confidence": "high",
+            "status": "authored model value"
+          },
+          "historical": {
+            "value": null,
+            "source": null,
+            "locator": null,
+            "confidence": "unknown"
+          }
+        }
+      },
+      "geographicRegistration": "Unverified/compressed scene coordinates; not cadastral coordinates"
+    },
+    {
+      "id": "market-commercial-1-360",
+      "modelClass": "period composite",
+      "researchSources": [
+        "film-1906"
+      ],
+      "facts": {
+        "footprint": {
+          "rendered": {
+            "value": {
+              "center": [
+                31.788,
+                360
+              ],
+              "width": 27,
+              "depth": 32,
+              "units": "game meters",
+              "shape": "rectangle"
+            },
+            "source": "src/historical-sf/architecture.ts",
+            "locator": "market-commercial-1-360",
+            "confidence": "high",
+            "status": "authored model value"
+          },
+          "historical": {
+            "value": null,
+            "source": null,
+            "locator": null,
+            "confidence": "unknown"
+          }
+        },
+        "height": {
+          "rendered": {
+            "value": {
+              "value": 22,
+              "units": "game meters",
+              "extent": "main wall/eave; decorative roof details may exceed this"
+            },
+            "source": "src/historical-sf/architecture.ts",
+            "locator": "market-commercial-1-360",
+            "confidence": "high",
+            "status": "authored model value"
+          },
+          "historical": {
+            "value": null,
+            "source": null,
+            "locator": null,
+            "confidence": "unknown"
+          }
+        },
+        "facadeMaterial": {
+          "rendered": {
+            "value": "muted masonry color",
+            "source": "src/historical-sf/architecture.ts",
+            "locator": "market-commercial-1-360",
+            "confidence": "high",
+            "status": "authored model value"
+          },
+          "historical": {
+            "value": "Masonry shopfront/window/awning typology, not verified construction material",
+            "source": "film-1906",
+            "locator": "frame075 and310",
+            "confidence": "low"
+          }
+        },
+        "occupant": {
+          "rendered": {
+            "value": null,
+            "source": "src/historical-sf/architecture.ts",
+            "locator": "market-commercial-1-360",
+            "confidence": "high",
+            "status": "authored model value"
+          },
+          "historical": {
+            "value": null,
+            "source": null,
+            "locator": null,
+            "confidence": "unknown"
+          }
+        }
+      },
+      "geographicRegistration": "Unverified/compressed scene coordinates; not cadastral coordinates"
+    },
+    {
+      "id": "market-commercial-1-398",
+      "modelClass": "period composite",
+      "researchSources": [
+        "film-1906"
+      ],
+      "facts": {
+        "footprint": {
+          "rendered": {
+            "value": {
+              "center": [
+                31.788,
+                398
+              ],
+              "width": 27,
+              "depth": 32,
+              "units": "game meters",
+              "shape": "rectangle"
+            },
+            "source": "src/historical-sf/architecture.ts",
+            "locator": "market-commercial-1-398",
+            "confidence": "high",
+            "status": "authored model value"
+          },
+          "historical": {
+            "value": null,
+            "source": null,
+            "locator": null,
+            "confidence": "unknown"
+          }
+        },
+        "height": {
+          "rendered": {
+            "value": {
+              "value": 20,
+              "units": "game meters",
+              "extent": "main wall/eave; decorative roof details may exceed this"
+            },
+            "source": "src/historical-sf/architecture.ts",
+            "locator": "market-commercial-1-398",
+            "confidence": "high",
+            "status": "authored model value"
+          },
+          "historical": {
+            "value": null,
+            "source": null,
+            "locator": null,
+            "confidence": "unknown"
+          }
+        },
+        "facadeMaterial": {
+          "rendered": {
+            "value": "sandstone color",
+            "source": "src/historical-sf/architecture.ts",
+            "locator": "market-commercial-1-398",
+            "confidence": "high",
+            "status": "authored model value"
+          },
+          "historical": {
+            "value": "Masonry shopfront/window/awning typology, not verified construction material",
+            "source": "film-1906",
+            "locator": "frame075 and310",
+            "confidence": "low"
+          }
+        },
+        "occupant": {
+          "rendered": {
+            "value": null,
+            "source": "src/historical-sf/architecture.ts",
+            "locator": "market-commercial-1-398",
+            "confidence": "high",
+            "status": "authored model value"
+          },
+          "historical": {
+            "value": null,
+            "source": null,
+            "locator": null,
+            "confidence": "unknown"
+          }
+        }
+      },
+      "geographicRegistration": "Unverified/compressed scene coordinates; not cadastral coordinates"
+    },
+    {
+      "id": "market-commercial-1-438",
+      "modelClass": "period composite",
+      "researchSources": [
+        "film-1906"
+      ],
+      "facts": {
+        "footprint": {
+          "rendered": {
+            "value": {
+              "center": [
+                31.288,
+                438
+              ],
+              "width": 26,
+              "depth": 29,
+              "units": "game meters",
+              "shape": "rectangle"
+            },
+            "source": "src/historical-sf/architecture.ts",
+            "locator": "market-commercial-1-438",
+            "confidence": "high",
+            "status": "authored model value"
+          },
+          "historical": {
+            "value": null,
+            "source": null,
+            "locator": null,
+            "confidence": "unknown"
+          }
+        },
+        "height": {
+          "rendered": {
+            "value": {
+              "value": 17,
+              "units": "game meters",
+              "extent": "main wall/eave; decorative roof details may exceed this"
+            },
+            "source": "src/historical-sf/architecture.ts",
+            "locator": "market-commercial-1-438",
+            "confidence": "high",
+            "status": "authored model value"
+          },
+          "historical": {
+            "value": null,
+            "source": null,
+            "locator": null,
+            "confidence": "unknown"
+          }
+        },
+        "facadeMaterial": {
+          "rendered": {
+            "value": "gray masonry color",
+            "source": "src/historical-sf/architecture.ts",
+            "locator": "market-commercial-1-438",
+            "confidence": "high",
+            "status": "authored model value"
+          },
+          "historical": {
+            "value": "Masonry shopfront/window/awning typology, not verified construction material",
+            "source": "film-1906",
+            "locator": "frame075 and310",
+            "confidence": "low"
+          }
+        },
+        "occupant": {
+          "rendered": {
+            "value": null,
+            "source": "src/historical-sf/architecture.ts",
+            "locator": "market-commercial-1-438",
+            "confidence": "high",
+            "status": "authored model value"
+          },
+          "historical": {
+            "value": null,
+            "source": null,
+            "locator": null,
+            "confidence": "unknown"
+          }
+        }
+      },
+      "geographicRegistration": "Unverified/compressed scene coordinates; not cadastral coordinates"
+    },
+    {
+      "id": "market-commercial-1-474",
+      "modelClass": "period composite",
+      "researchSources": [
+        "film-1906"
+      ],
+      "facts": {
+        "footprint": {
+          "rendered": {
+            "value": {
+              "center": [
+                33.288,
+                474
+              ],
+              "width": 30,
+              "depth": 26,
+              "units": "game meters",
+              "shape": "rectangle"
+            },
+            "source": "src/historical-sf/architecture.ts",
+            "locator": "market-commercial-1-474",
+            "confidence": "high",
+            "status": "authored model value"
+          },
+          "historical": {
+            "value": null,
+            "source": null,
+            "locator": null,
+            "confidence": "unknown"
+          }
+        },
+        "height": {
+          "rendered": {
+            "value": {
+              "value": 15,
+              "units": "game meters",
+              "extent": "main wall/eave; decorative roof details may exceed this"
+            },
+            "source": "src/historical-sf/architecture.ts",
+            "locator": "market-commercial-1-474",
+            "confidence": "high",
+            "status": "authored model value"
+          },
+          "historical": {
+            "value": null,
+            "source": null,
+            "locator": null,
+            "confidence": "unknown"
+          }
+        },
+        "facadeMaterial": {
+          "rendered": {
+            "value": "cream masonry color",
+            "source": "src/historical-sf/architecture.ts",
+            "locator": "market-commercial-1-474",
+            "confidence": "high",
+            "status": "authored model value"
+          },
+          "historical": {
+            "value": "Masonry shopfront/window/awning typology, not verified construction material",
+            "source": "film-1906",
+            "locator": "frame075 and310",
+            "confidence": "low"
+          }
+        },
+        "occupant": {
+          "rendered": {
+            "value": null,
+            "source": "src/historical-sf/architecture.ts",
+            "locator": "market-commercial-1-474",
+            "confidence": "high",
+            "status": "authored model value"
+          },
+          "historical": {
+            "value": null,
+            "source": null,
+            "locator": null,
+            "confidence": "unknown"
+          }
+        }
+      },
+      "geographicRegistration": "Unverified/compressed scene coordinates; not cadastral coordinates"
+    },
+    {
+      "id": "south-ticket-office",
+      "modelClass": "photo-derived approximation",
+      "researchSources": [
+        "terminal-1905"
+      ],
+      "facts": {
+        "footprint": {
+          "rendered": {
+            "value": {
+              "center": [
+                31.3,
+                518
+              ],
+              "width": 26,
+              "depth": 29,
+              "units": "game meters",
+              "shape": "rectangle"
+            },
+            "source": "src/historical-sf/architecture.ts",
+            "locator": "south-ticket-office",
+            "confidence": "high",
+            "status": "authored model value"
+          },
+          "historical": {
+            "value": null,
+            "source": null,
+            "locator": null,
+            "confidence": "unknown"
+          }
+        },
+        "height": {
+          "rendered": {
+            "value": {
+              "value": 13.8,
+              "units": "game meters",
+              "extent": "main wall/eave; decorative roof details may exceed this"
+            },
+            "source": "src/historical-sf/architecture.ts",
+            "locator": "south-ticket-office",
+            "confidence": "high",
+            "status": "authored model value"
+          },
+          "historical": {
+            "value": null,
+            "source": null,
+            "locator": null,
+            "confidence": "unknown"
+          }
+        },
+        "facadeMaterial": {
+          "rendered": {
+            "value": "painted timber appearance",
+            "source": "src/historical-sf/architecture.ts",
+            "locator": "south-ticket-office",
+            "confidence": "high",
+            "status": "authored model value"
+          },
+          "historical": {
+            "value": "Painted bay facade appearance; hidden structure unknown",
+            "source": "terminal-1905",
+            "locator": "left foreground three-level facade",
+            "confidence": "medium"
+          }
+        },
+        "occupant": {
+          "rendered": {
+            "value": "TICKET OFFICE",
+            "source": "src/historical-sf/architecture.ts",
+            "locator": "south-ticket-office",
+            "confidence": "high",
+            "status": "authored model value"
+          },
+          "historical": {
+            "value": "Visible Pacific Ticket Office sign; tenant/ownership not independently verified",
+            "source": "terminal-1905",
+            "locator": "left foreground bay facade",
+            "confidence": "high"
+          }
+        }
+      },
+      "geographicRegistration": "Unverified/compressed scene coordinates; not cadastral coordinates"
+    },
+    {
+      "id": "south-painted-advert-wall",
+      "modelClass": "photo-derived approximation",
+      "researchSources": [
+        "terminal-1905"
+      ],
+      "facts": {
+        "footprint": {
+          "rendered": {
+            "value": {
+              "center": [
+                41,
+                490
+              ],
+              "width": 31,
+              "depth": 24,
+              "units": "game meters",
+              "shape": "rectangle"
+            },
+            "source": "src/historical-sf/architecture.ts",
+            "locator": "south-painted-advert-wall",
+            "confidence": "high",
+            "status": "authored model value"
+          },
+          "historical": {
+            "value": null,
+            "source": null,
+            "locator": null,
+            "confidence": "unknown"
+          }
+        },
+        "height": {
+          "rendered": {
+            "value": {
+              "value": 25,
+              "units": "game meters",
+              "extent": "main wall/eave; decorative roof details may exceed this"
+            },
+            "source": "src/historical-sf/architecture.ts",
+            "locator": "south-painted-advert-wall",
+            "confidence": "high",
+            "status": "authored model value"
+          },
+          "historical": {
+            "value": null,
+            "source": null,
+            "locator": null,
+            "confidence": "unknown"
+          }
+        },
+        "facadeMaterial": {
+          "rendered": {
+            "value": "brick appearance",
+            "source": "src/historical-sf/architecture.ts",
+            "locator": "south-painted-advert-wall",
+            "confidence": "high",
+            "status": "authored model value"
+          },
+          "historical": {
+            "value": null,
+            "source": null,
+            "locator": null,
+            "confidence": "unknown"
+          }
+        },
+        "occupant": {
+          "rendered": {
+            "value": null,
+            "source": "src/historical-sf/architecture.ts",
+            "locator": "south-painted-advert-wall",
+            "confidence": "high",
+            "status": "authored model value"
+          },
+          "historical": {
+            "value": "MJB Coffee, General Arthur Cigars, Smith Cash Store advertisements; not proof that all occupied this building",
+            "source": "terminal-1905",
+            "locator": "left upper painted advertising wall",
+            "confidence": "high"
+          }
+        }
+      },
+      "geographicRegistration": "Unverified/compressed scene coordinates; not cadastral coordinates"
+    },
+    {
+      "id": "north-brick-warehouse",
+      "modelClass": "photo-derived approximation",
+      "researchSources": [
+        "terminal-1905"
+      ],
+      "facts": {
+        "footprint": {
+          "rendered": {
+            "value": {
+              "center": [
+                -37,
+                442
+              ],
+              "width": 37,
+              "depth": 39,
+              "units": "game meters",
+              "shape": "rectangle"
+            },
+            "source": "src/historical-sf/architecture.ts",
+            "locator": "north-brick-warehouse",
+            "confidence": "high",
+            "status": "authored model value"
+          },
+          "historical": {
+            "value": null,
+            "source": null,
+            "locator": null,
+            "confidence": "unknown"
+          }
+        },
+        "height": {
+          "rendered": {
+            "value": {
+              "value": 26,
+              "units": "game meters",
+              "extent": "main wall/eave; decorative roof details may exceed this"
+            },
+            "source": "src/historical-sf/architecture.ts",
+            "locator": "north-brick-warehouse",
+            "confidence": "high",
+            "status": "authored model value"
+          },
+          "historical": {
+            "value": null,
+            "source": null,
+            "locator": null,
+            "confidence": "unknown"
+          }
+        },
+        "facadeMaterial": {
+          "rendered": {
+            "value": "brick appearance",
+            "source": "src/historical-sf/architecture.ts",
+            "locator": "north-brick-warehouse",
+            "confidence": "high",
+            "status": "authored model value"
+          },
+          "historical": {
+            "value": "Exposed masonry/brick appearance",
+            "source": "terminal-1905",
+            "locator": "right middle tall warehouse",
+            "confidence": "medium"
+          }
+        },
+        "occupant": {
+          "rendered": {
+            "value": null,
+            "source": "src/historical-sf/architecture.ts",
+            "locator": "north-brick-warehouse",
+            "confidence": "high",
+            "status": "authored model value"
+          },
+          "historical": {
+            "value": null,
+            "source": null,
+            "locator": null,
+            "confidence": "unknown"
+          }
+        }
+      },
+      "geographicRegistration": "Unverified/compressed scene coordinates; not cadastral coordinates"
+    },
+    {
+      "id": "north-coffee-house",
+      "modelClass": "photo-derived approximation",
+      "researchSources": [
+        "terminal-1905"
+      ],
+      "facts": {
+        "footprint": {
+          "rendered": {
+            "value": {
+              "center": [
+                -37.3,
+                521
+              ],
+              "width": 38,
+              "depth": 21,
+              "units": "game meters",
+              "shape": "rectangle"
+            },
+            "source": "src/historical-sf/architecture.ts",
+            "locator": "north-coffee-house",
+            "confidence": "high",
+            "status": "authored model value"
+          },
+          "historical": {
+            "value": null,
+            "source": null,
+            "locator": null,
+            "confidence": "unknown"
+          }
+        },
+        "height": {
+          "rendered": {
+            "value": {
+              "value": 8.5,
+              "units": "game meters",
+              "extent": "main wall/eave; decorative roof details may exceed this"
+            },
+            "source": "src/historical-sf/architecture.ts",
+            "locator": "north-coffee-house",
+            "confidence": "high",
+            "status": "authored model value"
+          },
+          "historical": {
+            "value": null,
+            "source": null,
+            "locator": null,
+            "confidence": "unknown"
+          }
+        },
+        "facadeMaterial": {
+          "rendered": {
+            "value": "painted timber appearance",
+            "source": "src/historical-sf/architecture.ts",
+            "locator": "north-coffee-house",
+            "confidence": "high",
+            "status": "authored model value"
+          },
+          "historical": {
+            "value": null,
+            "source": null,
+            "locator": null,
+            "confidence": "unknown"
+          }
+        },
+        "occupant": {
+          "rendered": {
+            "value": "coffee house",
+            "source": "src/historical-sf/architecture.ts",
+            "locator": "north-coffee-house",
+            "confidence": "high",
+            "status": "authored model value"
+          },
+          "historical": {
+            "value": "Visible Oakland Coffee & Lunch House sign; business presence rather than ownership",
+            "source": "terminal-1905",
+            "locator": "right foreground low hipped-roof corner",
+            "confidence": "high"
+          }
+        }
+      },
+      "geographicRegistration": "Unverified/compressed scene coordinates; not cadastral coordinates"
+    },
+    {
+      "id": "market-commercial--1-486",
+      "modelClass": "photo-derived approximation",
+      "researchSources": [
+        "terminal-1905"
+      ],
+      "facts": {
+        "footprint": {
+          "rendered": {
+            "value": {
+              "center": [
+                -27.788,
+                486
+              ],
+              "width": 19,
+              "depth": 24,
+              "units": "game meters",
+              "shape": "rectangle"
+            },
+            "source": "src/historical-sf/architecture.ts",
+            "locator": "market-commercial--1-486",
+            "confidence": "high",
+            "status": "authored model value"
+          },
+          "historical": {
+            "value": null,
+            "source": null,
+            "locator": null,
+            "confidence": "unknown"
+          }
+        },
+        "height": {
+          "rendered": {
+            "value": {
+              "value": 9.6,
+              "units": "game meters",
+              "extent": "main wall/eave; decorative roof details may exceed this"
+            },
+            "source": "src/historical-sf/architecture.ts",
+            "locator": "market-commercial--1-486",
+            "confidence": "high",
+            "status": "authored model value"
+          },
+          "historical": {
+            "value": null,
+            "source": null,
+            "locator": null,
+            "confidence": "unknown"
+          }
+        },
+        "facadeMaterial": {
+          "rendered": {
+            "value": "cream masonry appearance",
+            "source": "src/historical-sf/architecture.ts",
+            "locator": "market-commercial--1-486",
+            "confidence": "high",
+            "status": "authored model value"
+          },
+          "historical": {
+            "value": null,
+            "source": null,
+            "locator": null,
+            "confidence": "unknown"
+          }
+        },
+        "occupant": {
+          "rendered": {
+            "value": "PACIFIC COAST STEAMSHIP CO.",
+            "source": "src/historical-sf/architecture.ts",
+            "locator": "market-commercial--1-486",
+            "confidence": "high",
+            "status": "authored model value"
+          },
+          "historical": {
+            "value": "Pacific Coast Steamship Co. visible sign; model rectangle simplifies photographed wedge",
+            "source": "terminal-1905",
+            "locator": "right middle wedge-shaped corner below water tank",
+            "confidence": "high"
+          }
+        }
+      },
+      "geographicRegistration": "Unverified/compressed scene coordinates; not cadastral coordinates"
+    },
+    {
+      "id": "ferry-building",
+      "modelClass": "documented landmark approximation",
+      "researchSources": [
+        "ferry-habs",
+        "terminal-1905",
+        "film-1906"
+      ],
+      "facts": {
+        "footprint": {
+          "rendered": {
+            "value": {
+              "center": [
+                0,
+                590
+              ],
+              "width": 201.2,
+              "depth": 45.7,
+              "units": "game meters",
+              "shape": "rectangle"
+            },
+            "source": "src/historical-sf/architecture.ts",
+            "locator": "ferry-building",
+            "confidence": "high",
+            "status": "authored model value"
+          },
+          "historical": {
+            "value": {
+              "frontageFt": 660,
+              "depthFt": 150,
+              "approximate": true
+            },
+            "source": "ferry-habs",
+            "locator": "printedpp6\u20138",
+            "confidence": "medium"
+          }
+        },
+        "height": {
+          "rendered": {
+            "value": {
+              "value": 71.825,
+              "units": "game meters",
+              "extent": "tower finial apex above ground"
+            },
+            "source": "src/historical-sf/architecture.ts",
+            "locator": "ferry-building",
+            "confidence": "high",
+            "status": "authored model value"
+          },
+          "historical": {
+            "value": {
+              "towerFt": 235,
+              "approximate": true,
+              "alternativeReportedFt": [
+                240,
+                245
+              ]
+            },
+            "source": "ferry-habs",
+            "locator": "printedpp6\u20138",
+            "confidence": "medium"
+          }
+        },
+        "facadeMaterial": {
+          "rendered": {
+            "value": "Colusa sandstone",
+            "source": "src/historical-sf/architecture.ts",
+            "locator": "ferry-building",
+            "confidence": "high",
+            "status": "authored model value"
+          },
+          "historical": {
+            "value": "grayish Colusa sandstone",
+            "source": "ferry-habs",
+            "locator": "printedpp6\u20138",
+            "confidence": "high"
+          }
+        },
+        "occupant": {
+          "rendered": {
+            "value": "Union Depot and Ferry House",
+            "source": "src/historical-sf/architecture.ts",
+            "locator": "ferry-building",
+            "confidence": "high",
+            "status": "authored model value"
+          },
+          "historical": {
+            "value": "Union Depot and Ferry House",
+            "source": "ferry-habs",
+            "locator": "historical report",
+            "confidence": "high"
+          }
+        }
+      },
+      "geographicRegistration": "Market terminal placement; local game coordinate frame"
+    },
+    {
+      "id": "harbor-block-0",
+      "modelClass": "relocated typological composite",
+      "researchSources": [
+        "sanborn-5-6",
+        "sanborn-key",
+        "east-street"
+      ],
+      "facts": {
+        "footprint": {
+          "rendered": {
+            "value": {
+              "center": [
+                155,
+                427
+              ],
+              "width": 46,
+              "depth": 62,
+              "units": "game meters",
+              "shape": "rectangle"
+            },
+            "source": "src/historical-sf/harbor.ts",
+            "locator": "harbor-block-0",
+            "confidence": "high",
+            "status": "authored model value"
+          },
+          "historical": {
+            "value": null,
+            "source": null,
+            "locator": null,
+            "confidence": "unknown"
+          }
+        },
+        "height": {
+          "rendered": {
+            "value": {
+              "value": 8.8,
+              "units": "game meters",
+              "extent": "main wall/eave; decorative roof details may exceed this"
+            },
+            "source": "src/historical-sf/harbor.ts",
+            "locator": "harbor-block-0",
+            "confidence": "high",
+            "status": "authored model value"
+          },
+          "historical": {
+            "value": null,
+            "source": null,
+            "locator": null,
+            "confidence": "unknown"
+          }
+        },
+        "facadeMaterial": {
+          "rendered": {
+            "value": "brick appearance",
+            "source": "src/historical-sf/harbor.ts",
+            "locator": "harbor-block-0",
+            "confidence": "high",
+            "status": "authored model value"
+          },
+          "historical": {
+            "value": null,
+            "source": null,
+            "locator": null,
+            "confidence": "unknown"
+          }
+        },
+        "occupant": {
+          "rendered": {
+            "value": "chandler",
+            "source": "src/historical-sf/harbor.ts",
+            "locator": "harbor-block-0",
+            "confidence": "high",
+            "status": "authored model value"
+          },
+          "historical": {
+            "value": null,
+            "source": null,
+            "locator": null,
+            "confidence": "unknown"
+          }
+        }
+      },
+      "geographicRegistration": "Unverified/compressed scene coordinates; not cadastral coordinates"
+    },
+    {
+      "id": "harbor-block-1",
+      "modelClass": "relocated typological composite",
+      "researchSources": [
+        "sanborn-5-6",
+        "sanborn-key",
+        "east-street"
+      ],
+      "facts": {
+        "footprint": {
+          "rendered": {
+            "value": {
+              "center": [
+                235,
+                427
+              ],
+              "width": 48,
+              "depth": 62,
+              "units": "game meters",
+              "shape": "rectangle"
+            },
+            "source": "src/historical-sf/harbor.ts",
+            "locator": "harbor-block-1",
+            "confidence": "high",
+            "status": "authored model value"
+          },
+          "historical": {
+            "value": null,
+            "source": null,
+            "locator": null,
+            "confidence": "unknown"
+          }
+        },
+        "height": {
+          "rendered": {
+            "value": {
+              "value": 10.2,
+              "units": "game meters",
+              "extent": "main wall/eave; decorative roof details may exceed this"
+            },
+            "source": "src/historical-sf/harbor.ts",
+            "locator": "harbor-block-1",
+            "confidence": "high",
+            "status": "authored model value"
+          },
+          "historical": {
+            "value": null,
+            "source": null,
+            "locator": null,
+            "confidence": "unknown"
+          }
+        },
+        "facadeMaterial": {
+          "rendered": {
+            "value": "painted timber appearance",
+            "source": "src/historical-sf/harbor.ts",
+            "locator": "harbor-block-1",
+            "confidence": "high",
+            "status": "authored model value"
+          },
+          "historical": {
+            "value": null,
+            "source": null,
+            "locator": null,
+            "confidence": "unknown"
+          }
+        },
+        "occupant": {
+          "rendered": {
+            "value": "stores",
+            "source": "src/historical-sf/harbor.ts",
+            "locator": "harbor-block-1",
+            "confidence": "high",
+            "status": "authored model value"
+          },
+          "historical": {
+            "value": null,
+            "source": null,
+            "locator": null,
+            "confidence": "unknown"
+          }
+        }
+      },
+      "geographicRegistration": "Unverified/compressed scene coordinates; not cadastral coordinates"
+    },
+    {
+      "id": "harbor-block-2",
+      "modelClass": "relocated typological composite",
+      "researchSources": [
+        "sanborn-5-6",
+        "sanborn-key",
+        "east-street"
+      ],
+      "facts": {
+        "footprint": {
+          "rendered": {
+            "value": {
+              "center": [
+                316,
+                427
+              ],
+              "width": 44,
+              "depth": 62,
+              "units": "game meters",
+              "shape": "rectangle"
+            },
+            "source": "src/historical-sf/harbor.ts",
+            "locator": "harbor-block-2",
+            "confidence": "high",
+            "status": "authored model value"
+          },
+          "historical": {
+            "value": null,
+            "source": null,
+            "locator": null,
+            "confidence": "unknown"
+          }
+        },
+        "height": {
+          "rendered": {
+            "value": {
+              "value": 12.4,
+              "units": "game meters",
+              "extent": "main wall/eave; decorative roof details may exceed this"
+            },
+            "source": "src/historical-sf/harbor.ts",
+            "locator": "harbor-block-2",
+            "confidence": "high",
+            "status": "authored model value"
+          },
+          "historical": {
+            "value": null,
+            "source": null,
+            "locator": null,
+            "confidence": "unknown"
+          }
+        },
+        "facadeMaterial": {
+          "rendered": {
+            "value": "brick appearance",
+            "source": "src/historical-sf/harbor.ts",
+            "locator": "harbor-block-2",
+            "confidence": "high",
+            "status": "authored model value"
+          },
+          "historical": {
+            "value": null,
+            "source": null,
+            "locator": null,
+            "confidence": "unknown"
+          }
+        },
+        "occupant": {
+          "rendered": {
+            "value": "warehouse",
+            "source": "src/historical-sf/harbor.ts",
+            "locator": "harbor-block-2",
+            "confidence": "high",
+            "status": "authored model value"
+          },
+          "historical": {
+            "value": null,
+            "source": null,
+            "locator": null,
+            "confidence": "unknown"
+          }
+        }
+      },
+      "geographicRegistration": "Unverified/compressed scene coordinates; not cadastral coordinates"
+    },
+    {
+      "id": "harbor-block-3",
+      "modelClass": "relocated typological composite",
+      "researchSources": [
+        "sanborn-5-6",
+        "sanborn-key",
+        "east-street"
+      ],
+      "facts": {
+        "footprint": {
+          "rendered": {
+            "value": {
+              "center": [
+                155,
+                505
+              ],
+              "width": 46,
+              "depth": 38,
+              "units": "game meters",
+              "shape": "rectangle"
+            },
+            "source": "src/historical-sf/harbor.ts",
+            "locator": "harbor-block-3",
+            "confidence": "high",
+            "status": "authored model value"
+          },
+          "historical": {
+            "value": null,
+            "source": null,
+            "locator": null,
+            "confidence": "unknown"
+          }
+        },
+        "height": {
+          "rendered": {
+            "value": {
+              "value": 7.4,
+              "units": "game meters",
+              "extent": "main wall/eave; decorative roof details may exceed this"
+            },
+            "source": "src/historical-sf/harbor.ts",
+            "locator": "harbor-block-3",
+            "confidence": "high",
+            "status": "authored model value"
+          },
+          "historical": {
+            "value": null,
+            "source": null,
+            "locator": null,
+            "confidence": "unknown"
+          }
+        },
+        "facadeMaterial": {
+          "rendered": {
+            "value": "painted timber appearance",
+            "source": "src/historical-sf/harbor.ts",
+            "locator": "harbor-block-3",
+            "confidence": "high",
+            "status": "authored model value"
+          },
+          "historical": {
+            "value": null,
+            "source": null,
+            "locator": null,
+            "confidence": "unknown"
+          }
+        },
+        "occupant": {
+          "rendered": {
+            "value": "freight office",
+            "source": "src/historical-sf/harbor.ts",
+            "locator": "harbor-block-3",
+            "confidence": "high",
+            "status": "authored model value"
+          },
+          "historical": {
+            "value": null,
+            "source": null,
+            "locator": null,
+            "confidence": "unknown"
+          }
+        }
+      },
+      "geographicRegistration": "Unverified/compressed scene coordinates; not cadastral coordinates"
+    },
+    {
+      "id": "harbor-block-4",
+      "modelClass": "relocated typological composite",
+      "researchSources": [
+        "sanborn-5-6",
+        "sanborn-key",
+        "east-street"
+      ],
+      "facts": {
+        "footprint": {
+          "rendered": {
+            "value": {
+              "center": [
+                235,
+                505
+              ],
+              "width": 48,
+              "depth": 38,
+              "units": "game meters",
+              "shape": "rectangle"
+            },
+            "source": "src/historical-sf/harbor.ts",
+            "locator": "harbor-block-4",
+            "confidence": "high",
+            "status": "authored model value"
+          },
+          "historical": {
+            "value": null,
+            "source": null,
+            "locator": null,
+            "confidence": "unknown"
+          }
+        },
+        "height": {
+          "rendered": {
+            "value": {
+              "value": 8.6,
+              "units": "game meters",
+              "extent": "main wall/eave; decorative roof details may exceed this"
+            },
+            "source": "src/historical-sf/harbor.ts",
+            "locator": "harbor-block-4",
+            "confidence": "high",
+            "status": "authored model value"
+          },
+          "historical": {
+            "value": null,
+            "source": null,
+            "locator": null,
+            "confidence": "unknown"
+          }
+        },
+        "facadeMaterial": {
+          "rendered": {
+            "value": "painted timber appearance",
+            "source": "src/historical-sf/harbor.ts",
+            "locator": "harbor-block-4",
+            "confidence": "high",
+            "status": "authored model value"
+          },
+          "historical": {
+            "value": null,
+            "source": null,
+            "locator": null,
+            "confidence": "unknown"
+          }
+        },
+        "occupant": {
+          "rendered": {
+            "value": "lumber yard",
+            "source": "src/historical-sf/harbor.ts",
+            "locator": "harbor-block-4",
+            "confidence": "high",
+            "status": "authored model value"
+          },
+          "historical": {
+            "value": null,
+            "source": null,
+            "locator": null,
+            "confidence": "unknown"
+          }
+        }
+      },
+      "geographicRegistration": "Unverified/compressed scene coordinates; not cadastral coordinates"
+    },
+    {
+      "id": "harbor-block-5",
+      "modelClass": "relocated typological composite",
+      "researchSources": [
+        "sanborn-5-6",
+        "sanborn-key",
+        "east-street"
+      ],
+      "facts": {
+        "footprint": {
+          "rendered": {
+            "value": {
+              "center": [
+                316,
+                505
+              ],
+              "width": 44,
+              "depth": 38,
+              "units": "game meters",
+              "shape": "rectangle"
+            },
+            "source": "src/historical-sf/harbor.ts",
+            "locator": "harbor-block-5",
+            "confidence": "high",
+            "status": "authored model value"
+          },
+          "historical": {
+            "value": null,
+            "source": null,
+            "locator": null,
+            "confidence": "unknown"
+          }
+        },
+        "height": {
+          "rendered": {
+            "value": {
+              "value": 11.6,
+              "units": "game meters",
+              "extent": "main wall/eave; decorative roof details may exceed this"
+            },
+            "source": "src/historical-sf/harbor.ts",
+            "locator": "harbor-block-5",
+            "confidence": "high",
+            "status": "authored model value"
+          },
+          "historical": {
+            "value": null,
+            "source": null,
+            "locator": null,
+            "confidence": "unknown"
+          }
+        },
+        "facadeMaterial": {
+          "rendered": {
+            "value": "brick appearance",
+            "source": "src/historical-sf/harbor.ts",
+            "locator": "harbor-block-5",
+            "confidence": "high",
+            "status": "authored model value"
+          },
+          "historical": {
+            "value": null,
+            "source": null,
+            "locator": null,
+            "confidence": "unknown"
+          }
+        },
+        "occupant": {
+          "rendered": {
+            "value": "warehouse",
+            "source": "src/historical-sf/harbor.ts",
+            "locator": "harbor-block-5",
+            "confidence": "high",
+            "status": "authored model value"
+          },
+          "historical": {
+            "value": null,
+            "source": null,
+            "locator": null,
+            "confidence": "unknown"
+          }
+        }
+      },
+      "geographicRegistration": "Unverified/compressed scene coordinates; not cadastral coordinates"
+    },
+    {
+      "id": "harbor-block-6",
+      "modelClass": "relocated typological composite",
+      "researchSources": [
+        "sanborn-5-6",
+        "sanborn-key",
+        "east-street"
+      ],
+      "facts": {
+        "footprint": {
+          "rendered": {
+            "value": {
+              "center": [
+                273,
+                588
+              ],
+              "width": 62,
+              "depth": 28,
+              "units": "game meters",
+              "shape": "rectangle"
+            },
+            "source": "src/historical-sf/harbor.ts",
+            "locator": "harbor-block-6",
+            "confidence": "high",
+            "status": "authored model value"
+          },
+          "historical": {
+            "value": null,
+            "source": null,
+            "locator": null,
+            "confidence": "unknown"
+          }
+        },
+        "height": {
+          "rendered": {
+            "value": {
+              "value": 8,
+              "units": "game meters",
+              "extent": "main wall/eave; decorative roof details may exceed this"
+            },
+            "source": "src/historical-sf/harbor.ts",
+            "locator": "harbor-block-6",
+            "confidence": "high",
+            "status": "authored model value"
+          },
+          "historical": {
+            "value": null,
+            "source": null,
+            "locator": null,
+            "confidence": "unknown"
+          }
+        },
+        "facadeMaterial": {
+          "rendered": {
+            "value": "painted timber appearance",
+            "source": "src/historical-sf/harbor.ts",
+            "locator": "harbor-block-6",
+            "confidence": "high",
+            "status": "authored model value"
+          },
+          "historical": {
+            "value": null,
+            "source": null,
+            "locator": null,
+            "confidence": "unknown"
+          }
+        },
+        "occupant": {
+          "rendered": {
+            "value": "wharf shed",
+            "source": "src/historical-sf/harbor.ts",
+            "locator": "harbor-block-6",
+            "confidence": "high",
+            "status": "authored model value"
+          },
+          "historical": {
+            "value": null,
+            "source": null,
+            "locator": null,
+            "confidence": "unknown"
+          }
+        }
+      },
+      "geographicRegistration": "Unverified/compressed scene coordinates; not cadastral coordinates"
+    },
+    {
+      "id": "ship-deckhouse",
+      "modelClass": "vessel detail approximation",
+      "researchSources": [
+        "east-street"
+      ],
+      "facts": {
+        "footprint": {
+          "rendered": {
+            "value": {
+              "center": [
+                220,
+                636
+              ],
+              "width": 5.4,
+              "depth": 6,
+              "units": "game meters",
+              "shape": "rectangle"
+            },
+            "source": "src/historical-sf/harbor.ts",
+            "locator": "ship-deckhouse",
+            "confidence": "high",
+            "status": "authored model value"
+          },
+          "historical": {
+            "value": null,
+            "source": null,
+            "locator": null,
+            "confidence": "unknown"
+          }
+        },
+        "height": {
+          "rendered": {
+            "value": {
+              "value": 2.3,
+              "units": "game meters",
+              "extent": "roof apex above deck at2.4m"
+            },
+            "source": "src/historical-sf/harbor.ts",
+            "locator": "ship-deckhouse",
+            "confidence": "high",
+            "status": "authored model value"
+          },
+          "historical": {
+            "value": null,
+            "source": null,
+            "locator": null,
+            "confidence": "unknown"
+          }
+        },
+        "facadeMaterial": {
+          "rendered": {
+            "value": "painted timber",
+            "source": "src/historical-sf/harbor.ts",
+            "locator": "ship-deckhouse",
+            "confidence": "high",
+            "status": "authored model value"
+          },
+          "historical": {
+            "value": null,
+            "source": null,
+            "locator": null,
+            "confidence": "unknown"
+          }
+        },
+        "occupant": {
+          "rendered": {
+            "value": null,
+            "source": "src/historical-sf/harbor.ts",
+            "locator": "ship-deckhouse",
+            "confidence": "high",
+            "status": "authored model value"
+          },
+          "historical": {
+            "value": null,
+            "source": null,
+            "locator": null,
+            "confidence": "unknown"
+          }
+        }
+      },
+      "geographicRegistration": "Unverified/compressed scene coordinates; not cadastral coordinates"
+    }
+  ]
+}

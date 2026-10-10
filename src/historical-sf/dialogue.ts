@@ -1,5 +1,5 @@
 import type { Crowd, Pedestrian, PersonRole, TrafficMarker } from './crowd';
-import { distanceBetween, segmentHitsBlock, streetBlocks, type StreetPoint } from './navigation.ts';
+import { distanceBetween, segmentHitsBlock, streetBlocks, type StreetPoint, type DestinationId } from './navigation.ts';
 
 export const roleNames:Record<PersonRole,string>={traveler:'Ferry traveler',news:'News seller',porter:'Porter',clerk:'Shop clerk',flowers:'Flower seller',coffee:'Coffee-house keeper'};
 // Original dialogue; the sources support its subjects, not recorded speech.
@@ -11,13 +11,13 @@ const ambient:Record<PersonRole,string[]>={
   flowers:['A few flowers to take home?','Shall I wrap these for the crossing?','Mind the stems, please.'],
   coffee:['Coffee before your boat?','Come in for a bite of lunch.','There is room by the window.'],
 };
-type Choice={label:string;reply:string;destination?:'ferry'|'tickets'|'coffee'|'arcade'};
+type Choice={label:string;reply:string;destination?:DestinationId};
 const exchanges:Record<PersonRole,{greeting:string;choices:Choice[]}>= {
   news:{greeting:'A paper for the crossing? The Call, if you please.',choices:[{label:'Which way to the ferry?',reply:'Straight down Market, under the great clock. You cannot miss it.',destination:'ferry'},{label:'Just taking a walk.',reply:'Then mind the cars. They give a fellow little room here.'}]},
   traveler:{greeting:'Good afternoon. Are you bound for the ferry?',choices:[{label:'Where do I get a ticket?',reply:'At the ticket office by the corner. Keep your parcels close.',destination:'tickets'},{label:'What is inside the building?',reply:'An exhibit of California products, I am told. Ask the attendant.',destination:'arcade'}]},
-  porter:{greeting:'Any baggage to carry? A trunk, or perhaps a parcel?',choices:[{label:'Only looking about.',reply:'Then give the wagons a little room, and enjoy your afternoon.'},{label:'Where is the ferry entrance?',reply:'By the great clock ahead. Keep your baggage check safe.',destination:'ferry'}]},
-  clerk:{greeting:'Good afternoon. Can I direct you somewhere?',choices:[{label:'Somewhere for coffee?',reply:'The coffee house is at the north corner, facing the Ferry.',destination:'coffee'},{label:'I should like to see the arcade.',reply:'Across the apron, beyond the cars. Fine stonework there.',destination:'arcade'}]},
-  flowers:{greeting:'A few flowers for someone at home?',choices:[{label:'They look very fine.',reply:'Thank you kindly. A little color for the table.'},{label:'Is the ticket office near?',reply:'Just beside the corner here, beneath the projecting windows.',destination:'tickets'}]},
+  porter:{greeting:'Any baggage to carry? A trunk, or perhaps a parcel?',choices:[{label:'Can I go aboard a ship?',reply:'Along East Street, past the freight office. Take the timber wharf and cross the gangway to the schooner.',destination:'ship'},{label:'Where is the ferry entrance?',reply:'By the great clock ahead. Keep your baggage check safe.',destination:'ferry'}]},
+  clerk:{greeting:'Good afternoon. Can I direct you somewhere?',choices:[{label:'Somewhere for coffee?',reply:'The coffee house is at the north corner, facing the Ferry.',destination:'coffee'},{label:'Where are the wharves?',reply:'Follow East Street beside the bay. The freight sheds stand beyond the clock tower.',destination:'harbor'}]},
+  flowers:{greeting:'A few flowers for someone at home?',choices:[{label:'Where are the marine stores?',reply:'Take East Street to the chandler. Rope and canvas for the ships.',destination:'chandler'},{label:'Is the ticket office near?',reply:'Just beside the corner here, beneath the projecting windows.',destination:'tickets'}]},
   coffee:{greeting:'Coffee before your boat? Or a bite of lunch?',choices:[{label:'I have time to look about.',reply:'Then take your time. The window looks out on a busy street.'},{label:'Which way to the boat?',reply:'Across the open apron, to the great clock. Mind the passing cars.',destination:'ferry'}]},
 };
 export const dialogueVoiceLines=Object.entries(exchanges).flatMap(([role,exchange])=>[exchange.greeting,...exchange.choices.map(c=>c.reply),...ambient[role as PersonRole]].map(text=>({role,text})));
@@ -29,7 +29,7 @@ export function hasStreetSight(from:StreetPoint,to:StreetPoint,vehicles:TrafficM
 export function createDialogue(crowd:Crowd){
   let speech:Speech[]=[],activeId:number|null=null,stage:'greeting'|'reply'='greeting',time=0,nextAmbient=0,nearby:Pedestrian|null=null,enabled=false,ambientEnabled=true,replyUntil=Infinity;
   const cooldown=new Map<number,number>(),greetingCooldown=new Map<number,number>();
-  let attentionId:number|null=null,attentionSince=0,lastViewer:StreetPoint|null=null;
+  let attentionId:number|null=null,attentionSince=0,lastViewer:(StreetPoint&{time:number})|null=null;
   function begin(){
     if(!enabled)return false;
     if(activeId!==null){end();return true;}
@@ -48,7 +48,7 @@ export function createDialogue(crowd:Crowd){
     nearby=enabled?crowd.people.filter(n=>distanceBetween(n,viewer)<6&&hasStreetSight(viewer,n,vehicles)).sort((a,b)=>distanceBetween(a,viewer)-distanceBetween(b,viewer))[0]??null:null;
     if(activeId!==null&&(!canTalk||distanceBetween(viewer,crowd.people[activeId])>8))end();
     speech=speech.filter(s=>s.until>now);
-    const moving=lastViewer!==null&&distanceBetween(lastViewer,viewer)>.04;lastViewer={x:viewer.x,z:viewer.z};
+    const moving=lastViewer!==null&&distanceBetween(lastViewer,viewer)>Math.max(.001,(now-lastViewer.time)*.05);lastViewer={x:viewer.x,z:viewer.z,time:now};
     const facing=nearby&&viewerYaw!==undefined&&Math.cos(Math.atan2(nearby.x-viewer.x,nearby.z-viewer.z)-viewerYaw)>.78;
     const attentive=enabled&&ambientEnabled&&!moving&&nearby&&distanceBetween(nearby,viewer)<3.5&&facing&&(greetingCooldown.get(nearby.id)??0)<=now;
     if(!attentive||!nearby){attentionId=null;attentionSince=now;}

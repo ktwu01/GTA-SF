@@ -191,7 +191,7 @@ async function start(){
     (window as Window&{__historicalSF?:unknown}).__historicalSF={snapshot:()=>({...world!.snapshot(),errors:[...errors],entered,comparisonOpen:overlay==='comparison',overlay,ambientEnabled,fullscreen:{active:!!fullscreenElement(),supported:fullscreenSupported(),error:fullscreenError},hudFootprint:hudFootprint()}),navigate:(place:Place)=>world!.navigate(place),board:()=>world!.board(),ride:()=>world!.ride(),guided:()=>world!.guided(),reverse:()=>world!.reverse(),respond:(index:number)=>world!.respond(index),jump:()=>world!.jump(),menu:pauseGame,resume:resumeGame,toggleFullscreen,toggleHUD:()=>setHudVisible(!hudVisible),selectDestination:(id:DestinationId|null)=>world!.selectDestination(id),model:'gpt-6-astra'};
     await Promise.race([world.scene.whenReadyAsync(),new Promise<never>((_,reject)=>setTimeout(()=>reject(new Error('The scene did not become ready within 25 seconds.')),25000))]);
     enter.disabled=false;enter.querySelector('span')!.textContent='Step inside';
-    if(new URL(location.href).searchParams.has('view')){const place=new URL(location.href).searchParams.get('view') as Place;if(['ferry','arcade','market'].includes(place)){await enterStreet();world.navigate(place,false);}}
+    if(new URL(location.href).searchParams.has('view')){const place=new URL(location.href).searchParams.get('view') as Place;if(['ferry','arcade','market','harbor','ship'].includes(place)){await enterStreet();world.navigate(place,false);}}
   }catch(error){errors.push(String(error));enter.hidden=true;const message=$<HTMLElement>('#load-error');message.hidden=false;message.textContent='The street could not open. Try reloading, or explore the original photographs.';console.error('Historical street could not start',error);}
 }
 async function enterStreet(){
@@ -201,5 +201,5 @@ async function enterStreet(){
 enter.addEventListener('click',enterStreet);
 $('#reset').addEventListener('click',()=>{entered=false;releaseMouse();overlayStack=[];showOverlay('none');world?.reset();document.body.classList.remove('entered','game-paused');intro.hidden=false;intro.classList.remove('leaving');experience.inert=true;experience.setAttribute('aria-hidden','true');video.play().catch(()=>{});enter.focus();});
 if(matchMedia('(prefers-reduced-motion: reduce)').matches){video.autoplay=false;video.pause();}
-if(import.meta.env.DEV)setInterval(()=>{if(!world)return;const s=world.snapshot();canvas.dataset.diagnostics=JSON.stringify({mode:s.mode,paused:s.paused,camera:s.camera,input:s.input,audio:s.audio,streetcar:s.streetcar,conversation:s.hud.conversation,transition:s.transition,elapsed:s.elapsed,fps:s.fps,errors});},500);
+if(import.meta.env.DEV)setInterval(()=>{if(!world)return;const s=world.snapshot();canvas.dataset.diagnostics=JSON.stringify({mode:s.mode,paused:s.paused,camera:s.camera,input:s.input,audio:s.audio,streetcar:s.streetcar,conversation:s.hud.conversation,crowd:{count:s.crowd.count,moving:s.crowd.moving,running:s.crowd.running,hopping:s.crowd.hopping,yielding:s.crowd.yielding},riders:s.exteriorRiders,route:s.hud.route,transition:s.transition,elapsed:s.elapsed,fps:s.fps,errors});},500);
 start();

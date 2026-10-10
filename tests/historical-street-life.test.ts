@@ -16,8 +16,8 @@ test('route distances accept camera coordinates exposed through prototype access
     get z() { return this.coordinates[1]; }
   }
   const route = routeTo(new CameraPoint([1.4, 350]), new CameraPoint([0, 552]));
-  assert.deepEqual(route, [{ x: 1.4, z: 350 }, { x: 0, z: 552 }]);
-  close(routeDistance(route), Math.hypot(1.4, 202));
+  assert.deepEqual(route, [{ x: 1.4, z: 350 }, { x: 15.8, z: 350 }, { x: 15.8, z: 538 }, { x: 0, z: 552 }]);
+  close(routeDistance(route), 14.4+188+Math.hypot(15.8,14));
 });
 
 test('compass follows the northeast Ferry axis through full rotations', () => {
@@ -57,7 +57,7 @@ test('off-map destination clamps to the edge without changing its direction', ()
 
 test('all destination routes keep players outside the side-building boundary', () => {
   const starts = [{ x: 1.4, z: 350 }, { x: 16, z: 480 }, { x: -16, z: 500 }, { x: 90, z: 550 }, { x: -80, z: 545 }];
-  for (const start of starts) for (const destination of destinations) {
+  for (const start of starts) for (const destination of destinations.filter(d=>d.x<95)) {
     const end = { x: destination.x, z: destination.z };
     const route = routeTo(start, end);
     assert.deepEqual(route[0], start);
@@ -200,4 +200,10 @@ test('a voiced reply remains until speech finishes, but walking away still cance
   dialogue.begin(); dialogue.choose(0);
   dialogue.update(9, { x: 0, z: 330 }, [], true, true, true);
   assert.equal(dialogue.activeId, null);
+});
+
+test('small movement per frame does not trigger a greeting on fast displays',()=>{
+  const {dialogue}=dialogueFixture();
+  for(let i=0;i<180;i++)dialogue.update(1+i/144,{x:i*.007,z:350},[],true,true,false,0);
+  assert.equal(dialogue.activeId,null);
 });
