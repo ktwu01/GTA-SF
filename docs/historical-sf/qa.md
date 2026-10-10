@@ -1,17 +1,19 @@
 # Historical district verification
 
-Reviewed on October 9, 2026 against the dedicated production build at `http://127.0.0.1:4177/`.
+Earlier browser review on October 9, 2026 used the dedicated production build at `http://127.0.0.1:4177/`. The browser and rendering observations below describe that reviewed build; they do not establish visual fidelity or performance for the final branch.
 
 The visualization, pedestrian modeling, animation, dialogue UI, and minimap implementation were assigned explicitly to **gpt-6-astra**. Public historical records and project code were the only task materials shared with the agents.
 
 ## Build and evidence checks
 
 - The dedicated TypeScript check and Vite production build pass.
-- Ten navigation and conversation regression tests pass. They cover compass rotation, radar clamping, walkable routes, camera coordinate accessors, sight lines, conversation distance, pause, boarding, and reset.
+- All 24 historical regression tests pass. They cover navigation, conversation, menu controls, vehicle and pedestrian collision, voice assets, and audio handling.
 - The reference checker validates 16 film frames, 10 independent photographs or postcards, and 28 image hashes. Alternate scans and publication evidence do not inflate the 26-view count.
 - All 14 material derivatives have source IDs, recorded transformations, and matching file hashes.
 - All 26 archive images decoded after scrolling through the lazy-loaded gallery.
-- The original repository-wide test baseline depends on unavailable city Git LFS assets and Unreal outputs. It is not a passing validation claim for this separate experience.
+- The full repository suite passes 294 of 312 tests on `mvp`, compared with 270 of 288 on main. Both have the same 18 failures from unavailable city Git LFS assets and Unreal outputs.
+
+The final branch includes 39 fictional dialogue clips synthesized locally, plus walking collision against vehicles and pedestrians. Current validation covers the tests, dedicated build, and reference checker. No new browser render or performance measurement was performed for these final changes.
 
 ## Browser checks
 
@@ -51,11 +53,11 @@ The geometry inventory reports **193,286 unique source triangles** and **710,970
 
 Actual renders were inspected for street density, clothing and carried objects, speech anchoring, text contrast, minimap orientation, conversation choices, mobile driving, destination selection, and discovery feedback. Earlier MVP review also covered the Ferry frontage, arcade, source comparison, and architectural correspondence with the 1901 postcard, 1905 terminal photograph, and 1906 film.
 
-The district remains a source-informed procedural reconstruction. People and horses are visibly stylized. It is not a photogrammetric or surveyed digital twin. Neighboring dimensions and colors are inferred, shops are exterior scenery, and traffic has local pedestrian yielding rather than a general collision simulation. The map and sight-line rectangles are schematic. Dialogue is original fictional writing informed by period publications; it is not a transcript of the silent film.
+The district remains a source-informed procedural reconstruction. People and horses are visibly stylized. It is not a photogrammetric or surveyed digital twin. Neighboring dimensions and colors are inferred, shops are exterior scenery, and traffic has local pedestrian yielding, and walking collision separates the player from vehicles and pedestrians; neither constitutes a general physics simulation. The map and sight-line rectangles are schematic. Dialogue is original fictional writing informed by period publications; it is not a transcript of the silent film.
 
 ## Local evidence
 
-Current captures and state records are under `artifacts/historical-sf/street-life/`:
+Captures and state records from the earlier browser review are under `artifacts/historical-sf/street-life/`:
 
 - `conversation-desktop.jpg` and `mobile-talk.jpg` show the conversations.
 - `release-street-life.jpg` and `release-smoke.json` verify the final production build after reset and pause fixes.
