@@ -2,7 +2,7 @@
 
 **Explore San Francisco in 1906, on foot, by streetcar, and aboard a lumber schooner.**
 
-[Play in your browser](https://ktwu01.github.io/GTA-SF/) · [Download v0.3.0](https://github.com/ktwu01/GTA-SF/releases/tag/v0.3.0) · [Report a bug or suggest an idea](https://github.com/ktwu01/GTA-SF/issues) · [Gameplay guide](docs/historical-sf/mvp.md)
+[Play in your browser](https://ktwu01.github.io/GTA-SF1906/) · [Download v0.3.0](https://github.com/ktwu01/GTA-SF1906/releases/tag/v0.3.0) · [Report a bug or suggest an idea](https://github.com/ktwu01/GTA-SF1906/issues) · [Gameplay guide](docs/historical-sf/mvp.md)
 
 ![Market Street in GTA-SF: pedestrians and open-platform streetcars, with the Ferry Building ahead](docs/media/gta-sf/market-street.jpg)
 
@@ -25,11 +25,11 @@ The current release is a compact historical district. Buildings and street detai
 
 ## Play the release
 
-Open [GTA-SF](https://ktwu01.github.io/GTA-SF/) to play without installation.
+Open [GTA-SF](https://ktwu01.github.io/GTA-SF1906/) to play without installation.
 Share the same link with friends.
 A desktop browser with WebGL2 support is recommended.
 
-Download `GTA-SF-v0.3.0-historical.zip` from the [release page](https://github.com/ktwu01/GTA-SF/releases/tag/v0.3.0).
+Download `GTA-SF-v0.3.0-historical.zip` from the [release page](https://github.com/ktwu01/GTA-SF1906/releases/tag/v0.3.0).
 Extract the ZIP into a folder.
 Run this command inside the extracted folder:
 
@@ -63,8 +63,8 @@ Choose a destination from **Pause → Places** to follow a walking route. On tou
 Use Node.js 24 and npm.
 
 ```sh
-git clone https://github.com/ktwu01/GTA-SF.git
-cd GTA-SF
+git clone https://github.com/ktwu01/GTA-SF1906.git
+cd GTA-SF1906
 npm ci
 npm run dev:historical
 ```
