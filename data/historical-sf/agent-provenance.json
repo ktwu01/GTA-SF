@@ -1,0 +1,35 @@
+{
+  "visualizationAgent": {
+    "taskName": "/root/astra_historical_visualization",
+    "selectedModel": "gpt-6-astra",
+    "selectedReasoningEffort": "xhigh",
+    "selectionEvidence": "Explicit model argument supplied to collaboration.spawn_agent",
+    "scope": "Historical scene geometry, materials, animation, product UI, interaction and dedicated build",
+    "referenceGateAtLaunch": {
+      "realImages": 22,
+      "filmFrames": 16,
+      "independentImages": 6
+    },
+    "finalReferencePack": {
+      "distinctArchivalViews": 26,
+      "referenceImageFiles": 28,
+      "filmFrames": 16,
+      "independentImages": 10
+    },
+    "playableScope": "Final approximately 210 meters of Market Street and Ferry Building apron, with walking and boardable streetcar."
+  },
+  "researchAgent": {
+    "taskName": "/root/historical_references",
+    "scope": "Public historical image provenance and architectural observations"
+  },
+  "parentScope": "Public source gathering and download, source ledger, integration, browser QA and delivery",
+  "streetLifeUpgrade": {
+    "visualizationAgent": "/root/astra_historical_visualization",
+    "selectedModel": "gpt-6-astra",
+    "selectionEvidence": "Continued the explicitly selected Astra agent through collaboration.followup_task",
+    "scope": "Pedestrian modeling and movement, period-inspired dialogue, speech bubbles, interaction, minimap, compass and responsive HUD",
+    "researchBrief": "docs/historical-sf/street-dialogue-research.md",
+    "dialogueAuthorship": "Original fictional NPC writing informed by public period sources; not historical quotations",
+    "parentScope": "Integration, regression checks, browser review and local commit"
+  }
+}
